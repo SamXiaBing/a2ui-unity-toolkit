@@ -1,0 +1,3 @@
+# prompt: unit Divider
+{"surfaceUpdate":{"surfaceId":"u-div","components":[{"id":"root","component":{"Column":{"children":{"explicitList":["t1","d","t2"]}}}},{"id":"t1","component":{"Text":{"text":{"literalString":"上方"},"usageHint":"body"}}},{"id":"d","component":{"Divider":{"axis":"horizontal"}}},{"id":"t2","component":{"Text":{"text":{"literalString":"下方"},"usageHint":"body"}}}]}}
+{"beginRendering":{"surfaceId":"u-div","root":"root","catalogId":"https://a2ui.org/specification/v0_8/json/standard_catalog_definition.json"}}

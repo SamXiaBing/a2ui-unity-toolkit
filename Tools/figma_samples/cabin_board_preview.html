@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CabinBoard · Figma 设计源预览（A2UI 转换链）</title>
+<style>
+  :root{
+    --bg:#0E1116; --surface:#141821; --surface-variant:#1C2230;
+    --primary:#2DD4BF; --on-primary:#06231F; --secondary:#5B8DEF;
+    --tertiary:#F5A623; --error:#FF5A5F; --outline:#2A3344;
+    --on-surface:#E6EDF3; --on-surface-variant:#9AA7B8;
+    --r-sm:8px; --r-md:12px; --r-lg:16px; --r-pill:999px;
+    --space-1:8px; --space-2:16px; --space-3:24px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,sans-serif;}
+  body{background:#05070a;padding:40px;display:flex;justify-content:center;}
+  .board{width:1080px;background:var(--bg);border-radius:28px;padding:32px;display:flex;flex-direction:column;gap:24px;}
+  .text-title{font-size:46px;font-weight:700;color:var(--on-surface);}
+  .text-body{font-size:20px;font-weight:400;color:var(--on-surface-variant);line-height:28px;}
+  .image{height:200px;border-radius:var(--r-lg);background:linear-gradient(135deg,#1C2230,#0E1116);display:flex;align-items:center;justify-content:center;color:var(--on-surface-variant);font-size:18px;}
+  .icon{width:56px;height:56px;border-radius:var(--r-pill);background:var(--primary);display:flex;align-items:center;justify-content:center;color:var(--on-primary);font-size:24px;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;border-radius:var(--r-md);padding:14px 24px;background:var(--primary);color:var(--on-primary);font-size:22px;font-weight:600;}
+  .card{background:var(--surface-variant);border-radius:var(--r-lg);padding:20px;display:flex;flex-direction:column;gap:12px;}
+  .card .t{font-size:24px;font-weight:600;color:var(--on-surface);}
+  .card .v{font-size:18px;color:var(--on-surface-variant);}
+  .row{display:flex;gap:12px;}
+  .row .btn{background:var(--secondary);color:#fff;font-size:20px;padding:10px 18px;}
+  .col{display:flex;flex-direction:column;gap:10px;}
+  .col .text-body{color:var(--on-surface);}
+  .list{display:flex;flex-direction:column;gap:12px;}
+  .list .item{background:var(--surface-variant);border-radius:var(--r-md);padding:14px 16px;font-size:20px;color:var(--on-surface);}
+  .tabs{display:flex;gap:8px;}
+  .tab{display:inline-flex;align-items:center;border-radius:var(--r-pill);padding:10px 20px;font-size:20px;font-weight:600;background:var(--surface-variant);color:var(--on-surface-variant);}
+  .tab.active{background:var(--primary);color:var(--on-primary);}
+  .divider{height:1px;background:var(--outline);}
+  .slider{display:flex;align-items:center;gap:12px;}
+  .slider .track{flex:1;height:6px;border-radius:var(--r-pill);background:var(--outline);position:relative;}
+  .slider .track::after{content:"";position:absolute;left:0;top:0;width:60%;height:100%;border-radius:var(--r-pill);background:var(--primary);}
+  .slider .thumb{width:20px;height:20px;border-radius:50%;background:var(--primary);}
+  .checkbox{display:flex;align-items:center;gap:10px;font-size:20px;color:var(--on-surface);}
+  .checkbox .box{width:24px;height:24px;border-radius:6px;background:var(--primary);}
+  .textfield{display:flex;align-items:center;border-radius:var(--r-md);padding:12px 16px;border:1px solid var(--outline);background:var(--surface);font-size:20px;color:var(--on-surface-variant);}
+  .chips{display:flex;gap:8px;}
+  .chip{display:inline-flex;align-items:center;border-radius:var(--r-pill);padding:8px 16px;font-size:18px;font-weight:500;background:var(--surface-variant);color:var(--on-surface-variant);}
+  .chip.active{background:var(--primary);color:var(--on-primary);}
+  .media{display:flex;align-items:center;gap:14px;background:var(--surface-variant);border-radius:var(--r-lg);padding:14px 18px;}
+  .media .t{font-size:20px;font-weight:500;color:var(--on-surface);}
+  .climate{display:flex;flex-direction:column;align-items:center;gap:6px;background:var(--surface-variant);border-radius:var(--r-lg);padding:18px 20px;}
+  .climate .val{font-size:40px;font-weight:700;color:var(--primary);}
+  .climate .cap{font-size:16px;color:var(--on-surface-variant);}
+  .rest{display:flex;align-items:center;gap:12px;background:var(--tertiary);border-radius:var(--r-lg);padding:18px 20px;font-size:22px;font-weight:600;color:var(--bg);}
+  h2.sec{font-size:14px;letter-spacing:2px;color:var(--on-surface-variant);text-transform:uppercase;margin-top:8px;}
+</style>
+</head>
+<body>
+  <div class="board">
+    <h2 class="sec">Text</h2>
+    <div class="text-title">空调已开启</div>
+    <div class="text-body">主驾 24℃，副驾 22℃，风向吹脸</div>
+
+    <h2 class="sec">Image</h2>
+    <div class="image">Album Art / Map Thumbnail</div>
+
+    <h2 class="sec">Icon</h2>
+    <div class="icon">♪</div>
+
+    <h2 class="sec">Button</h2>
+    <div class="btn">立即导航</div>
+
+    <h2 class="sec">Card</h2>
+    <div class="card"><div class="t">今日能耗</div><div class="v">14.8 kWh / 100km</div></div>
+
+    <h2 class="sec">Row</h2>
+    <div class="row"><div class="btn">上一首</div><div class="btn">下一首</div></div>
+
+    <h2 class="sec">Column</h2>
+    <div class="col"><div class="text-body">胎压 2.4 bar</div><div class="text-body">胎温 36℃</div></div>
+
+    <h2 class="sec">List</h2>
+    <div class="list"><div class="item">收藏的充电站 · 3.2km</div><div class="item">家 · 12km</div></div>
+
+    <h2 class="sec">Tabs</h2>
+    <div class="tabs"><div class="tab active">音乐</div><div class="tab">电台</div></div>
+
+    <h2 class="sec">Divider</h2>
+    <div class="divider"></div>
+
+    <h2 class="sec">Slider</h2>
+    <div class="slider"><div class="track"></div><div class="thumb"></div></div>
+
+    <h2 class="sec">CheckBox</h2>
+    <div class="checkbox"><div class="box"></div><span>离车后自动落锁</span></div>
+
+    <h2 class="sec">TextField</h2>
+    <div class="textfield">搜索目的地…</div>
+
+    <h2 class="sec">MultipleChoice</h2>
+    <div class="chips"><div class="chip active">经济</div><div class="chip">运动</div></div>
+
+    <h2 class="sec">Cabin · MediaMiniBar</h2>
+    <div class="media"><div class="icon">♪</div><div class="t">正在播放 · 夜空中最亮的星</div></div>
+
+    <h2 class="sec">Cabin · ClimateStep</h2>
+    <div class="climate"><div class="val">24℃</div><div class="cap">主驾</div></div>
+
+    <h2 class="sec">Cabin · RestBanner</h2>
+    <div class="rest">小憩模式已开启 · 30 分钟后提醒</div>
+  </div>
+</body>
+</html>

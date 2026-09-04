@@ -1,0 +1,3 @@
+# prompt: timeline · 媒体条
+{"surfaceUpdate":{"surfaceId":"bench","components":[{"id":"root","component":{"Card":{"child":"col"}}},{"id":"col","component":{"Column":{"children":{"explicitList":["tag","bar"]},"alignment":"stretch"}}},{"id":"tag","component":{"Text":{"text":{"literalString":"台架 T+0 · 媒体"},"usageHint":"caption"}}},{"id":"bar","component":{"MediaMiniBar":{"title":{"literalString":"夜航星图 · 正在播放"},"child":"play"}}},{"id":"play","component":{"Button":{"child":"pt","primary":true,"action":{"name":"toggle_play"}}}},{"id":"pt","component":{"Text":{"text":{"literalString":"暂停"},"usageHint":"body"}}}]}}
+{"beginRendering":{"surfaceId":"bench","root":"root","catalogId":"cabin-genui@demo"}}

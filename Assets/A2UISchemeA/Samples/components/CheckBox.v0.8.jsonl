@@ -1,0 +1,4 @@
+# prompt: unit CheckBox
+{"surfaceUpdate":{"surfaceId":"u-cb","components":[{"id":"root","component":{"Card":{"child":"col"}}},{"id":"col","component":{"Column":{"children":{"explicitList":["title","cb"]},"alignment":"stretch"}}},{"id":"title","component":{"Text":{"text":{"literalString":"【单元测】CheckBox"},"usageHint":"h3"}}},{"id":"cb","component":{"CheckBox":{"label":{"literalString":"勿扰模式"},"value":{"path":"/on"}}}}]}}
+{"dataModelUpdate":{"surfaceId":"u-cb","contents":[{"key":"on","valueBoolean":true}]}}
+{"beginRendering":{"surfaceId":"u-cb","root":"root","catalogId":"https://a2ui.org/specification/v0_8/json/standard_catalog_definition.json"}}

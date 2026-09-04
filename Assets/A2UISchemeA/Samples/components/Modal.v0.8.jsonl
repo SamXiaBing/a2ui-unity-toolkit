@@ -1,0 +1,3 @@
+# prompt: unit Modal
+{"surfaceUpdate":{"surfaceId":"u-modal","components":[{"id":"root","component":{"Modal":{"entryPointChild":"open","contentChild":"panel"}}},{"id":"open","component":{"Button":{"child":"ot","primary":true,"action":{"name":"noop"}}}},{"id":"ot","component":{"Text":{"text":{"literalString":"打开弹层"},"usageHint":"body"}}},{"id":"panel","component":{"Column":{"children":{"explicitList":["msg"]}}}},{"id":"msg","component":{"Text":{"text":{"literalString":"这是 Modal 内容（点击入口切换显示）"},"usageHint":"h4"}}}]}}
+{"beginRendering":{"surfaceId":"u-modal","root":"root","catalogId":"https://a2ui.org/specification/v0_8/json/standard_catalog_definition.json"}}

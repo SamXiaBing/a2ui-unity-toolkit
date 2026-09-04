@@ -1,0 +1,80 @@
+/* =============================================================================
+ * FigmaExport.uss — 由 Figma 设计稿直接生成（直通模式，不过 M3 角色映射）
+ * 作用域：.a2ui-skin--figma-export
+ * 颜色/圆角/字号/padding 均来自 Figma 节点真实值，1:1 还原设计稿。
+ * ========================================================================== */
+
+.a2ui-skin--figma-export {
+  color: #1C1B1F;
+  font-size: 20px;
+  -unity-font-style: normal;
+}
+
+.a2ui-skin--figma-export .a2ui-card {
+  background-color: #FFFBFE;
+  border-radius: 16px;
+  border-top-width: 1px; border-bottom-width: 3px; border-left-width: 1px; border-right-width: 1px;
+  border-top-color: #CAC4D0; border-bottom-color: #CAC4D0;
+  border-left-color: #CAC4D0; border-right-color: #CAC4D0;
+  padding: 24px;
+}
+
+.a2ui-skin--figma-export .a2ui-text { color: #1C1B1F; font-size: 20px; white-space: normal; }
+.a2ui-skin--figma-export .a2ui-text--h1 { color: #1C1B1F; font-size: 44px; -unity-font-style: bold; }
+.a2ui-skin--figma-export .a2ui-text--h2 { color: #1C1B1F; font-size: 36px; -unity-font-style: bold; }
+.a2ui-skin--figma-export .a2ui-text--h3 { color: #1C1B1F; font-size: 36px; -unity-font-style: bold; }
+.a2ui-skin--figma-export .a2ui-text--caption { color: #49454F; font-size: 15px; }
+
+.a2ui-skin--figma-export .a2ui-btn {
+  min-height: 48px; border-radius: 999px;
+  font-size: 20px; -unity-text-align: middle-center;
+  border-top-width: 0; border-bottom-width: 0; border-left-width: 0; border-right-width: 0;
+}
+.a2ui-skin--figma-export .a2ui-btn--primary { background-color: #6750A4; color: #FFFFFF; -unity-font-style: bold; }
+.a2ui-skin--figma-export .a2ui-btn--secondary { background-color: #E8DEF8; color: #1D192B; }
+
+.a2ui-skin--figma-export .a2ui-textfield {
+  min-height: 52px; background-color: #E7DFEC;
+  border-radius: 8px;
+  border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px;
+  border-top-color: #CAC4D0; border-bottom-color: #CAC4D0;
+  border-left-color: #CAC4D0; border-right-color: #CAC4D0;
+  padding: 12px 16px; font-size: 20px; color: #1C1B1F;
+}
+
+.a2ui-skin--figma-export .a2ui-divider { background-color: #CAC4D0; }
+.a2ui-skin--figma-export .a2ui-divider--horizontal { height: 1px; width: 100%; margin: 16px 0; }
+
+.a2ui-skin--figma-export .a2ui-list__item { background-color: #E7DFEC; border-radius: 8px; padding: 16px; margin-bottom: 8px; }
+
+.a2ui-skin--figma-export .a2ui-chip { background-color: #E7DFEC; color: #1C1B1F; border-radius: 999px; font-size: 15px; border-width: 0; }
+.a2ui-skin--figma-export .a2ui-chip:checked { background-color: #6750A4; color: #FFFFFF; }
+
+.a2ui-skin--figma-export .a2ui-choice__option .unity-toggle__input {
+  width: 24px; height: 24px; border-radius: 8px;
+  background-color: #E7DFEC;
+  border-top-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-right-width: 2px;
+  border-top-color: #CAC4D0; border-bottom-color: #CAC4D0;
+  border-left-color: #CAC4D0; border-right-color: #CAC4D0;
+  margin-right: 8px;
+}
+.a2ui-skin--figma-export .a2ui-choice__option .unity-toggle__input:checked { background-color: #6750A4; border-color: #6750A4; }
+.a2ui-skin--figma-export .a2ui-choice__option .unity-toggle__label,
+.a2ui-skin--figma-export .a2ui-choice__option .unity-label { color: #1C1B1F; font-size: 20px; }
+
+.a2ui-skin--figma-export .a2ui-slider { height: 20px; }
+.a2ui-skin--figma-export .a2ui-slider .unity-base-slider__tracker { background-color: #CAC4D0; border-radius: 8px; }
+.a2ui-skin--figma-export .a2ui-slider .unity-base-slider__dragger { background-color: #6750A4; border-radius: 8px; }
+
+.a2ui-skin--figma-export .a2ui-tabs__header { flex-direction: row; border-bottom-width: 1px; border-bottom-color: #CAC4D0; padding-bottom: 8px; }
+.a2ui-skin--figma-export .a2ui-tabs__tab { padding: 10px 24px; border-radius: 8px; background-color: #E7DFEC; color: #49454F; font-size: 15px; border-width: 0; }
+.a2ui-skin--figma-export .a2ui-tabs__tab.a2ui-tabs__tab--active { background-color: #6750A4; color: #FFFFFF; }
+
+.a2ui-skin--figma-export .a2ui-icon { width: 72px; height: 72px; color: #49454F; -unity-text-align: middle-center; font-size: 50px; }
+
+.a2ui-skin--figma-export .a2ui-image { width: 100%; height: 180px; border-radius: 8px; background-color: #E7DFEC; }
+
+.a2ui-skin--figma-export .a2ui-row > * { margin-right: 16px; }
+.a2ui-skin--figma-export .a2ui-row > .a2ui-last-child { margin-right: 0; }
+.a2ui-skin--figma-export .a2ui-column > * { margin-bottom: 16px; }
+.a2ui-skin--figma-export .a2ui-column > .a2ui-last-child { margin-bottom: 0; }

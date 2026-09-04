@@ -1,0 +1,67 @@
+/* =============================================================================
+ * FigmaTokens.uss — 由 Figma 设计稿抽出的 M3 语义令牌（Scheme A 转换链产物）
+ * 作用域类：.a2ui-skin--figma-figmaexport
+ * 组件皮肤见 FigmaComponents.uss；两者都用 var(--a2ui-*) 解耦。
+ * 颜色随主题走（本文件一份），字号/间距/圆角/阴影/动效全主题通用只定义一次。
+ * ========================================================================== */
+
+.a2ui-skin--figma-figmaexport {
+  /* 字号梯度（车机远距离可读性） */
+  --a2ui-type-display: 46px;
+  --a2ui-type-h1: 44px;
+  --a2ui-type-h2: 36px;
+  --a2ui-type-h3: 30px;
+  --a2ui-type-h4: 24px;
+  --a2ui-type-h5: 19px;
+  --a2ui-type-body: 20px;
+  --a2ui-type-caption: 15px;
+  /* 间距：8dp 网格节奏 */
+  --a2ui-space-1: 8px;
+  --a2ui-space-2: 16px;
+  --a2ui-space-3: 24px;
+  --a2ui-space-4: 32px;
+  --a2ui-space-5: 48px;
+  /* 圆角档位 */
+  --a2ui-radius-sm: 2px;
+  --a2ui-radius-md: 10px;
+  --a2ui-radius-lg: 44px;
+  --a2ui-radius-xl: 48px;
+  --a2ui-radius-pill: 52px;
+  /* 动效：M3 Motion 时长与缓动曲线 */
+  --a2ui-motion-duration-fast: 150ms;
+  --a2ui-motion-duration-std: 250ms;
+  --a2ui-motion-duration-slow: 400ms;
+  --a2ui-motion-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --a2ui-motion-ease-emphasized: cubic-bezier(0.3, 0, 0, 1);
+
+  /* ---- 颜色角色（来自 Figma 设计稿抽取） ---- */
+  --a2ui-color-primary: #FF5C00;
+  --a2ui-color-onPrimary: #FFFFFF;
+  --a2ui-color-primaryContainer: #FAFBFC;
+  --a2ui-color-onPrimaryContainer: #000000;
+  --a2ui-color-secondary: #FC6828;
+  --a2ui-color-onSecondary: #FFFFFF;
+  --a2ui-color-secondaryContainer: #FAFBFC;
+  --a2ui-color-onSecondaryContainer: #000000;
+  --a2ui-color-tertiary: #F5A623;
+  --a2ui-color-onTertiary: #FFFFFF;
+  --a2ui-color-error: #FC6828;
+  --a2ui-color-onError: #FFFFFF;
+  --a2ui-color-errorContainer: #FED2BE;
+  --a2ui-color-onErrorContainer: #FC6828;
+  --a2ui-color-background: #FFFFFF;
+  --a2ui-color-onBackground: #000000;
+  --a2ui-color-surface: #F9FAFB;
+  --a2ui-color-onSurface: #000000;
+  --a2ui-color-surfaceVariant: #FAFBFC;
+  --a2ui-color-onSurfaceVariant: #4C4C4C;
+  --a2ui-color-surfaceContainer: #FCFCFD;
+  --a2ui-color-onSurfaceContainer: #000000;
+  --a2ui-color-outline: #000000;
+  --a2ui-color-outlineVariant: #F8FAFB;
+  --a2ui-color-inverseSurface: #000000;
+  --a2ui-color-inverseOnSurface: #FFFFFF;
+  --a2ui-color-inversePrimary: #FF5C00;
+  --a2ui-color-scrim: #000000;
+  --a2ui-color-shadow: #000000;
+}

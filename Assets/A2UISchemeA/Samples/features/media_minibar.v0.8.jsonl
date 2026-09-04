@@ -1,0 +1,4 @@
+# prompt: 换首歌 — 座舱 Catalog MediaMiniBar
+{"surfaceUpdate":{"surfaceId":"cabin","components":[{"id":"root","component":{"Card":{"child":"bar"}}},{"id":"bar","component":{"MediaMiniBar":{"title":{"path":"/media/title"},"child":"actions"}}},{"id":"actions","component":{"Row":{"children":{"explicitList":["play"]},"alignment":"center"}}},{"id":"play","component":{"Button":{"child":"play-t","primary":true,"action":{"name":"toggle_play","context":[{"key":"mediaId","value":{"path":"/media/id"}}]}}}},{"id":"play-t","component":{"Text":{"text":{"path":"/media/playLabel"},"usageHint":"body"}}}]}}
+{"dataModelUpdate":{"surfaceId":"cabin","contents":[{"key":"media","valueMap":[{"key":"id","valueString":"cabin-1"},{"key":"title","valueString":"夜航星图"},{"key":"playLabel","valueString":"播放"}]}]}}
+{"beginRendering":{"surfaceId":"cabin","root":"root","catalogId":"cabin-genui@demo"}}

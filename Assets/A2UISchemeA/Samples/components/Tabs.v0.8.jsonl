@@ -1,0 +1,3 @@
+# prompt: unit Tabs
+{"surfaceUpdate":{"surfaceId":"u-tabs","components":[{"id":"root","component":{"Tabs":{"tabItems":[{"title":{"literalString":"页签A"},"child":"a"},{"title":{"literalString":"页签B"},"child":"b"}]}}},{"id":"a","component":{"Text":{"text":{"literalString":"内容 A"},"usageHint":"body"}}},{"id":"b","component":{"Text":{"text":{"literalString":"内容 B"},"usageHint":"body"}}}]}}
+{"beginRendering":{"surfaceId":"u-tabs","root":"root","catalogId":"https://a2ui.org/specification/v0_8/json/standard_catalog_definition.json"}}

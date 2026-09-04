@@ -1,0 +1,17 @@
+{
+    "name": "A2UISchemeA.Runtime",
+    "rootNamespace": "A2UISchemeA",
+    "references": [
+        "Newtonsoft.Json",
+        "UnityEditor"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

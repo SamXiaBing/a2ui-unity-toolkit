@@ -1,0 +1,6 @@
+# prompt: 倒计时改成 15 分钟（只改数字，不发 surfaceUpdate，用 dataModelUpdate 改 /countdown/minutes）
+{"dataModelUpdate":{"surfaceId":"pet","path":"/countdown","contents":[{"key":"minutes","valueNumber":15}]}}
+# prompt: 放点轻音乐给鹦鹉听（在宠物面板下方追加一条媒体条，复用旧 id，不重发整张卡）
+{"surfaceUpdate":{"surfaceId":"pet","components":[{"id":"root","component":{"Column":{"children":{"explicitList":["tag","title","ac","cdNum","cdUnit","div","musicTag","m1","m2","div2","row","media"]},"backgroundColor":"transparent","alignment":"stretch"}}},{"id":"media","component":{"MediaMiniBar":{"title":{"literalString":"轻音乐给鹦鹉 · Rainy Walk"}}}}]}}
+# prompt: 去掉刚加的媒体条（把 root 的 explicitList 去掉 media id 即可）
+{"surfaceUpdate":{"surfaceId":"pet","components":[{"id":"root","component":{"Column":{"children":{"explicitList":["tag","title","ac","cdNum","cdUnit","div","musicTag","m1","m2","div2","row"]},"backgroundColor":"transparent","alignment":"stretch"}}}]}}

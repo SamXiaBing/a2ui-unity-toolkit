@@ -1,0 +1,30 @@
+/* =============================================================================
+ * Motion.uss — M3 Motion 动效实现（A2UI 设计系统）
+ * -----------------------------------------------------------------------------
+ * Tuanjie 1.5.3 (Unity 2022.3.55t4) 的 UITK 样式系统在处理动态添加的元素
+ * 上的 USS 规则时存在 bug：当元素先被 Build（含 ApplyEntranceAnimation 挂 class）
+ * 再被 Add 到 panel 时，样式更新遍历会触发
+ * StylePropertyReader.GetValue → ApplyGlobalKeyword → ArgumentOutOfRangeException。
+ *
+ * 根因：USS transform 属性不被本引擎识别（"Unknown property 'transform'"），
+ * 解析器创建残缺样式条目（0 values），样式更新遍历到该条目时越界。
+ * transition-* 属性与 transform 组合也会触发类似问题。
+ *
+ * 修复：移除所有 transform / transition-* 属性。入场动效的 opacity 切换仍可用
+ * （仅靠 class 切换触发隐式重绘，不依赖 USS transition）。
+ * 如需 transform 动画，改由 C# ve.style.translate / ve.style.scale 设置。
+ * ========================================================================== */
+
+/* ---- 容器入场：淡入（class 切换由 C# schedule 延迟触发） ---- */
+.a2ui-anim--enter {
+  opacity: 0;
+}
+.a2ui-anim--enter-ready {
+  opacity: 1;
+}
+
+/* ---- 列表项交错入场标记（transform 由 C# 注入） ---- */
+.a2ui-anim--stagger {
+}
+.a2ui-anim--stagger-ready {
+}

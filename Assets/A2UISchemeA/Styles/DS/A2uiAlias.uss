@@ -1,0 +1,711 @@
+/* ============================================================
+ * A2uiAlias.uss — 由 Tools/ds_alias_gen.py 自动生成，请勿手改
+ * 作用：.ds-root 作用域内，把 ds 组件样式别名到 a2ui 类名上
+ * ========================================================== */
+
+/* from Badges.uss */
+.ds-root .a2ui-token-badge {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 22px;
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-caption);
+    -unity-font-style: bold;
+    letter-spacing: 1px;
+    -unity-text-align: middle-center;
+}
+
+/* from Badges.uss */
+.ds-root .a2ui-chip,
+.ds-root .a2ui-choice__chip {
+    flex-direction: row;
+    align-items: center;
+    height: 24px;
+    padding-left: var(--space-2);
+    padding-right: var(--space-3);
+    border-radius: var(--radius-pill-12);
+    border-width: var(--border-thin);
+    font-size: var(--font-size-caption);
+    -unity-font-style: bold;
+}
+
+/* from Badges.uss */
+.ds-root .a2ui-chip > .unity-label,
+.ds-root .a2ui-choice__chip > .unity-label {
+    -unity-text-align: middle-center;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: var(--space-3, 12px);
+    padding: 0;
+}
+
+/* from Buttons.uss */
+.ds-root .a2ui-btn {
+    height: 36px;
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: var(--space-3, 12px);
+    border-width: var(--border-thin);
+    border-color: rgba(0, 0, 0, 0);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-body-1);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    transition-property: background-color, color, scale, border-color;
+    transition-duration: var(--transition-fast);
+}
+
+/* from Buttons.uss */
+.ds-root .a2ui-btn:disabled {
+    opacity: 1.0;
+    color: var(--color-text-disabled);
+    background-color: var(--color-surface-elev);
+}
+
+/* from Buttons.uss */
+.ds-root .a2ui-btn--primary {
+    background-color: var(--color-primary);
+    color: var(--color-text-on-accent);
+}
+
+/* from Buttons.uss */
+.ds-root .a2ui-btn--primary:hover {
+    background-color: var(--color-primary-hover);
+}
+
+/* from Buttons.uss */
+.ds-root .a2ui-btn--primary:active,
+.ds-root .a2ui-btn--primary.ds-btn--pressed {
+    background-color: var(--color-primary-press);
+    scale: 0.97 0.97;
+}
+
+/* from Buttons.uss */
+.ds-root .a2ui-btn--primary:disabled {
+    background-color: var(--color-surface-elev);
+    color: var(--color-text-disabled);
+}
+
+/* from Buttons.uss */
+.ds-root .a2ui-btn--secondary {
+    background-color: var(--color-secondary);
+    color: var(--color-text-primary);
+}
+
+/* from Buttons.uss */
+.ds-root .a2ui-btn--secondary:hover {
+    background-color: var(--color-secondary-hover);
+}
+
+/* from Buttons.uss */
+.ds-root .a2ui-btn--secondary:active,
+.ds-root .a2ui-btn--secondary.ds-btn--pressed {
+    background-color: var(--color-secondary-press);
+    scale: 0.97 0.97;
+}
+
+/* from Buttons.uss */
+.ds-root .a2ui-btn--secondary:disabled {
+    background-color: var(--color-surface-elev);
+    color: var(--color-text-disabled);
+}
+
+/* from Cards.uss */
+.ds-root .a2ui-card {
+    background-color: var(--color-surface);
+    border-width: var(--border-thin);
+    border-color: var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+}
+
+/* from Cards.uss */
+.ds-root .ds-animal-detail__actions > .a2ui-btn {
+    flex-grow: 1;
+    margin-left: var(--space-2);
+    margin-right: var(--space-2);
+}
+
+/* from Controls.uss */
+.ds-root .a2ui-checkbox {
+    flex-direction: row;
+    align-items: center;
+}
+
+/* from Controls.uss */
+.ds-root .a2ui-checkbox .unity-toggle__checkmark {
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-xs);
+    background-color: var(--color-surface-elev);
+    border-width: var(--border-regular);
+    border-color: var(--color-border);
+    background-image: none;
+    -unity-background-image-tint-color: rgba(0,0,0,0);
+    transition-property: background-color, border-color;
+    transition-duration: var(--transition-fast);
+}
+
+/* from Controls.uss */
+.ds-root .a2ui-checkbox:hover .unity-toggle__checkmark {
+    border-color: var(--color-border-strong);
+}
+
+/* from Controls.uss */
+.ds-root .a2ui-checkbox:checked .unity-toggle__checkmark {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    background-image: resource("Textures/Icons/check");
+    -unity-background-image-tint-color: var(--color-text-on-accent);
+    background-size: 12px 12px;
+    background-position: center;
+}
+
+/* from Controls.uss */
+.ds-root .a2ui-checkbox__heading {
+    margin-left: var(--space-2);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-body-1);
+}
+
+/* from Controls.uss */
+.ds-root .a2ui-slider {
+    height: 24px;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: var(--space-3, 12px);
+}
+
+/* from Controls.uss */
+.ds-root .a2ui-slider .unity-base-slider__tracker {
+    background-color: var(--color-surface-elev);
+    border-radius: var(--radius-pill-3);
+    height: 6px;
+    border-width: 0;
+}
+
+/* from Controls.uss */
+.ds-root .a2ui-slider .unity-base-slider__dragger {
+    background-color: var(--color-text-primary);
+    border-radius: var(--radius-pill-9);
+    width: 18px;
+    height: 18px;
+    border-width: 0;
+    margin-top: -9px;
+}
+
+/* from Controls.uss */
+.ds-root .a2ui-slider .unity-base-slider__dragger:hover {
+    scale: 1.1 1.1;
+}
+
+/* from Controls.uss */
+.ds-root .a2ui-slider .unity-base-slider__dragger-border {
+    border-width: 0;
+}
+
+/* from Controls.uss */
+.ds-root .ds-drawer__close .a2ui-icon {
+    -unity-background-image-tint-color: var(--color-text-secondary);
+}
+
+/* from Controls.uss */
+.ds-root .ds-drawer__close:hover .a2ui-icon {
+    -unity-background-image-tint-color: var(--color-text-primary);
+}
+
+/* from Feedback.uss */
+.ds-root .a2ui-skeleton {
+    background-color: var(--color-surface-elev);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+/* from Feedback.uss */
+.ds-root .ds-btn--demo-hover.a2ui-btn--primary {
+    background-color: var(--color-primary-hover);
+}
+
+/* from Feedback.uss */
+.ds-root .ds-btn--demo-hover.a2ui-btn--secondary {
+    background-color: var(--color-secondary-hover);
+}
+
+/* from Icons.uss */
+.ds-root .a2ui-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-background-image-tint-color: var(--color-text-secondary);
+    transition-property: -unity-background-image-tint-color;
+    transition-duration: var(--transition-fast);
+}
+
+/* from Icons.uss */
+.ds-root .a2ui-btn:hover .a2ui-icon,
+.ds-root .a2ui-tabs__tab:hover .a2ui-icon,
+.ds-root .ds-nav-item:hover .a2ui-icon,
+.ds-root .ds-rail-item:hover .a2ui-icon,
+.ds-root .ds-bottom-nav__item:hover .a2ui-icon,
+.ds-root .ds-pagination__btn:hover .a2ui-icon,
+.ds-root .ds-stepper__btn:hover .a2ui-icon {
+    -unity-background-image-tint-color: var(--color-text-primary);
+}
+
+/* from Icons.uss */
+.ds-root .a2ui-tabs__tab.is-active .a2ui-icon,
+.ds-root .ds-pagination__btn.is-active .a2ui-icon,
+.ds-root .ds-view-toggle__btn.is-active .a2ui-icon {
+    -unity-background-image-tint-color: var(--color-text-on-accent);
+}
+
+/* from Icons.uss */
+.ds-root .a2ui-btn:active .a2ui-icon,
+.ds-root .a2ui-tabs__tab:active .a2ui-icon,
+.ds-root .ds-nav-item:active .a2ui-icon,
+.ds-root .ds-rail-item:active .a2ui-icon,
+.ds-root .ds-bottom-nav__item:active .a2ui-icon,
+.ds-root .ds-pagination__btn:active .a2ui-icon {
+    -unity-background-image-tint-color: var(--color-text-primary);
+}
+
+/* from Icons.uss */
+.ds-root .a2ui-btn:disabled .a2ui-icon,
+.ds-root .a2ui-btn:disabled:hover .a2ui-icon,
+.ds-root .a2ui-btn:disabled:active .a2ui-icon,
+.ds-root .a2ui-tabs__tab:disabled .a2ui-icon,
+.ds-root .a2ui-tabs__tab:disabled:hover .a2ui-icon,
+.ds-root .a2ui-tabs__tab:disabled:active .a2ui-icon,
+.ds-root .ds-nav-item:disabled .a2ui-icon,
+.ds-root .ds-nav-item:disabled:hover .a2ui-icon,
+.ds-root .ds-nav-item:disabled:active .a2ui-icon,
+.ds-root .ds-pagination__btn:disabled .a2ui-icon,
+.ds-root .ds-pagination__btn:disabled:hover .a2ui-icon,
+.ds-root .ds-pagination__btn:disabled:active .a2ui-icon {
+    -unity-background-image-tint-color: var(--color-text-disabled);
+}
+
+/* from Icons.uss */
+.ds-root .a2ui-btn--primary .a2ui-icon,
+.ds-root .a2ui-btn--primary:hover .a2ui-icon,
+.ds-root .a2ui-btn--primary:active .a2ui-icon {
+    -unity-background-image-tint-color: var(--color-text-on-accent);
+}
+
+/* from Icons.uss */
+.ds-root .a2ui-btn--secondary .a2ui-icon,
+.ds-root .a2ui-btn--secondary:hover .a2ui-icon,
+.ds-root .a2ui-btn--secondary:active .a2ui-icon,
+.ds-root .ds-btn--tertiary .a2ui-icon,
+.ds-root .ds-btn--tertiary:hover .a2ui-icon,
+.ds-root .ds-btn--tertiary:active .a2ui-icon,
+.ds-root .ds-btn--ghost .a2ui-icon,
+.ds-root .ds-btn--ghost:hover .a2ui-icon,
+.ds-root .ds-btn--ghost:active .a2ui-icon,
+.ds-root .ds-btn--danger .a2ui-icon,
+.ds-root .ds-btn--danger:hover .a2ui-icon,
+.ds-root .ds-btn--danger:active .a2ui-icon {
+    -unity-background-image-tint-color: var(--color-text-primary);
+}
+
+/* from Icons.uss */
+.ds-root .ds-btn--icon .a2ui-icon {
+    -unity-background-image-tint-color: var(--color-text-primary);
+}
+
+/* from Icons.uss */
+.ds-root .ds-btn--icon:hover .a2ui-icon {
+    -unity-background-image-tint-color: var(--color-primary);
+}
+
+/* from Icons.uss */
+.ds-root .ds-btn--icon.ds-btn--icon-danger .a2ui-icon {
+    -unity-background-image-tint-color: var(--color-danger);
+}
+
+/* from Inputs.uss */
+.ds-root .a2ui-textfield {
+    height: 40px;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: var(--space-3, 12px);
+}
+
+/* from Inputs.uss */
+.ds-root .a2ui-textfield .unity-text-input,
+.ds-root .a2ui-textfield .unity-text-field__input,
+.ds-root .a2ui-textfield .unity-base-text-field__input,
+.ds-root .a2ui-textfield .unity-base-field__input {
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    border-width: var(--border-thin);
+    border-color: var(--color-border);
+    border-radius: var(--radius-md);
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: var(--font-size-body-1);
+    transition-property: border-color, background-color;
+    transition-duration: var(--transition-fast);
+    -unity-text-align: middle-left;
+    --unity-cursor-color: var(--color-text-primary);
+    --unity-selection-color: rgba(34, 197, 94, 0.35);
+}
+
+/* from Inputs.uss */
+.ds-root .a2ui-textfield .unity-text-input:hover,
+.ds-root .a2ui-textfield .unity-text-field__input:hover,
+.ds-root .a2ui-textfield .unity-base-text-field__input:hover {
+    border-color: var(--color-border-strong);
+}
+
+/* from Inputs.uss */
+.ds-root .a2ui-textfield .unity-text-input:focus,
+.ds-root .a2ui-textfield .unity-text-field__input:focus,
+.ds-root .a2ui-textfield .unity-base-text-field__input:focus {
+    border-color: var(--color-primary);
+    background-color: var(--color-surface);
+}
+
+/* from Inputs.uss */
+.ds-root .a2ui-textfield.a2ui-textfield--active .unity-text-input,
+.ds-root .a2ui-textfield.is-active .unity-text-input,
+.ds-root .a2ui-textfield.is-active .unity-text-field__input {
+    border-color: var(--color-primary);
+    background-color: var(--color-surface);
+}
+
+/* from Inputs.uss */
+.ds-root .a2ui-textfield.a2ui-textfield--error .unity-text-input,
+.ds-root .a2ui-textfield.a2ui-textfield--error .unity-text-field__input {
+    border-color: var(--color-danger);
+}
+
+/* from Inputs.uss */
+.ds-root .a2ui-textfield:disabled .unity-text-input,
+.ds-root .a2ui-textfield.is-disabled .unity-text-input,
+.ds-root .a2ui-textfield:disabled .unity-text-field__input {
+    background-color: var(--color-surface);
+    color: var(--color-text-disabled);
+    border-color: var(--color-border);
+}
+
+/* from Inputs.uss */
+.ds-root .a2ui-textfield .unity-base-text-field__placeholder,
+.ds-root .a2ui-textfield .unity-text-field__placeholder {
+    color: var(--color-text-disabled);
+}
+
+/* from Inputs.uss */
+.ds-root .a2ui-textfield .unity-base-field__label,
+.ds-root .a2ui-textfield .unity-base-text-field__label,
+.ds-root .a2ui-textfield .unity-text-field__label {
+    display: none;
+}
+
+/* from Mobile.uss */
+.ds-root .mobile .a2ui-text--h1 {
+    font-size: 22px;
+}
+
+/* from Mobile.uss */
+.ds-root .mobile .a2ui-text--h2 {
+    font-size: 18px;
+}
+
+/* from Mobile.uss */
+.ds-root .mobile .a2ui-text--h3,
+.ds-root .mobile .a2ui-text--h4,
+.ds-root .mobile .a2ui-text--h5,
+.ds-root .mobile .a2ui-card__title {
+    font-size: 15px;
+}
+
+/* from Mobile.uss */
+.ds-root .mobile .a2ui-text,
+.ds-root .mobile .a2ui-card__body {
+    font-size: 13px;
+}
+
+/* from Mobile.uss */
+.ds-root .mobile .a2ui-card__subtitle {
+    font-size: 12px;
+}
+
+/* from Mobile.uss */
+.ds-root .mobile .a2ui-text--caption,
+.ds-root .mobile .a2ui-image__caption,
+.ds-root .mobile .a2ui-checkbox__state {
+    font-size: 11px;
+}
+
+/* from Mobile.uss */
+.ds-root .mobile .a2ui-btn {
+    min-height: 48px;
+    height: 48px;
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
+    font-size: 15px;
+}
+
+/* from Mobile.uss */
+.ds-root .mobile .a2ui-textfield {
+    height: 48px;
+}
+
+/* from Mobile.uss */
+.ds-root .mobile .a2ui-textfield .unity-text-input,
+.ds-root .mobile .a2ui-textfield .unity-text-field__input,
+.ds-root .mobile .a2ui-textfield .unity-base-text-field__input,
+.ds-root .mobile .a2ui-textfield .unity-base-field__input {
+    font-size: 15px;
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+}
+
+/* from Mobile.uss */
+.ds-root .mobile .a2ui-tabs {
+    padding: 4px;
+}
+
+/* from Mobile.uss */
+.ds-root .mobile .a2ui-tabs__tab {
+    height: 40px;
+    font-size: 12px;
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+}
+
+/* from Mobile.uss */
+.ds-root .mobile .a2ui-checkbox .unity-toggle__checkmark {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-sm);
+}
+
+/* from Mobile.uss */
+.ds-root .mobile .a2ui-slider {
+    height: 32px;
+}
+
+/* from Mobile.uss */
+.ds-root .mobile .a2ui-slider .unity-base-slider__dragger {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+    max-width: 24px;
+    max-height: 24px;
+    border-radius: 12px;
+    margin-top: -12px;
+}
+
+/* from Mobile.uss */
+.ds-root .mobile .a2ui-card {
+    padding: var(--space-3);
+}
+
+/* from Mobile.uss */
+.ds-root .mobile .a2ui-chip,
+.ds-root .mobile .a2ui-choice__chip {
+    height: 26px;
+    border-radius: 13px;
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+}
+
+/* from Mobile.uss */
+.ds-root .mobile .a2ui-token-badge {
+    height: 22px;
+}
+
+/* from Mobile.uss */
+.ds-root .mobile .a2ui-modal__content {
+    width: 88%;
+    max-width: 320px;
+    padding: var(--space-4);
+}
+
+/* from Mobile.uss */
+.ds-root .mobile .a2ui-placeholder {
+    padding: var(--space-3);
+}
+
+/* from Overlays.uss */
+.ds-root .a2ui-modal__backdrop {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: var(--color-overlay);
+    align-items: center;
+    justify-content: center;
+}
+
+/* from Overlays.uss */
+.ds-root .ds-modal__close .a2ui-icon {
+    -unity-background-image-tint-color: var(--color-text-secondary);
+}
+
+/* from Overlays.uss */
+.ds-root .ds-modal__close:hover .a2ui-icon {
+    -unity-background-image-tint-color: var(--color-text-primary);
+}
+
+/* from Overlays.uss */
+.ds-root .ds-modal__actions > .a2ui-btn {
+    flex-grow: 1;
+    margin-left: var(--space-2);
+    margin-right: var(--space-2);
+}
+
+/* from Overlays.uss */
+.ds-root .a2ui-modal__content {
+    background-color: var(--color-surface);
+    border-width: var(--border-thin);
+    border-color: var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    width: 280px;
+    align-items: center;
+}
+
+/* from Overlays.uss */
+.ds-root .ds-dialog__actions > .a2ui-btn {
+    flex-grow: 1;
+    margin-left: var(--space-2);
+    margin-right: var(--space-2);
+}
+
+/* from Overlays.uss */
+.ds-root .ds-toast__close .a2ui-icon {
+    -unity-background-image-tint-color: var(--color-text-secondary);
+}
+
+/* from Overlays.uss */
+.ds-root .ds-toast__close:hover .a2ui-icon {
+    -unity-background-image-tint-color: var(--color-text-primary);
+}
+
+/* from Overlays.uss */
+.ds-root .a2ui-placeholder {
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-5);
+    max-width: 320px;
+    align-self: center;
+}
+
+/* from TabsAndFilters.uss */
+.ds-root .a2ui-tabs {
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: var(--color-surface-elev);
+    border-radius: var(--radius-md);
+    padding: 4px;
+    border-width: var(--border-thin);
+    border-color: var(--color-border);
+}
+
+/* from TabsAndFilters.uss */
+.ds-root .a2ui-tabs__tab {
+    flex-grow: 1;
+    height: 32px;
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: var(--space-3, 12px);
+    border-width: 0;
+    border-radius: var(--radius-sm);
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-body-2);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    transition-property: background-color, color;
+    transition-duration: var(--transition-fast);
+}
+
+/* from TabsAndFilters.uss */
+.ds-root .a2ui-tabs__tab:hover {
+    color: var(--color-text-primary);
+}
+
+/* from TabsAndFilters.uss */
+.ds-root .a2ui-tabs__tab.is-active {
+    background-color: var(--color-primary);
+    color: var(--color-text-on-accent);
+}
+
+/* from Typography.uss */
+.ds-root .a2ui-text--h1 {
+    font-size: var(--font-size-h1);
+    -unity-font-style: bold;
+    color: var(--color-text-primary);
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+/* from Typography.uss */
+.ds-root .a2ui-text--h2 {
+    font-size: var(--font-size-h2);
+    -unity-font-style: bold;
+    color: var(--color-text-primary);
+    white-space: normal;
+}
+
+/* from Typography.uss */
+.ds-root .a2ui-text--h3,
+.ds-root .a2ui-text--h4,
+.ds-root .a2ui-text--h5,
+.ds-root .a2ui-card__title {
+    font-size: var(--font-size-h3);
+    -unity-font-style: bold;
+    color: var(--color-text-primary);
+    white-space: normal;
+}
+
+/* from Typography.uss */
+.ds-root .a2ui-text,
+.ds-root .a2ui-card__body {
+    font-size: var(--font-size-body-1);
+    -unity-font-style: normal;
+    color: var(--color-text-primary);
+    white-space: normal;
+}
+
+/* from Typography.uss */
+.ds-root .a2ui-card__subtitle {
+    font-size: var(--font-size-body-2);
+    -unity-font-style: normal;
+    color: var(--color-text-secondary);
+    white-space: normal;
+}
+
+/* from Typography.uss */
+.ds-root .a2ui-text--caption,
+.ds-root .a2ui-image__caption,
+.ds-root .a2ui-checkbox__state {
+    font-size: var(--font-size-caption);
+    -unity-font-style: bold;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.5px;
+    white-space: normal;
+}
+

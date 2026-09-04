@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A2UI v0.8 设计规范 — Figma 图层命名标准</title>
+<style>
+:root {
+  --primary: #6750A4;
+  --onPrimary: #FFFFFF;
+  --surface: #FFFBFE;
+  --onSurface: #1C1B1F;
+  --surfaceVariant: #E7E0EC;
+  --onSurfaceVariant: #49454F;
+  --outline: #79747E;
+  --outlineVariant: #CAC4D0;
+  --error: #B3261E;
+  --bg: #F5F5F5;
+  --code-bg: #1E1E2E;
+  --code-fg: #CDD6F4;
+  --layer-tag: #7C3AED;
+  --layer-bg: #F3EDF7;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, "MiSans", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--onSurface); line-height: 1.6; }
+
+/* ---- 导航 ---- */
+nav { background: var(--onSurface); color: #fff; padding: 16px 32px; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; gap: 24px; }
+nav h1 { font-size: 18px; font-weight: 700; }
+nav a { color: #aaa; text-decoration: none; font-size: 14px; transition: color .2s; }
+nav a:hover { color: #fff; }
+nav .spacer { flex: 1; }
+nav .version { background: var(--primary); padding: 2px 12px; border-radius: 999px; font-size: 12px; }
+
+/* ---- 通用 ---- */
+.section { max-width: 1200px; margin: 0 auto; padding: 40px 32px; }
+.section h2 { font-size: 28px; margin-bottom: 8px; }
+.section h3 { font-size: 20px; margin: 24px 0 12px; color: var(--primary); }
+.section p { margin-bottom: 12px; color: var(--onSurfaceVariant); }
+
+/* ---- 图层标签 ---- */
+.layer-tag { display: inline-block; background: var(--layer-bg); color: var(--layer-tag); padding: 2px 10px; border-radius: 6px; font-family: "JetBrains Mono", "Cascadia Code", monospace; font-size: 13px; font-weight: 600; }
+.layer-tree { background: #2D2D3F; color: #D4D4D4; padding: 16px 20px; border-radius: 12px; font-family: "JetBrains Mono", "Cascadia Code", monospace; font-size: 13px; line-height: 1.8; overflow-x: auto; margin: 12px 0; }
+.layer-tree .frame { color: #569CD6; }
+.layer-tree .comp { color: #4EC9B0; }
+.layer-tree .leaf { color: #CE9178; }
+.layer-tree .comment { color: #6A9955; }
+.layer-tree .indent { padding-left: 20px; }
+
+/* ---- 组件展示卡 ---- */
+.showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 16px 0; }
+.show-card { background: var(--surface); border: 1px solid var(--outlineVariant); border-radius: 16px; padding: 24px; }
+.show-card h4 { font-size: 14px; color: var(--onSurfaceVariant); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+.show-render { background: var(--surfaceVariant); border-radius: 12px; padding: 16px; margin-bottom: 12px; min-height: 80px; display: flex; align-items: center; justify-content: center; }
+
+/* ---- 表格 ---- */
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+th { background: var(--surfaceVariant); padding: 10px 16px; text-align: left; font-weight: 700; color: var(--onSurfaceVariant); border-bottom: 2px solid var(--outline); }
+td { padding: 10px 16px; border-bottom: 1px solid var(--outlineVariant); }
+tr:hover td { background: rgba(103, 80, 164, 0.04); }
+td code { background: var(--surfaceVariant); padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+
+/* ---- 命名规范 ---- */
+.rule-box { background: #FEF7E0; border-left: 4px solid #F59E0B; padding: 16px 20px; border-radius: 8px; margin: 16px 0; }
+.rule-box strong { color: #92400E; }
+
+/* ---- 模拟组件 ---- */
+.demo-card { background: var(--surface); border-radius: 16px; padding: 24px; border: 1px solid var(--outlineVariant); border-bottom: 3px solid var(--outline); }
+.demo-text-h1 { font-size: 44px; font-weight: 700; color: var(--onSurface); }
+.demo-text-h2 { font-size: 36px; font-weight: 700; color: var(--onSurface); }
+.demo-text-h3 { font-size: 30px; font-weight: 700; color: var(--onSurface); }
+.demo-text-h4 { font-size: 24px; font-weight: 700; color: var(--onSurface); }
+.demo-text-body { font-size: 20px; color: var(--onSurface); }
+.demo-text-caption { font-size: 15px; color: var(--onSurfaceVariant); }
+.demo-btn { padding: 12px 24px; border-radius: 999px; font-size: 16px; border: none; cursor: pointer; }
+.demo-btn-primary { background: var(--primary); color: var(--onPrimary); }
+.demo-btn-secondary { background: var(--surfaceVariant); color: var(--onSurface); }
+.demo-divider { height: 1px; background: var(--outlineVariant); margin: 16px 0; }
+.demo-chip { display: inline-block; padding: 8px 16px; border-radius: 999px; background: var(--surfaceVariant); color: var(--onSurface); font-size: 14px; margin: 4px; }
+.demo-row { display: flex; gap: 16px; align-items: center; }
+.demo-col { display: flex; flex-direction: column; gap: 16px; }
+.demo-field { padding: 12px 16px; border: 1px solid var(--outlineVariant); border-radius: 8px; font-size: 16px; background: var(--surface); }
+.demo-slider-track { height: 6px; background: var(--surfaceVariant); border-radius: 999px; position: relative; }
+.demo-slider-thumb { width: 20px; height: 20px; background: var(--primary); border-radius: 50%; position: absolute; top: -7px; left: 40%; }
+
+/* ---- Token 面板 ---- */
+.token-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
+.token-swatch { border-radius: 12px; overflow: hidden; border: 1px solid var(--outlineVariant); }
+.token-swatch .color { height: 60px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
+.token-swatch .info { padding: 8px 12px; font-size: 12px; }
+.token-swatch .name { font-weight: 700; color: var(--onSurface); }
+.token-swatch .value { color: var(--onSurfaceVariant); font-family: monospace; }
+
+/* ---- AAOS 暗色预览 ---- */
+.aaos-preview { background: rgb(27, 31, 39); border-radius: 16px; padding: 24px; border: 1px solid rgba(138, 180, 248, 0.15); }
+.aaos-preview .demo-text-h2 { color: #fff; }
+.aaos-preview .demo-text-caption { color: rgb(154, 162, 177); }
+.aaos-preview .demo-btn-primary { background: rgb(138, 180, 248); color: rgb(13, 17, 23); }
+.aaos-preview .demo-divider { background: rgba(138, 180, 248, 0.25); }
+</style>
+</head>
+<body>
+
+<nav>
+  <h1>A2UI v0.8 设计规范</h1>
+  <a href="#naming">命名规范</a>
+  <a href="#tokens">Token 变量</a>
+  <a href="#components">组件清单</a>
+  <a href="#tree">图层树模板</a>
+  <a href="#themes">主题变体</a>
+  <div class="spacer"></div>
+  <span class="version">v0.8 · Tuanjie 2022.3</span>
+</nav>
+
+<!-- ====== 1. 命名规范 ====== -->
+<div class="section" id="naming">
+  <h2>1. Figma 图层命名规范</h2>
+  <p>所有图层名必须与下表一致。代码侧（USS class + C# Mapper）按此命名匹配样式。</p>
+
+  <div class="rule-box">
+    <strong>核心规则：</strong>
+    <ul style="margin: 8px 0 0 20px;">
+      <li>Frame 名 = <code>Surface/{surfaceId}</code>（如 <code>Surface/media</code>）</li>
+      <li>每个组件节点名 = A2UI JSONL 里的 <code>id</code> 值（如 <code>root</code>、<code>col</code>、<code>title</code>）</li>
+      <li>节点上标注组件类型，格式：<code>{id} / {Type}</code>（如 <code>title / Text</code>）</li>
+      <li>Text 子节点标注 usageHint：<code>title / Text:h2</code></li>
+      <li>Button 标注 primary：<code>playBtn / Button:primary</code></li>
+      <li>Card 内子容器标注方向：<code>col / Column</code> 或 <code>row / Row</code></li>
+    </ul>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Figma 图层名</th><th>A2UI Type</th><th>USS Class</th><th>说明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>Surface/{id}</code></td><td>Frame</td><td>—</td><td>顶层 Frame，{id} = surfaceId</td></tr>
+      <tr><td><code>root</code></td><td>Card</td><td><code>.a2ui-card</code></td><td>卡片容器，每个 Surface 的根组件</td></tr>
+      <tr><td><code>col</code> / <code>row</code></td><td>Column / Row</td><td><code>.a2ui-column</code> / <code>.a2ui-row</code></td><td>布局容器</td></tr>
+      <tr><td><code>title</code></td><td>Text</td><td><code>.a2ui-text--h2</code></td><td>主标题，usageHint = h2</td></tr>
+      <tr><td><code>sub</code></td><td>Text</td><td><code>.a2ui-text--caption</code></td><td>副标题/标签，usageHint = caption</td></tr>
+      <tr><td><code>body</code></td><td>Text</td><td><code>.a2ui-text--body</code></td><td>正文，usageHint = body</td></tr>
+      <tr><td><code>div</code></td><td>Divider</td><td><code>.a2ui-divider</code></td><td>分隔线</td></tr>
+      <tr><td><code>{name}Btn</code></td><td>Button</td><td><code>.a2ui-btn--primary</code></td><td>主按钮，primary = true</td></tr>
+      <tr><td><code>{name}Btn</code></td><td>Button</td><td><code>.a2ui-btn--secondary</code></td><td>次按钮，primary = false</td></tr>
+      <tr><td><code>bar</code></td><td>MediaMiniBar</td><td><code>.a2ui-cabin--media</code></td><td>座舱媒体条</td></tr>
+      <tr><td><code>climate</code></td><td>ClimateStep</td><td><code>.a2ui-cabin--climate</code></td><td>空调步进</td></tr>
+      <tr><td><code>rest</code></td><td>RestBanner</td><td><code>.a2ui-cabin--rest</code></td><td>休息横幅</td></tr>
+      <tr><td><code>list</code></td><td>List</td><td><code>.a2ui-list</code></td><td>滚动列表</td></tr>
+      <tr><td><code>tabs</code></td><td>Tabs</td><td><code>.a2ui-tabs</code></td><td>标签页</td></tr>
+      <tr><td><code>field</code></td><td>TextField</td><td><code>.a2ui-textfield</code></td><td>输入框</td></tr>
+      <tr><td><code>slider</code></td><td>Slider</td><td><code>.a2ui-slider</code></td><td>滑块</td></tr>
+      <tr><td><code>choice</code></td><td>MultipleChoice</td><td><code>.a2ui-choice</code></td><td>多选/单选</td></tr>
+      <tr><td><code>icon</code></td><td>Icon</td><td><code>.a2ui-icon</code></td><td>图标</td></tr>
+      <tr><td><code>img</code></td><td>Image</td><td><code>.a2ui-image</code></td><td>图片</td></tr>
+      <tr><td><code>modal</code></td><td>Modal</td><td><code>.a2ui-modal</code></td><td>弹窗</td></tr>
+      <tr><td><code>datetime</code></td><td>DateTimeInput</td><td><code>.a2ui-datetime</code></td><td>日期时间</td></tr>
+      <tr><td><code>audio</code></td><td>AudioPlayer</td><td><code>.a2ui-audio</code></td><td>音频播放器</td></tr>
+      <tr><td><code>video</code></td><td>Video</td><td><code>.a2ui-video</code></td><td>视频</td></tr>
+      <tr><td><code>chk</code></td><td>CheckBox</td><td><code>.a2ui-checkbox</code></td><td>复选框</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Text usageHint 档位</h3>
+  <table>
+    <thead><tr><th>usageHint</th><th>USS Class</th><th>字号</th><th>用途</th></tr></thead>
+    <tbody>
+      <tr><td><code>display</code></td><td><code>.a2ui-text--display</code></td><td>46px</td><td>超大展示字</td></tr>
+      <tr><td><code>h1</code></td><td><code>.a2ui-text--h1</code></td><td>44px</td><td>页面主标题</td></tr>
+      <tr><td><code>h2</code></td><td><code>.a2ui-text--h2</code></td><td>36px</td><td>卡片标题</td></tr>
+      <tr><td><code>h3</code></td><td><code>.a2ui-text--h3</code></td><td>30px</td><td>区域标题</td></tr>
+      <tr><td><code>h4</code></td><td><code>.a2ui-text--h4</code></td><td>24px</td><td>子标题</td></tr>
+      <tr><td><code>h5</code></td><td><code>.a2ui-text--h5</code></td><td>19px</td><td>小标题</td></tr>
+      <tr><td><code>body</code></td><td><code>.a2ui-text</code></td><td>20px</td><td>正文（默认）</td></tr>
+      <tr><td><code>caption</code></td><td><code>.a2ui-text--caption</code></td><td>15px</td><td>标签/辅助说明</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ====== 2. Token 变量 ====== -->
+<div class="section" id="tokens">
+  <h2>2. Token 变量（对应 Tokens.uss）</h2>
+  <p>Figma 中用 Variables 面板建以下变量，Color Mode = HEX，命名与 USS <code>--a2ui-*</code> 一一对应。</p>
+
+  <h3>颜色角色（随主题变）</h3>
+  <div class="token-grid">
+    <div class="token-swatch"><div class="color" style="background:#6750A4;color:#fff">A</div><div class="info"><div class="name">primary</div><div class="value">#6750A4</div></div></div>
+    <div class="token-swatch"><div class="color" style="background:#fff;color:#6750A4">A</div><div class="info"><div class="name">onPrimary</div><div class="value">#FFFFFF</div></div></div>
+    <div class="token-swatch"><div class="color" style="background:#EADDFF;color:#21005D">A</div><div class="info"><div class="name">primaryContainer</div><div class="value">#EADDFF</div></div></div>
+    <div class="token-swatch"><div class="color" style="background:#FFFBFE;color:#1C1B1F">A</div><div class="info"><div class="name">surface</div><div class="value">#FFFBFE</div></div></div>
+    <div class="token-swatch"><div class="color" style="background:#1C1B1F;color:#FFFBFE">A</div><div class="info"><div class="name">onSurface</div><div class="value">#1C1B1F</div></div></div>
+    <div class="token-swatch"><div class="color" style="background:#E7E0EC;color:#49454F">A</div><div class="info"><div class="name">surfaceVariant</div><div class="value">#E7E0EC</div></div></div>
+    <div class="token-swatch"><div class="color" style="background:#49454F;color:#E7E0EC">A</div><div class="info"><div class="name">onSurfaceVariant</div><div class="value">#49454F</div></div></div>
+    <div class="token-swatch"><div class="color" style="background:#79747E;color:#fff">A</div><div class="info"><div class="name">outline</div><div class="value">#79747E</div></div></div>
+    <div class="token-swatch"><div class="color" style="background:#CAC4D0;color:#1C1B1F">A</div><div class="info"><div class="name">outlineVariant</div><div class="value">#CAC4D0</div></div></div>
+    <div class="token-swatch"><div class="color" style="background:#B3261E;color:#fff">A</div><div class="info"><div class="name">error</div><div class="value">#B3261E</div></div></div>
+  </div>
+
+  <h3>间距（8dp 网格，全主题通用）</h3>
+  <table>
+    <thead><tr><th>变量名</th><th>值</th><th>用途</th></tr></thead>
+    <tbody>
+      <tr><td><code>space-1</code></td><td>8px</td><td>最小间距</td></tr>
+      <tr><td><code>space-2</code></td><td>16px</td><td>标准间距</td></tr>
+      <tr><td><code>space-3</code></td><td>24px</td><td>卡片内边距</td></tr>
+      <tr><td><code>space-4</code></td><td>32px</td><td>大间距</td></tr>
+      <tr><td><code>space-5</code></td><td>48px</td><td>最大间距</td></tr>
+    </tbody>
+  </table>
+
+  <h3>圆角</h3>
+  <table>
+    <thead><tr><th>变量名</th><th>值</th><th>用途</th></tr></thead>
+    <tbody>
+      <tr><td><code>radius-sm</code></td><td>8px</td><td>小控件</td></tr>
+      <tr><td><code>radius-md</code></td><td>12px</td><td>中控件</td></tr>
+      <tr><td><code>radius-lg</code></td><td>16px</td><td>卡片</td></tr>
+      <tr><td><code>radius-xl</code></td><td>28px</td><td>大容器</td></tr>
+      <tr><td><code>radius-pill</code></td><td>999px</td><td>胶囊按钮</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ====== 3. 组件清单 ====== -->
+<div class="section" id="components">
+  <h2>3. 组件清单与视觉参照</h2>
+
+  <h3>Card（卡片容器）</h3>
+  <div class="showcase">
+    <div class="show-card">
+      <h4>Figma 图层</h4>
+      <div class="layer-tree">
+<span class="frame">Frame: Surface/media</span>
+<span class="indent"><span class="comp">root / Card</span></span>
+<span class="indent">  <span class="comp">col / Column</span></span>
+<span class="indent">    <span class="leaf">title / Text:h2</span></span>
+<span class="indent">    <span class="leaf">div / Divider</span></span>
+<span class="indent">    <span class="comp">bar / MediaMiniBar</span></span>
+      </div>
+    </div>
+    <div class="show-card">
+      <h4>渲染效果（Token A 浅色）</h4>
+      <div class="demo-card">
+        <div style="font-size:36px;font-weight:700;color:var(--onSurface)">夜航星图</div>
+        <div class="demo-divider"></div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:48px;height:48px;border-radius:12px;background:var(--surfaceVariant);display:flex;align-items:center;justify-content:center;font-size:24px">♪</div>
+          <div style="flex:1">
+            <div style="font-size:16px;font-weight:600">正在播放</div>
+            <div style="font-size:14px;color:var(--onSurfaceVariant)">Hi-Fi · 车载空间音</div>
+          </div>
+          <button class="demo-btn demo-btn-primary">▶ 播放</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Button（按钮）</h3>
+  <div class="showcase">
+    <div class="show-card">
+      <h4>Figma 图层</h4>
+      <div class="layer-tree">
+<span class="comp">playBtn / Button:primary</span>
+<span class="indent"><span class="leaf">playLabel / Text:body</span></span>
+<span class="comp">cancelBtn / Button</span>
+<span class="indent"><span class="leaf">cancelLabel / Text:body</span></span>
+      </div>
+      <p style="font-size:13px;margin-top:8px"><span class="layer-tag">:primary</span> 主按钮（强调色填充）<br><span class="layer-tag">（无后缀）</span> 次按钮（surfaceVariant 填充）</p>
+    </div>
+    <div class="show-card">
+      <h4>渲染效果</h4>
+      <div class="show-render" style="gap:12px">
+        <button class="demo-btn demo-btn-primary">去这里</button>
+        <button class="demo-btn demo-btn-secondary">取消</button>
+      </div>
+    </div>
+  </div>
+
+  <h3>Text（文本层级）</h3>
+  <div class="showcase">
+    <div class="show-card">
+      <h4>Figma 图层</h4>
+      <div class="layer-tree">
+<span class="leaf">title / Text:h2</span>     <span class="comment"># 36px bold</span>
+<span class="leaf">sub / Text:caption</span>  <span class="comment"># 15px 次要色</span>
+<span class="leaf">body / Text:body</span>    <span class="comment"># 20px 正文色</span>
+<span class="leaf">big / Text:h1</span>      <span class="comment"># 44px bold</span>
+      </div>
+    </div>
+    <div class="show-card">
+      <h4>渲染效果</h4>
+      <div class="demo-text-h1">大标题 H1</div>
+      <div class="demo-text-h2">卡片标题 H2</div>
+      <div class="demo-text-h4">子标题 H4</div>
+      <div class="demo-text-body">这是正文，20px，主要信息载体。</div>
+      <div class="demo-text-caption">这是 caption，15px，辅助说明。</div>
+    </div>
+  </div>
+
+  <h3>Divider / Chip / Slider / TextField</h3>
+  <div class="showcase">
+    <div class="show-card">
+      <h4>Figma 图层</h4>
+      <div class="layer-tree">
+<span class="leaf">div / Divider</span>           <span class="comment"># 1px 分隔线</span>
+<span class="leaf">chip1 / Chip</span>            <span class="comment"># 胶囊标签</span>
+<span class="comp">slider / Slider</span>         <span class="comment"># 滑块</span>
+<span class="comp">field / TextField</span>       <span class="comment"># 输入框</span>
+      </div>
+    </div>
+    <div class="show-card">
+      <h4>渲染效果</h4>
+      <div class="demo-divider"></div>
+      <div>
+        <span class="demo-chip">已选中</span>
+        <span class="demo-chip" style="background:var(--primary);color:#fff">选中态</span>
+      </div>
+      <div style="margin:16px 0;padding:0 20px"><div class="demo-slider-track"><div class="demo-slider-thumb"></div></div></div>
+      <input class="demo-field" placeholder="输入文本..." style="width:100%">
+    </div>
+  </div>
+
+  <h3>MultipleChoice（多选/单选）</h3>
+  <div class="showcase">
+    <div class="show-card">
+      <h4>Figma 图层</h4>
+      <div class="layer-tree">
+<span class="comp">choice / MultipleChoice</span>
+<span class="indent"><span class="leaf">filter / TextField</span></span>  <span class="comment"># 可选筛选</span>
+<span class="indent"><span class="comp">options / Column</span></span>
+<span class="indent">  <span class="leaf">opt1 / Toggle</span></span>
+<span class="indent">  <span class="leaf">opt2 / Toggle</span></span>
+<span class="indent"><span class="leaf">limit / Text:caption</span></span>
+      </div>
+    </div>
+    <div class="show-card">
+      <h4>渲染效果</h4>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <label style="font-size:16px"><input type="checkbox" checked> 优先更快（高速）</label>
+        <label style="font-size:16px"><input type="checkbox"> 优先少花钱（辅路）</label>
+        <label style="font-size:16px"><input type="checkbox"> 让我自己看地图</label>
+      </div>
+      <div style="font-size:14px;color:var(--error);margin-top:8px">最多选 1 项</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 4. 图层树模板 ====== -->
+<div class="section" id="tree">
+  <h2>4. 完整图层树模板</h2>
+  <p>设计师在 Figma 中按此树搭 Frame → 组件节点。以下为三个典型 Surface 模板。</p>
+
+  <h3>模板 A：媒体面板</h3>
+  <div class="layer-tree">
+<span class="frame">Frame: Surface/media  (720×auto, 锚底居中)</span>
+<span class="indent"><span class="comp">root / Card</span>  <span class="comment"># .a2ui-card 圆角16px 内边距24px</span></span>
+<span class="indent">  <span class="comp">col / Column</span>  <span class="comment"># 垂直布局，间距16px</span></span>
+<span class="indent">    <span class="leaf">tag / Text:caption</span>  <span class="comment"># "媒体" 标签</span></span>
+<span class="indent">    <span class="comp">bar / MediaMiniBar</span>  <span class="comment"># 媒体条</span></span>
+<span class="indent">      <span class="leaf">cover / Icon</span>  <span class="comment"># ♪ 封面占位 120×120</span></span>
+<span class="indent">      <span class="comp">meta / Column</span></span>
+<span class="indent">        <span class="leaf">title / Text:h4</span>  <span class="comment"># 曲名</span></span>
+<span class="indent">        <span class="leaf">status / Text:caption</span>  <span class="comment"># 播放状态</span></span>
+<span class="indent">      <span class="comp">playBtn / Button:primary</span></span>
+<span class="indent">        <span class="leaf">playLabel / Text:body</span>  <span class="comment"># "▶ 播放"</span></span>
+  </div>
+
+  <h3>模板 B：补能选择（含子卡片）</h3>
+  <div class="layer-tree">
+<span class="frame">Frame: Surface/charge_pick  (720×auto)</span>
+<span class="indent"><span class="comp">root / Card</span></span>
+<span class="indent">  <span class="comp">col / Column</span></span>
+<span class="indent">    <span class="leaf">tag / Text:caption</span>  <span class="comment"># "Agent · 需要你选一下"</span></span>
+<span class="indent">    <span class="leaf">title / Text:h2</span>  <span class="comment"># 主标题</span></span>
+<span class="indent">    <span class="leaf">body / Text:body</span>  <span class="comment"># 说明文字</span></span>
+<span class="indent">    <span class="leaf">div / Divider</span></span>
+<span class="indent">    <span class="comp">s1 / Card</span>  <span class="comment"># 选项卡片 A</span></span>
+<span class="indent">      <span class="comp">s1c / Column</span></span>
+<span class="indent">        <span class="leaf">s1t / Text:h3</span>  <span class="comment"># "A · 城南超充站"</span></span>
+<span class="indent">        <span class="leaf">s1d / Text:caption</span>  <span class="comment"># 距离/价格/状态</span></span>
+<span class="indent">        <span class="comp">s1b / Button:primary</span></span>
+<span class="indent">          <span class="leaf">s1bt / Text:body</span>  <span class="comment"># "去这里"</span></span>
+<span class="indent">    <span class="comp">s2 / Card</span>  <span class="comment"># 选项卡片 B（结构同 s1）</span></span>
+<span class="indent">    <span class="comp">s3 / Card</span>  <span class="comment"># 选项卡片 C（结构同 s1）</span></span>
+<span class="indent">    <span class="leaf">div2 / Divider</span></span>
+<span class="indent">    <span class="leaf">hint / Text:caption</span>  <span class="comment"># 底部提示</span></span>
+  </div>
+
+  <h3>模板 C：空调面板</h3>
+  <div class="layer-tree">
+<span class="frame">Frame: Surface/climate  (720×auto)</span>
+<span class="indent"><span class="comp">root / Card</span></span>
+<span class="indent">  <span class="comp">col / Column</span></span>
+<span class="indent">    <span class="leaf">tag / Text:caption</span>  <span class="comment"># "空调" 标签</span></span>
+<span class="indent">    <span class="comp">climate / ClimateStep</span></span>
+<span class="indent">      <span class="leaf">temp / Text:h1</span>  <span class="comment"># "24°C" 大字</span></span>
+<span class="indent">      <span class="comp">row / Row</span></span>
+<span class="indent">        <span class="comp">downBtn / Button</span></span>
+<span class="indent">          <span class="leaf">downLabel / Text:body</span>  <span class="comment"># "−"</span></span>
+<span class="indent">        <span class="comp">upBtn / Button</span></span>
+<span class="indent">          <span class="leaf">upLabel / Text:body</span>  <span class="comment"># "+"</span></span>
+  </div>
+</div>
+
+<!-- ====== 5. 主题变体 ====== -->
+<div class="section" id="themes">
+  <h2>5. 主题变体</h2>
+  <p>同一套组件结构，切主题只改变量值，不改布局。Figma 中用 Variables Mode 切换。</p>
+
+  <table>
+    <thead><tr><th>主题名</th><th>USS 文件</th><th>底色</th><th>文字</th><th>强调</th><th>适用场景</th></tr></thead>
+    <tbody>
+      <tr><td>Token A</td><td><code>Tokens.uss</code></td><td>#FFFBFE</td><td>#1C1B1F</td><td>#6750A4</td><td>M3 浅色 baseline</td></tr>
+      <tr><td>Token Dark</td><td><code>Tokens.uss</code></td><td>#1C1B1F</td><td>#E6E1E5</td><td>#D0BCFF</td><td>M3 暗色 baseline</td></tr>
+      <tr><td>Token B</td><td><code>Tokens.uss</code></td><td>#F6FBFF</td><td>#0B2A33</td><td>#287BE0</td><td>冷青品牌色</td></tr>
+      <tr><td>Ice</td><td><code>TokensIce.uss</code></td><td>#F3FAFF</td><td>#1C344F</td><td>#3A8AD8</td><td>淡蓝清爽</td></tr>
+      <tr><td>Beach</td><td><code>TokensBeach.uss</code></td><td>#FFF7EB</td><td>#1C3140</td><td>#22A8C5</td><td>海滩暖色</td></tr>
+      <tr><td>Pink</td><td><code>TokensPink.uss</code></td><td>#FFEBF0</td><td>#591F38</td><td>#FF66A1</td><td>粉色可爱</td></tr>
+      <tr><td>Green</td><td><code>TokensGreen.uss</code></td><td>#EFFAF2</td><td>#184028</td><td>#2EA060</td><td>翠绿自然</td></tr>
+      <tr><td>AAOS</td><td><code>TokensAaos.uss</code></td><td>#1B1F27</td><td>#E8EAED</td><td>#8AB4F8</td><td>安卓车载暗色</td></tr>
+      <tr><td>Cloud</td><td><code>TokensCloud.uss</code></td><td>#FFFFFF</td><td>#1E222A</td><td>#2B89FF</td><td>纯白参考风</td></tr>
+      <tr><td>Figma</td><td><code>TokensFromFigma.uss</code></td><td colspan="4">从 Figma 设计稿导入的色板</td></tr>
+    </tbody>
+  </table>
+
+  <h3>AAOS 暗色预览（车载默认）</h3>
+  <div class="aaos-preview">
+    <div style="font-size:15px;color:rgb(154,162,177);margin-bottom:8px">Agent · 需要你选一下</div>
+    <div class="demo-text-h2" style="margin-bottom:12px">附近 3 个补能点，差别很大</div>
+    <div style="font-size:20px;color:rgb(232,234,237);margin-bottom:16px">当前电量 18%。请选择一个后继续导航。</div>
+    <div class="demo-divider"></div>
+    <div style="display:flex;gap:12px;margin-top:12px">
+      <button class="demo-btn demo-btn-primary">去这里</button>
+      <button class="demo-btn" style="background:rgb(39,48,63);color:rgb(220,230,245)">取消</button>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="padding-bottom:60px;border-top:1px solid var(--outlineVariant);margin-top:40px">
+  <h2>附录：USS 文件 → Figma 变量映射</h2>
+  <table>
+    <thead><tr><th>USS 变量名</th><th>Figma Variable</th><th>类型</th></tr></thead>
+    <tbody>
+      <tr><td><code>--a2ui-color-primary</code></td><td><code>color/primary</code></td><td>Color</td></tr>
+      <tr><td><code>--a2ui-color-onPrimary</code></td><td><code>color/onPrimary</code></td><td>Color</td></tr>
+      <tr><td><code>--a2ui-color-surface</code></td><td><code>color/surface</code></td><td>Color</td></tr>
+      <tr><td><code>--a2ui-color-onSurface</code></td><td><code>color/onSurface</code></td><td>Color</td></tr>
+      <tr><td><code>--a2ui-color-surfaceVariant</code></td><td><code>color/surfaceVariant</code></td><td>Color</td></tr>
+      <tr><td><code>--a2ui-color-onSurfaceVariant</code></td><td><code>color/onSurfaceVariant</code></td><td>Color</td></tr>
+      <tr><td><code>--a2ui-color-outline</code></td><td><code>color/outline</code></td><td>Color</td></tr>
+      <tr><td><code>--a2ui-color-outlineVariant</code></td><td><code>color/outlineVariant</code></td><td>Color</td></tr>
+      <tr><td><code>--a2ui-color-error</code></td><td><code>color/error</code></td><td>Color</td></tr>
+      <tr><td><code>--a2ui-type-h1</code> ~ <code>caption</code></td><td><code>type/h1</code> ~ <code>type/caption</code></td><td>Number(px)</td></tr>
+      <tr><td><code>--a2ui-space-1</code> ~ <code>5</code></td><td><code>space/1</code> ~ <code>space/5</code></td><td>Number(px)</td></tr>
+      <tr><td><code>--a2ui-radius-sm</code> ~ <code>pill</code></td><td><code>radius/sm</code> ~ <code>radius/pill</code></td><td>Number(px)</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:24px;color:var(--onSurfaceVariant);font-size:14px">
+    文件位置：<code>Assets/A2UISchemeA/Design/a2ui-design-spec.html</code><br>
+    对应 USS：<code>Assets/A2UISchemeA/Styles/Tokens.uss</code> + <code>Crafted.uss</code><br>
+    引擎：Tuanjie 1.5.3 (Unity 2022.3.55t4) · UITK 不支持 box-shadow / transform / :last-child
+  </p>
+</div>
+
+</body>
+</html>

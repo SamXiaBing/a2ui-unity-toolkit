@@ -1,0 +1,3 @@
+# prompt: unit MediaMiniBar
+{"surfaceUpdate":{"surfaceId":"u-mm","components":[{"id":"root","component":{"MediaMiniBar":{"title":{"literalString":"夜航星图"},"child":"play"}}},{"id":"play","component":{"Button":{"child":"pt","primary":true,"action":{"name":"toggle_play"}}}},{"id":"pt","component":{"Text":{"text":{"literalString":"播放"},"usageHint":"body"}}}]}}
+{"beginRendering":{"surfaceId":"u-mm","root":"root","catalogId":"https://a2ui.org/specification/v0_8/json/standard_catalog_definition.json"}}

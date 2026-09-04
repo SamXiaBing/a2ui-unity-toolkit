@@ -1,0 +1,3 @@
+# prompt: unit ClimateStep
+{"surfaceUpdate":{"surfaceId":"u-cl","components":[{"id":"root","component":{"ClimateStep":{"tempLabel":{"literalString":"24°C"},"child":"row"}}},{"id":"row","component":{"Row":{"children":{"explicitList":["down","up"]}}}},{"id":"down","component":{"Button":{"child":"dt","primary":false,"action":{"name":"temp_down"}}}},{"id":"dt","component":{"Text":{"text":{"literalString":"-"},"usageHint":"body"}}},{"id":"up","component":{"Button":{"child":"ut","primary":true,"action":{"name":"temp_up"}}}},{"id":"ut","component":{"Text":{"text":{"literalString":"+"},"usageHint":"body"}}}]}}
+{"beginRendering":{"surfaceId":"u-cl","root":"root","catalogId":"https://a2ui.org/specification/v0_8/json/standard_catalog_definition.json"}}

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:yousandi.cn,2023:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0631786086e4019408d27bf0ca1a0c28, type: 3}
+  m_Name: A2uiOverlayConfig
+  m_EditorClassIdentifier: 
+  panelSettings: {fileID: 11400000, guid: 6f3830e4a00ccf8498b65b4b56940d96, type: 2}
+  runtimeTheme: {fileID: -4733365628477956816, guid: 9f3d3cdb5f4fee44bbcd277000f91ef4,
+    type: 3}
+  craftedStyle: {fileID: 7433441132597879392, guid: 070ce3e28e70fa446a3609fc13fa8499,
+    type: 3}
+  tokensStyle: {fileID: 7433441132597879392, guid: 9f794892ce7220e47bf794ca7416ec79,
+    type: 3}
+  tokensFromFigmaStyle: {fileID: 7433441132597879392, guid: 67fbc97ba733f1f4a99fb50d86cd8b1d,
+    type: 3}
+  tokensBeachStyle: {fileID: 7433441132597879392, guid: 33afc742c949b33478371bcbbac756fc,
+    type: 3}
+  defaultJsonlRelativePath: Assets/A2UISchemeA/Samples/timeline_bench/01_media.v0.8.jsonl

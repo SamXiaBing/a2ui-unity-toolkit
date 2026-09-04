@@ -1,0 +1,3 @@
+# prompt: unit Row
+{"surfaceUpdate":{"surfaceId":"u-row","components":[{"id":"root","component":{"Row":{"children":{"explicitList":["a","b","c"]},"distribution":"spaceBetween","alignment":"center"}}},{"id":"a","component":{"Text":{"text":{"literalString":"A"},"usageHint":"h3"}}},{"id":"b","component":{"Text":{"text":{"literalString":"B"},"usageHint":"h3"}}},{"id":"c","component":{"Text":{"text":{"literalString":"C"},"usageHint":"h3"}}}]}}
+{"beginRendering":{"surfaceId":"u-row","root":"root","catalogId":"https://a2ui.org/specification/v0_8/json/standard_catalog_definition.json"}}

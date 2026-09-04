@@ -1,0 +1,4 @@
+# prompt: unknown type degrade — G3
+{"surfaceUpdate":{"surfaceId":"degrade","components":[{"id":"root","component":{"Column":{"children":{"explicitList":["known","weird"]},"alignment":"stretch"}}},{"id":"known","component":{"Text":{"text":{"literalString":"已知 Text"},"usageHint":"h3"}}},{"id":"weird","component":{"AlienWidget":{"title":{"literalString":"这不应摧毁整页"}}}}]}}
+{"dataModelUpdate":{"surfaceId":"degrade","contents":[{"key":"x","valueString":"y"}]}}
+{"beginRendering":{"surfaceId":"degrade","root":"root","catalogId":"https://a2ui.org/specification/v0_8/json/standard_catalog_definition.json"}}

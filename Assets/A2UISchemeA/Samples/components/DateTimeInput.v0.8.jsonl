@@ -1,0 +1,3 @@
+# prompt: unit DateTimeInput
+{"surfaceUpdate":{"surfaceId":"u-dt","components":[{"id":"root","component":{"DateTimeInput":{"value":{"literalString":"2026-07-29T18:00:00"},"enableDate":true,"enableTime":true}}}]}}
+{"beginRendering":{"surfaceId":"u-dt","root":"root","catalogId":"https://a2ui.org/specification/v0_8/json/standard_catalog_definition.json"}}

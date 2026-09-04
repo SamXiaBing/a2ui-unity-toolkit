@@ -1,0 +1,3 @@
+# prompt: unit Button
+{"surfaceUpdate":{"surfaceId":"u-btn","components":[{"id":"root","component":{"Row":{"children":{"explicitList":["p","s"]},"distribution":"start"}}},{"id":"p","component":{"Button":{"child":"pt","primary":true,"action":{"name":"primary_click","context":[{"key":"x","value":{"literalNumber":1}}]}}}},{"id":"pt","component":{"Text":{"text":{"literalString":"主按钮"},"usageHint":"body"}}},{"id":"s","component":{"Button":{"child":"st","primary":false,"action":{"name":"secondary_click"}}}},{"id":"st","component":{"Text":{"text":{"literalString":"次按钮"},"usageHint":"body"}}}]}}
+{"beginRendering":{"surfaceId":"u-btn","root":"root","catalogId":"https://a2ui.org/specification/v0_8/json/standard_catalog_definition.json"}}

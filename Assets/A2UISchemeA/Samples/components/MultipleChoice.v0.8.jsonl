@@ -1,0 +1,3 @@
+# prompt: unit MultipleChoice
+{"surfaceUpdate":{"surfaceId":"u-mc","components":[{"id":"root","component":{"MultipleChoice":{"selections":{"literalArray":["b"]},"options":[{"label":{"literalString":"选项A"},"value":"a"},{"label":{"literalString":"选项B"},"value":"b"},{"label":{"literalString":"选项C"},"value":"c"}],"maxAllowedSelections":2,"variant":"chips","filterable":true}}}]}}
+{"beginRendering":{"surfaceId":"u-mc","root":"root","catalogId":"https://a2ui.org/specification/v0_8/json/standard_catalog_definition.json"}}

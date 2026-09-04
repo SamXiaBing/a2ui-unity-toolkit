@@ -1,0 +1,3 @@
+# prompt: bad packet — G0 应拒绝并保留上一帧
+{"surfaceUpdate":{"surfaceId":"broken"}}
+{"beginRendering":{"surfaceId":"broken","root":"missing"}}

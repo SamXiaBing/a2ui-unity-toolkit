@@ -1,0 +1,13 @@
+{
+  "name": "A2UI SchemeA",
+  "id": "a2ui-figma-export-scheme-a",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"],
+  "permissions": ["currentpage"],
+  "menu": [
+    { "name": "Build Cabin Board", "command": "build" },
+    { "name": "Export A2UI JSON", "command": "export" }
+  ]
+}

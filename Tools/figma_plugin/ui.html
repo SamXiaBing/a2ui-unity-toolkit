@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  body { font-family: Inter, system-ui, sans-serif; margin: 12px; color: #1c1b1f; }
+  h3 { margin: 0 0 8px; font-size: 14px; }
+  button { display: block; width: 100%; margin: 6px 0; padding: 10px; border: 0; border-radius: 8px;
+           background: #2dd4bf; color: #06231f; font-size: 13px; font-weight: 600; cursor: pointer; }
+  button.secondary { background: #e7e0ec; color: #1c1b1f; }
+  pre { background: #f3edf7; border-radius: 8px; padding: 8px; font-size: 11px; max-height: 110px; overflow: auto; }
+  .hint { font-size: 11px; color: #49454f; line-height: 1.5; }
+</style>
+</head>
+<body>
+  <h3>A2UI Figma Export</h3>
+  <div class="hint">选中画布里的组件，点「导出选中节点」生成 JSON；把它传给 Scheme A 的
+    <code>figma_to_uss.py</code> 即可转成 USS。也可直接「导出整页」。</div>
+  <button id="bSel">导出选中节点</button>
+  <button id="bPage" class="secondary">导出整页</button>
+  <pre id="stat">（先在 Figma 里选中节点）</pre>
+  <button id="bCopy" class="secondary">复制 JSON 到剪贴板</button>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    let lastPayload = null;
+
+    parent.postMessage({ pluginMessage: { type: "export-selection" } }, "*");
+
+    $("bSel").onclick = () => parent.postMessage({ pluginMessage: { type: "export-selection" } }, "*");
+    $("bPage").onclick = () => parent.postMessage({ pluginMessage: { type: "export-page" } }, "*");
+    $("bCopy").onclick = () => {
+      if (!lastPayload) return;
+      navigator.clipboard.writeText(JSON.stringify(lastPayload, null, 2)).then(
+        () => ($("stat").textContent = "已复制到剪贴板"),
+        () => ($("stat").textContent = "复制失败，请手动从控制台取")
+      );
+    };
+
+    window.onmessage = (e) => {
+      const m = e.data.pluginMessage || e.data;
+      if (m.type === "result") {
+        lastPayload = m.payload;
+        const s = m.summary;
+        $("stat").textContent =
+          `节点: ${s.frames} · 文本: ${s.texts}\n` +
+          `填充色: ${s.colors} · 圆角: ${s.radii}\n` +
+          `JSON 大小: ${JSON.stringify(m.payload).length} 字节`;
+      } else if (m.type === "empty") {
+        $("stat").textContent = "（未选中任何节点）";
+      }
+    };
+  </script>
+</body>
+</html>

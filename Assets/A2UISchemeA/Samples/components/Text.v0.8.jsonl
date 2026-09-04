@@ -1,0 +1,4 @@
+# prompt: unit Text
+{"surfaceUpdate":{"surfaceId":"u-text","components":[{"id":"root","component":{"Column":{"children":{"explicitList":["h1","body","cap"]},"alignment":"stretch"}}},{"id":"h1","component":{"Text":{"text":{"literalString":"标题 H1"},"usageHint":"h1"}}},{"id":"body","component":{"Text":{"text":{"path":"/msg"},"usageHint":"body"}}},{"id":"cap","component":{"Text":{"text":{"literalString":"caption 说明文字"},"usageHint":"caption"}}}]}}
+{"dataModelUpdate":{"surfaceId":"u-text","contents":[{"key":"msg","valueString":"这是 body，绑定 dataModel。"}]}}
+{"beginRendering":{"surfaceId":"u-text","root":"root","catalogId":"https://a2ui.org/specification/v0_8/json/standard_catalog_definition.json"}}

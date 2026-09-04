@@ -1,0 +1,37 @@
+# Unity generated
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# Codely CLI 内部文件（扩展/桥接/临时）
+.codely-cli/
+.com-unity-codely.json
+.codelyignore
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.csproj
+*.sln
+*.user
+*.pidb
+*.booproj
+*.suo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 回归测试输出（baselines 才进 git）
+TestResults/
+
+# Python
+__pycache__/
+*.pyc
+.env

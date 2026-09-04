@@ -1,0 +1,405 @@
+/* Host：左半操作+生成物，右半 Coverage */
+.a2ui-host {
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(10, 12, 16);
+    padding: 12px;
+    flex-direction: row;
+    align-items: stretch;
+    position: relative;
+}
+
+.a2ui-host__left {
+    width: 50%;
+    max-width: 50%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-direction: column;
+    padding-right: 12px;
+    min-width: 0;
+    min-height: 0;
+}
+
+.a2ui-host__right {
+    width: 50%;
+    max-width: 50%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-direction: column;
+    background-color: rgb(16, 20, 28);
+    border-radius: 12px;
+    padding: 12px;
+    min-width: 0;
+    min-height: 0;
+}
+
+.a2ui-host__title {
+    color: rgb(200, 210, 225);
+    font-size: 18px;
+    margin-bottom: 8px;
+    -unity-font-style: bold;
+}
+
+.a2ui-host__section-label {
+    color: rgb(140, 160, 185);
+    font-size: 13px;
+    margin-bottom: 6px;
+    margin-top: 4px;
+    -unity-font-style: bold;
+}
+
+.a2ui-host__tabs {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+.a2ui-host__tab {
+    margin-right: 8px;
+    margin-bottom: 8px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    background-color: rgb(32, 40, 54);
+    color: rgb(220, 230, 245);
+    border-width: 0;
+    font-size: 14px;
+    min-height: 40px;
+    -unity-font-style: bold;
+}
+
+.a2ui-host__tab--active {
+    background-color: rgb(240, 168, 72);
+    color: rgb(28, 18, 6);
+}
+
+.a2ui-host__lookout {
+    color: rgb(240, 200, 120);
+    font-size: 13px;
+    -unity-font-style: bold;
+    margin-bottom: 4px;
+    white-space: normal;
+    max-height: 36px;
+    overflow: hidden;
+    background-color: rgba(240, 168, 72, 0.12);
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.a2ui-host__prompt {
+    color: rgb(160, 185, 220);
+    font-size: 11px;
+    margin-bottom: 2px;
+    white-space: normal;
+    max-height: 22px;
+    overflow: hidden;
+}
+
+.a2ui-host__jsonl {
+    color: rgb(160, 185, 210);
+    font-size: 11px;
+    margin-bottom: 0;
+    white-space: normal;
+    max-height: none;
+    overflow: visible;
+}
+
+.a2ui-host__jsonl-scroll {
+    max-height: 88px;
+    min-height: 48px;
+    margin-bottom: 6px;
+    padding: 6px 8px;
+    background-color: rgb(14, 18, 26);
+    border-radius: 6px;
+    border-width: 1px;
+    border-color: rgb(40, 52, 72);
+    flex-shrink: 0;
+}
+
+.a2ui-host__jsonl-scroll--unit {
+    max-height: 140px;
+    min-height: 72px;
+    border-color: rgb(70, 110, 150);
+}
+
+.a2ui-host__action {
+    color: rgb(140, 210, 160);
+    font-size: 12px;
+    margin-top: 6px;
+    white-space: normal;
+}
+
+.a2ui-host__scenario-bar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+}
+
+.a2ui-host__compact-bar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 4px;
+    min-height: 22px;
+    overflow: visible;
+}
+
+.a2ui-host__compact-drop {
+    min-width: 140px;
+    max-width: 180px;
+    height: 22px;
+    min-height: 22px;
+    max-height: 22px;
+    margin-right: 6px;
+    margin-bottom: 0;
+    padding: 0;
+    font-size: 11px;
+    color: rgb(220, 230, 245);
+    background-color: rgb(28, 36, 50);
+    border-radius: 4px;
+    border-width: 0;
+    flex-shrink: 0;
+}
+
+.a2ui-host__compact-drop > .unity-base-field__input,
+.a2ui-host__compact-drop .unity-base-popup-field__input {
+    height: 22px;
+    min-height: 22px;
+    max-height: 22px;
+    padding: 0 6px;
+    margin: 0;
+    font-size: 11px;
+    background-color: rgb(28, 36, 50);
+    border-width: 0;
+    border-radius: 4px;
+}
+
+.a2ui-host__compact-btn {
+    height: 22px;
+    min-height: 22px;
+    max-height: 22px;
+    margin-right: 6px;
+    margin-bottom: 0;
+    padding: 0 10px;
+    border-radius: 4px;
+    background-color: rgb(40, 52, 70);
+    color: rgb(230, 235, 245);
+    border-width: 0;
+    font-size: 11px;
+    flex-shrink: 0;
+}
+
+.a2ui-host__gate-status {
+    color: rgb(160, 185, 220);
+    font-size: 11px;
+    margin-left: 4px;
+    white-space: normal;
+}
+
+.a2ui-host__tool-btn {
+    margin-right: 8px;
+    margin-bottom: 8px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background-color: rgb(40, 52, 70);
+    color: rgb(230, 235, 245);
+    border-width: 0;
+    font-size: 13px;
+    min-height: 36px;
+}
+
+/* ===== 实时推送覆盖层：暗色半透卡浮在场景上方 ===== */
+/* 宽度合同对齐 Compose 参考实现：宿主定宽、组件 fillMaxWidth。
+ * 条带（本元素）全宽 + align-items:center 居中卡片；
+ * 卡片内层固定 640px（M3 标准卡宽），内容在卡内换行/滚动，不再反向撑开容器。
+ * 拖拽 manipulator 移到内层卡上（见 A2uiSchemeAHost.RenderOverlay）。 */
+.a2ui-overlay-card {
+    position: absolute;
+    top: 8%;
+    bottom: 8%;
+    left: 0;
+    right: 0;
+    max-width: none;
+    align-items: center;
+    justify-content: flex-start;
+    pointer-events: auto;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 8px;
+}
+
+.a2ui-overlay-card__inner {
+    width: 640px;
+    max-width: 96%;
+    max-height: 100%;
+    border-radius: 20px;
+    border-width: 1px;
+    border-color: rgba(120, 160, 220, 0.25);
+    padding: 24px;
+    /* 裁掉仍可能溢出的内容，不让它流到屏幕外 */
+    overflow: hidden;
+}
+
+/* 内卡内容滚动层：条带已由 top+bottom 定高，内卡 max-height:100% 可解析，
+ * 超高内容由这层 ScrollView 出滚动条（UITK 里 overflow:auto 不会产生滚动条） */
+.a2ui-overlay-card__scroll {
+    flex-grow: 0;
+    flex-shrink: 1;
+    min-height: 0;
+}
+
+/* ScrollView 自带 Unity 默认 chrome（边框/底色/圆角），在主题卡上显形为灰圈；
+ * 布局合同是 fillMaxWidth 永不横滚，横向 Scroller 直接隐藏 */
+.a2ui-overlay-card__scroll {
+    background-color: transparent;
+    border-width: 0;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.a2ui-overlay-card__scroll > .unity-scroll-view__content-viewport {
+    background-color: transparent;
+    border-width: 0;
+    border-radius: 0;
+}
+
+.a2ui-overlay-card__scroll .unity-scroller--horizontal {
+    display: none;
+}
+
+/* Unity 内部控件默认样式在 20px 中文字体下高度不足（MiSans 行高 1.65em，默认盒 1.2em）：
+ * 放高到 33px（20px 正文的合理行高盒），消除 VCRAMP 假阳性并符合 M3 触控目标 */
+.a2ui-overlay-card__scroll .unity-toggle__label {
+    height: auto;
+    min-height: 33px;
+    white-space: normal;
+    word-wrap: break-word;
+    flex-shrink: 1;
+    min-width: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-text-align: middle-left;
+}
+
+.a2ui-overlay-card__scroll .unity-base-text-field__input {
+    height: auto;
+    min-height: 33px;
+}
+
+/* token-a (M3 Light): 浅色底 + 深色字 */
+.a2ui-overlay-card__inner.a2ui-skin--crafted.a2ui-token--a {
+    background-color: rgba(255, 251, 254, 0.95);
+    border-color: rgba(103, 80, 164, 0.25);
+}
+
+.a2ui-overlay-card__inner.a2ui-skin--crafted.a2ui-token--dark {
+    background-color: rgba(28, 27, 31, 0.94);
+    border-color: rgba(146, 143, 153, 0.35);
+}
+
+.a2ui-host__main-scroll {
+    flex-grow: 1;
+    min-height: 280px;
+    background-color: rgb(14, 18, 26);
+    border-radius: 12px;
+    padding: 8px;
+}
+
+.a2ui-host__main {
+    flex-grow: 1;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.a2ui-host__side-scroll {
+    flex-grow: 1;
+    min-height: 0;
+    width: 100%;
+}
+
+.a2ui-host__side {
+    width: 100%;
+    padding: 4px;
+}
+
+.a2ui-host__split {
+    flex-direction: row;
+    flex-grow: 1;
+    width: 100%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.a2ui-host__pane {
+    margin: 0 10px 12px 10px;
+    align-items: stretch;
+    flex-grow: 1;
+    max-width: 480px;
+}
+
+.a2ui-host__pane-label {
+    color: rgb(160, 175, 195);
+    font-size: 14px;
+    margin-bottom: 8px;
+    -unity-font-style: bold;
+}
+
+.a2ui-coverage__summary {
+    color: rgb(220, 230, 245);
+    font-size: 14px;
+    -unity-font-style: bold;
+    margin-bottom: 8px;
+    white-space: normal;
+}
+
+.a2ui-coverage__columns {
+    flex-direction: row;
+    width: 100%;
+}
+
+.a2ui-coverage__col {
+    flex-grow: 1;
+    flex-basis: 0;
+    margin-right: 8px;
+}
+
+.a2ui-coverage__header {
+    color: rgb(180, 195, 215);
+    font-size: 13px;
+    -unity-font-style: bold;
+    margin-bottom: 4px;
+}
+
+.a2ui-coverage__ok {
+    color: rgb(120, 210, 140);
+    font-size: 12px;
+}
+
+.a2ui-coverage__miss {
+    color: rgb(150, 150, 150);
+    font-size: 12px;
+}
+
+.a2ui-coverage__type-btn {
+    margin: 2px 0;
+    padding: 4px 8px;
+    height: 28px;
+    border-radius: 6px;
+    background-color: rgb(28, 36, 52);
+    border-width: 0;
+    -unity-text-align: middle-left;
+    font-size: 12px;
+}
+
+.a2ui-coverage__type-btn:hover {
+    background-color: rgb(40, 52, 72);
+}
+
+.a2ui-coverage__type-btn--active {
+    background-color: rgb(42, 68, 98);
+    border-width: 1px;
+    border-color: rgb(90, 150, 210);
+    color: rgb(230, 240, 255);
+}

@@ -1,0 +1,244 @@
+{
+  "nodes": {
+    "0:0": {
+      "document": {
+        "id": "0:0",
+        "name": "CabinBoard",
+        "type": "FRAME",
+        "layoutMode": "VERTICAL",
+        "primaryAxisAlignItems": "MIN",
+        "counterAxisAlignItems": "CENTER",
+        "itemSpacing": 24,
+        "paddingLeft": 32,
+        "paddingRight": 32,
+        "paddingTop": 32,
+        "paddingBottom": 32,
+        "cornerRadius": 0,
+        "fills": [
+          { "type": "SOLID", "color": { "r": 0.0549, "g": 0.0667, "b": 0.0863 }, "opacity": 1 }
+        ],
+        "children": [
+          {
+            "id": "1:1",
+            "name": "Text",
+            "type": "FRAME",
+            "layoutMode": "VERTICAL",
+            "itemSpacing": 8,
+            "cornerRadius": 0,
+            "fills": [],
+            "children": [
+              { "id": "1:1a", "name": "Title", "type": "TEXT", "characters": "空调已开启", "style": { "fontFamily": "Inter", "fontWeight": 700, "fontSize": 46, "lineHeightPx": 54, "textAlignHorizontal": "LEFT" }, "fills": [ { "type": "SOLID", "color": { "r": 0.902, "g": 0.929, "b": 0.953 }, "opacity": 1 } ] },
+              { "id": "1:1b", "name": "Body", "type": "TEXT", "characters": "主驾 24℃，副驾 22℃，风向吹脸", "style": { "fontFamily": "Inter", "fontWeight": 400, "fontSize": 20, "lineHeightPx": 28, "textAlignHorizontal": "LEFT" }, "fills": [ { "type": "SOLID", "color": { "r": 0.604, "g": 0.655, "b": 0.722 }, "opacity": 1 } ] }
+            ]
+          },
+          {
+            "id": "1:2",
+            "name": "Image",
+            "type": "RECTANGLE",
+            "cornerRadius": 16,
+            "fills": [ { "type": "SOLID", "color": { "r": 0.110, "g": 0.133, "b": 0.188 }, "opacity": 1 } ]
+          },
+          {
+            "id": "1:3",
+            "name": "Icon",
+            "type": "FRAME",
+            "cornerRadius": 999,
+            "fills": [ { "type": "SOLID", "color": { "r": 0.1765, "g": 0.8314, "b": 0.749 }, "opacity": 1 } ],
+            "children": [
+              { "id": "1:3a", "name": "Glyph", "type": "TEXT", "characters": "♪", "style": { "fontFamily": "Inter", "fontWeight": 700, "fontSize": 24, "textAlignHorizontal": "CENTER" }, "fills": [ { "type": "SOLID", "color": { "r": 0.0235, "g": 0.1373, "b": 0.1216 }, "opacity": 1 } ] }
+            ]
+          },
+          {
+            "id": "1:4",
+            "name": "Button",
+            "type": "FRAME",
+            "layoutMode": "HORIZONTAL",
+            "primaryAxisAlignItems": "CENTER",
+            "counterAxisAlignItems": "CENTER",
+            "cornerRadius": 12,
+            "paddingLeft": 24, "paddingRight": 24, "paddingTop": 14, "paddingBottom": 14,
+            "fills": [ { "type": "SOLID", "color": { "r": 0.1765, "g": 0.8314, "b": 0.749 }, "opacity": 1 } ],
+            "children": [
+              { "id": "1:4a", "name": "Label", "type": "TEXT", "characters": "立即导航", "style": { "fontFamily": "Inter", "fontWeight": 600, "fontSize": 22, "textAlignHorizontal": "CENTER" }, "fills": [ { "type": "SOLID", "color": { "r": 0.0235, "g": 0.1373, "b": 0.1216 }, "opacity": 1 } ] }
+            ]
+          },
+          {
+            "id": "1:5",
+            "name": "Card",
+            "type": "FRAME",
+            "layoutMode": "VERTICAL",
+            "itemSpacing": 12,
+            "cornerRadius": 16,
+            "paddingLeft": 20, "paddingRight": 20, "paddingTop": 20, "paddingBottom": 20,
+            "fills": [ { "type": "SOLID", "color": { "r": 0.110, "g": 0.133, "b": 0.188 }, "opacity": 1 } ],
+            "children": [
+              { "id": "1:5a", "name": "CardTitle", "type": "TEXT", "characters": "今日能耗", "style": { "fontFamily": "Inter", "fontWeight": 600, "fontSize": 24, "lineHeightPx": 30 }, "fills": [ { "type": "SOLID", "color": { "r": 0.902, "g": 0.929, "b": 0.953 }, "opacity": 1 } ] },
+              { "id": "1:5b", "name": "CardValue", "type": "TEXT", "characters": "14.8 kWh / 100km", "style": { "fontFamily": "Inter", "fontWeight": 400, "fontSize": 18, "lineHeightPx": 24 }, "fills": [ { "type": "SOLID", "color": { "r": 0.604, "g": 0.655, "b": 0.722 }, "opacity": 1 } ] }
+            ]
+          },
+          {
+            "id": "1:6",
+            "name": "Row",
+            "type": "FRAME",
+            "layoutMode": "HORIZONTAL",
+            "itemSpacing": 12,
+            "cornerRadius": 0,
+            "fills": [],
+            "children": [
+              { "id": "1:6a", "name": "Button", "type": "FRAME", "layoutMode": "HORIZONTAL", "primaryAxisAlignItems": "CENTER", "cornerRadius": 12, "paddingLeft": 18, "paddingRight": 18, "paddingTop": 10, "paddingBottom": 10, "fills": [ { "type": "SOLID", "color": { "r": 0.3569, "g": 0.5529, "b": 0.9373 }, "opacity": 1 } ], "children": [ { "id": "1:6a1", "name": "Label", "type": "TEXT", "characters": "上一首", "style": { "fontFamily": "Inter", "fontWeight": 600, "fontSize": 20 }, "fills": [ { "type": "SOLID", "color": { "r": 1, "g": 1, "b": 1 }, "opacity": 1 } ] } ] },
+              { "id": "1:6b", "name": "Button", "type": "FRAME", "layoutMode": "HORIZONTAL", "primaryAxisAlignItems": "CENTER", "cornerRadius": 12, "paddingLeft": 18, "paddingRight": 18, "paddingTop": 10, "paddingBottom": 10, "fills": [ { "type": "SOLID", "color": { "r": 0.3569, "g": 0.5529, "b": 0.9373 }, "opacity": 1 } ], "children": [ { "id": "1:6b1", "name": "Label", "type": "TEXT", "characters": "下一首", "style": { "fontFamily": "Inter", "fontWeight": 600, "fontSize": 20 }, "fills": [ { "type": "SOLID", "color": { "r": 1, "g": 1, "b": 1 }, "opacity": 1 } ] } ] }
+            ]
+          },
+          {
+            "id": "1:7",
+            "name": "Column",
+            "type": "FRAME",
+            "layoutMode": "VERTICAL",
+            "itemSpacing": 10,
+            "cornerRadius": 0,
+            "fills": [],
+            "children": [
+              { "id": "1:7a", "name": "Text", "type": "TEXT", "characters": "胎压 2.4 bar", "style": { "fontFamily": "Inter", "fontWeight": 400, "fontSize": 20 }, "fills": [ { "type": "SOLID", "color": { "r": 0.902, "g": 0.929, "b": 0.953 }, "opacity": 1 } ] },
+              { "id": "1:7b", "name": "Text", "type": "TEXT", "characters": "胎温 36℃", "style": { "fontFamily": "Inter", "fontWeight": 400, "fontSize": 20 }, "fills": [ { "type": "SOLID", "color": { "r": 0.902, "g": 0.929, "b": 0.953 }, "opacity": 1 } ] }
+            ]
+          },
+          {
+            "id": "1:8",
+            "name": "List",
+            "type": "FRAME",
+            "layoutMode": "VERTICAL",
+            "itemSpacing": 12,
+            "cornerRadius": 0,
+            "fills": [],
+            "children": [
+              { "id": "1:8a", "name": "Card", "type": "FRAME", "layoutMode": "HORIZONTAL", "cornerRadius": 12, "paddingLeft": 16, "paddingRight": 16, "paddingTop": 14, "paddingBottom": 14, "fills": [ { "type": "SOLID", "color": { "r": 0.110, "g": 0.133, "b": 0.188 }, "opacity": 1 } ], "children": [ { "id": "1:8a1", "name": "Text", "type": "TEXT", "characters": "收藏的充电站 · 3.2km", "style": { "fontFamily": "Inter", "fontWeight": 500, "fontSize": 20 }, "fills": [ { "type": "SOLID", "color": { "r": 0.902, "g": 0.929, "b": 0.953 }, "opacity": 1 } ] } ] },
+              { "id": "1:8b", "name": "Card", "type": "FRAME", "layoutMode": "HORIZONTAL", "cornerRadius": 12, "paddingLeft": 16, "paddingRight": 16, "paddingTop": 14, "paddingBottom": 14, "fills": [ { "type": "SOLID", "color": { "r": 0.110, "g": 0.133, "b": 0.188 }, "opacity": 1 } ], "children": [ { "id": "1:8b1", "name": "Text", "type": "TEXT", "characters": "家 · 12km", "style": { "fontFamily": "Inter", "fontWeight": 500, "fontSize": 20 }, "fills": [ { "type": "SOLID", "color": { "r": 0.902, "g": 0.929, "b": 0.953 }, "opacity": 1 } ] } ] }
+            ]
+          },
+          {
+            "id": "1:9",
+            "name": "Tabs",
+            "type": "FRAME",
+            "layoutMode": "HORIZONTAL",
+            "itemSpacing": 8,
+            "cornerRadius": 0,
+            "fills": [],
+            "children": [
+              { "id": "1:9a", "name": "TabItem", "type": "FRAME", "layoutMode": "HORIZONTAL", "primaryAxisAlignItems": "CENTER", "cornerRadius": 999, "paddingLeft": 20, "paddingRight": 20, "paddingTop": 10, "paddingBottom": 10, "fills": [ { "type": "SOLID", "color": { "r": 0.1765, "g": 0.8314, "b": 0.749 }, "opacity": 1 } ], "children": [ { "id": "1:9a1", "name": "Text", "type": "TEXT", "characters": "音乐", "style": { "fontFamily": "Inter", "fontWeight": 600, "fontSize": 20 }, "fills": [ { "type": "SOLID", "color": { "r": 0.0235, "g": 0.1373, "b": 0.1216 }, "opacity": 1 } ] } ] },
+              { "id": "1:9b", "name": "TabItem", "type": "FRAME", "layoutMode": "HORIZONTAL", "primaryAxisAlignItems": "CENTER", "cornerRadius": 999, "paddingLeft": 20, "paddingRight": 20, "paddingTop": 10, "paddingBottom": 10, "fills": [ { "type": "SOLID", "color": { "r": 0.110, "g": 0.133, "b": 0.188 }, "opacity": 1 } ], "children": [ { "id": "1:9b1", "name": "Text", "type": "TEXT", "characters": "电台", "style": { "fontFamily": "Inter", "fontWeight": 600, "fontSize": 20 }, "fills": [ { "type": "SOLID", "color": { "r": 0.604, "g": 0.655, "b": 0.722 }, "opacity": 1 } ] } ] }
+            ]
+          },
+          {
+            "id": "1:10",
+            "name": "Divider",
+            "type": "RECTANGLE",
+            "cornerRadius": 0,
+            "fills": [ { "type": "SOLID", "color": { "r": 0.1647, "g": 0.2000, "b": 0.2667 }, "opacity": 1 } ]
+          },
+          {
+            "id": "1:11",
+            "name": "Slider",
+            "type": "FRAME",
+            "layoutMode": "HORIZONTAL",
+            "primaryAxisAlignItems": "CENTER",
+            "itemSpacing": 12,
+            "cornerRadius": 0,
+            "fills": [],
+            "children": [
+              { "id": "1:11a", "name": "Track", "type": "RECTANGLE", "cornerRadius": 999, "fills": [ { "type": "SOLID", "color": { "r": 0.1647, "g": 0.2000, "b": 0.2667 }, "opacity": 1 } ] },
+              { "id": "1:11b", "name": "Thumb", "type": "ELLIPSE", "fills": [ { "type": "SOLID", "color": { "r": 0.1765, "g": 0.8314, "b": 0.749 }, "opacity": 1 } ] }
+            ]
+          },
+          {
+            "id": "1:12",
+            "name": "CheckBox",
+            "type": "FRAME",
+            "layoutMode": "HORIZONTAL",
+            "primaryAxisAlignItems": "CENTER",
+            "itemSpacing": 10,
+            "cornerRadius": 0,
+            "fills": [],
+            "children": [
+              { "id": "1:12a", "name": "Box", "type": "RECTANGLE", "cornerRadius": 6, "fills": [ { "type": "SOLID", "color": { "r": 0.1765, "g": 0.8314, "b": 0.749 }, "opacity": 1 } ] },
+              { "id": "1:12b", "name": "Text", "type": "TEXT", "characters": "离车后自动落锁", "style": { "fontFamily": "Inter", "fontWeight": 400, "fontSize": 20 }, "fills": [ { "type": "SOLID", "color": { "r": 0.902, "g": 0.929, "b": 0.953 }, "opacity": 1 } ] }
+            ]
+          },
+          {
+            "id": "1:13",
+            "name": "TextField",
+            "type": "FRAME",
+            "layoutMode": "HORIZONTAL",
+            "primaryAxisAlignItems": "CENTER",
+            "cornerRadius": 12,
+            "paddingLeft": 16, "paddingRight": 16, "paddingTop": 12, "paddingBottom": 12,
+            "strokes": [ { "type": "SOLID", "color": { "r": 0.1647, "g": 0.2000, "b": 0.2667 }, "opacity": 1 } ],
+            "strokeWeight": 1,
+            "fills": [ { "type": "SOLID", "color": { "r": 0.0784, "g": 0.0941, "b": 0.1294 }, "opacity": 1 } ],
+            "children": [
+              { "id": "1:13a", "name": "Text", "type": "TEXT", "characters": "搜索目的地…", "style": { "fontFamily": "Inter", "fontWeight": 400, "fontSize": 20 }, "fills": [ { "type": "SOLID", "color": { "r": 0.604, "g": 0.655, "b": 0.722 }, "opacity": 1 } ] }
+            ]
+          },
+          {
+            "id": "1:14",
+            "name": "MultipleChoice",
+            "type": "FRAME",
+            "layoutMode": "HORIZONTAL",
+            "itemSpacing": 8,
+            "cornerRadius": 0,
+            "fills": [],
+            "children": [
+              { "id": "1:14a", "name": "Chip", "type": "FRAME", "layoutMode": "HORIZONTAL", "primaryAxisAlignItems": "CENTER", "cornerRadius": 999, "paddingLeft": 16, "paddingRight": 16, "paddingTop": 8, "paddingBottom": 8, "fills": [ { "type": "SOLID", "color": { "r": 0.1765, "g": 0.8314, "b": 0.749 }, "opacity": 1 } ], "children": [ { "id": "1:14a1", "name": "Text", "type": "TEXT", "characters": "经济", "style": { "fontFamily": "Inter", "fontWeight": 500, "fontSize": 18 }, "fills": [ { "type": "SOLID", "color": { "r": 0.0235, "g": 0.1373, "b": 0.1216 }, "opacity": 1 } ] } ] },
+              { "id": "1:14b", "name": "Chip", "type": "FRAME", "layoutMode": "HORIZONTAL", "primaryAxisAlignItems": "CENTER", "cornerRadius": 999, "paddingLeft": 16, "paddingRight": 16, "paddingTop": 8, "paddingBottom": 8, "fills": [ { "type": "SOLID", "color": { "r": 0.110, "g": 0.133, "b": 0.188 }, "opacity": 1 } ], "children": [ { "id": "1:14b1", "name": "Text", "type": "TEXT", "characters": "运动", "style": { "fontFamily": "Inter", "fontWeight": 500, "fontSize": 18 }, "fills": [ { "type": "SOLID", "color": { "r": 0.604, "g": 0.655, "b": 0.722 }, "opacity": 1 } ] } ] }
+            ]
+          },
+          {
+            "id": "1:15",
+            "name": "MediaMiniBar",
+            "type": "FRAME",
+            "layoutMode": "HORIZONTAL",
+            "primaryAxisAlignItems": "CENTER",
+            "itemSpacing": 14,
+            "cornerRadius": 16,
+            "paddingLeft": 18, "paddingRight": 18, "paddingTop": 14, "paddingBottom": 14,
+            "fills": [ { "type": "SOLID", "color": { "r": 0.110, "g": 0.133, "b": 0.188 }, "opacity": 1 } ],
+            "children": [
+              { "id": "1:15a", "name": "Icon", "type": "FRAME", "cornerRadius": 999, "fills": [ { "type": "SOLID", "color": { "r": 0.1765, "g": 0.8314, "b": 0.749 }, "opacity": 1 } ], "children": [ { "id": "1:15a1", "name": "Glyph", "type": "TEXT", "characters": "♪", "style": { "fontFamily": "Inter", "fontWeight": 700, "fontSize": 20 }, "fills": [ { "type": "SOLID", "color": { "r": 0.0235, "g": 0.1373, "b": 0.1216 }, "opacity": 1 } ] } ] },
+              { "id": "1:15b", "name": "Text", "type": "TEXT", "characters": "正在播放 · 夜空中最亮的星", "style": { "fontFamily": "Inter", "fontWeight": 500, "fontSize": 20 }, "fills": [ { "type": "SOLID", "color": { "r": 0.902, "g": 0.929, "b": 0.953 }, "opacity": 1 } ] }
+            ]
+          },
+          {
+            "id": "1:16",
+            "name": "ClimateStep",
+            "type": "FRAME",
+            "layoutMode": "VERTICAL",
+            "primaryAxisAlignItems": "CENTER",
+            "itemSpacing": 6,
+            "cornerRadius": 16,
+            "paddingLeft": 20, "paddingRight": 20, "paddingTop": 18, "paddingBottom": 18,
+            "fills": [ { "type": "SOLID", "color": { "r": 0.110, "g": 0.133, "b": 0.188 }, "opacity": 1 } ],
+            "children": [
+              { "id": "1:16a", "name": "Value", "type": "TEXT", "characters": "24℃", "style": { "fontFamily": "Inter", "fontWeight": 700, "fontSize": 40, "lineHeightPx": 44 }, "fills": [ { "type": "SOLID", "color": { "r": 0.1765, "g": 0.8314, "b": 0.749 }, "opacity": 1 } ] },
+              { "id": "1:16b", "name": "Text", "type": "TEXT", "characters": "主驾", "style": { "fontFamily": "Inter", "fontWeight": 400, "fontSize": 16 }, "fills": [ { "type": "SOLID", "color": { "r": 0.604, "g": 0.655, "b": 0.722 }, "opacity": 1 } ] }
+            ]
+          },
+          {
+            "id": "1:17",
+            "name": "RestBanner",
+            "type": "FRAME",
+            "layoutMode": "HORIZONTAL",
+            "primaryAxisAlignItems": "CENTER",
+            "itemSpacing": 12,
+            "cornerRadius": 16,
+            "paddingLeft": 20, "paddingRight": 20, "paddingTop": 18, "paddingBottom": 18,
+            "fills": [ { "type": "SOLID", "color": { "r": 0.9608, "g": 0.6510, "b": 0.1373 }, "opacity": 1 } ],
+            "children": [
+              { "id": "1:17a", "name": "Text", "type": "TEXT", "characters": "小憩模式已开启 · 30 分钟后提醒", "style": { "fontFamily": "Inter", "fontWeight": 600, "fontSize": 22 }, "fills": [ { "type": "SOLID", "color": { "r": 0.0549, "g": 0.0667, "b": 0.0863 }, "opacity": 1 } ] }
+            ]
+          }
+        ]
+      },
+      "components": {},
+      "styles": {}
+    }
+  }
+}

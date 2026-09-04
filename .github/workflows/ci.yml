@@ -1,0 +1,59 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  python-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Syntax-check all toolchain scripts
+        run: |
+          fail=0
+          for f in Tools/*.py; do
+            python -m py_compile "$f" || fail=1
+          done
+          exit $fail
+      - name: v0.8→v0.9 converter smoke test
+        run: |
+          python Tools/v08_to_v09.py \
+            Assets/A2UISchemeA/Samples/features/list_template.v0.8.jsonl \
+            --outdir-check 2>/dev/null || \
+          python Tools/v08_to_v09.py Assets/A2UISchemeA/Samples/features/list_template.v0.8.jsonl
+
+  uss-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: USS engine-pitfall lint (Tuanjie compat matrix)
+        run: |
+          python3 - <<'EOF'
+          import glob, re, sys
+          fail = 0
+          for path in glob.glob("Assets/**/*.uss", recursive=True) + glob.glob("Packages/**/*.uss", recursive=True):
+              text = open(path, encoding="utf-8").read()
+              # transform 在本引擎崩溃（见 docs/engine-compat-tuanjie.md）
+              if re.search(r"(?m)^\s*transform\s*:", text):
+                  print(f"FAIL {path}: 'transform:' is not supported on Tuanjie USS")
+                  fail = 1
+              # var() 带逗号 fallback 的声明会被解析器静默丢弃
+              for m in re.finditer(r"(?m)^\s*([\w-]+)\s*:\s*var\([^)]*,[^)]*\)", text):
+                  print(f"FAIL {path}: '{m.group(1)}: var(..., fallback)' is silently dropped — use literal")
+                  fail = 1
+              # gap/box-shadow 不支持
+              for prop in ("gap", "box-shadow"):
+                  if re.search(rf"(?m)^\s*{prop}\s*:", text):
+                      print(f"FAIL {path}: '{prop}' is not supported on Tuanjie USS")
+                      fail = 1
+          sys.exit(fail)
+          EOF
+
+  # 完整的 500+ 组合布局回归需要本地 Tuanjie 编辑器（batchmode），
+  # GitHub CI 无法运行 Unity/Tuanjie —— 见 CONTRIBUTING.md，PR 前请本地执行：
+  #   python Tools/run_regression.py --editor "<Tuanjie.exe>"

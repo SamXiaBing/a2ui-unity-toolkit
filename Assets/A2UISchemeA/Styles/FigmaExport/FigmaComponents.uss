@@ -1,0 +1,105 @@
+/* =============================================================================
+ * FigmaComponents.uss — 由 Figma 设计稿节点数据自动生成（精确转换）
+ * 作用域：.a2ui-skin--figma-figmaexport
+ * 按钮高度=48px 圆角=10px 输入框高度=61px 容器间距=10px
+ * ========================================================================== */
+
+/* 覆盖层容器布局统一由 Host.uss 管理（left:10% + max-width:84% 收缩适配），
+ * 此处不再覆盖 width/margin——旧 400px+负 margin 居中 hack 会使本主题
+ * 与其他主题的卡片宽度不一致。 */
+
+.a2ui-skin--figma-figmaexport .a2ui-overlay-card__inner {
+  /* 宽度由 Host.uss 统一管理（640px 标准卡），此处不覆盖——
+   * width:100% 会让内层卡跟随全宽条带撑到全屏。 */
+  align-items: stretch;
+  background-color: #F9FAFB;
+  border-radius: 48px;
+  border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px;
+  border-top-color: #F8FAFB; border-bottom-color: #F8FAFB;
+  border-left-color: #F8FAFB; border-right-color: #F8FAFB;
+  padding: 24px 16px;
+}
+
+.a2ui-skin--figma-figmaexport {
+  color: #000000;
+  font-size: 16px;
+  -unity-font-style: normal;
+}
+
+.a2ui-skin--figma-figmaexport .a2ui-row { flex-direction: row; align-items: center; }
+.a2ui-skin--figma-figmaexport .a2ui-row > * { margin-right: 10px; }
+.a2ui-skin--figma-figmaexport .a2ui-row > .a2ui-last-child { margin-right: 0; }
+
+.a2ui-skin--figma-figmaexport .a2ui-col,
+.a2ui-skin--figma-figmaexport .a2ui-column { flex-direction: column; align-items: stretch; width: 100%; }
+.a2ui-skin--figma-figmaexport .a2ui-col > *,
+.a2ui-skin--figma-figmaexport .a2ui-column > * { margin-bottom: 10px; flex-shrink: 0; }
+.a2ui-skin--figma-figmaexport .a2ui-col > .a2ui-last-child,
+.a2ui-skin--figma-figmaexport .a2ui-column > .a2ui-last-child { margin-bottom: 0; }
+
+.a2ui-skin--figma-figmaexport .a2ui-btn {
+  width: 100%; min-height: 48px;
+  border-radius: 10px;
+  font-size: 16px; -unity-text-align: middle-center;
+  border-top-width: 0; border-bottom-width: 0; border-left-width: 0; border-right-width: 0;
+  flex-shrink: 0;
+}
+.a2ui-skin--figma-figmaexport .a2ui-btn--primary { background-color: #FF5C00; color: #FFFFFF; -unity-font-style: bold; }
+.a2ui-skin--figma-figmaexport .a2ui-btn--secondary { background-color: transparent; color: #000000; }
+
+.a2ui-skin--figma-figmaexport .a2ui-textfield,
+.a2ui-skin--figma-figmaexport .a2ui-textfield.unity-text-field {
+  flex-direction: column; align-items: stretch; width: 100%;
+  min-height: 61px;
+  background-color: #F9FAFB;
+  border-radius: 10px;
+  border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px;
+  border-top-color: #F8FAFB; border-bottom-color: #F8FAFB;
+  border-left-color: #F8FAFB; border-right-color: #F8FAFB;
+  padding: 12px 16px; font-size: 16px; color: #000000; flex-shrink: 0;
+}
+.a2ui-skin--figma-figmaexport .a2ui-textfield > .unity-text-field__label,
+.a2ui-skin--figma-figmaexport .a2ui-textfield.unity-text-field > .unity-text-field__label {
+  width: 100%; align-self: flex-start; margin-bottom: 4px; margin-top: 0; padding: 0;
+  color: #040415; font-size: 16px; -unity-font-style: normal;
+}
+.a2ui-skin--figma-figmaexport .a2ui-textfield > .unity-text-field__input,
+.a2ui-skin--figma-figmaexport .a2ui-textfield.unity-text-field > .unity-text-field__input {
+  width: 100%; align-self: stretch; background-color: transparent;
+  border-top-width: 0; border-bottom-width: 0; border-left-width: 0; border-right-width: 0;
+  color: #000000; font-size: 16px; padding: 0; margin: 0;
+}
+
+.a2ui-skin--figma-figmaexport .a2ui-text { color: #040415; font-size: 16px; white-space: normal; }
+.a2ui-skin--figma-figmaexport .a2ui-text--h1 { color: #000000; font-size: 44px; -unity-font-style: bold; }
+.a2ui-skin--figma-figmaexport .a2ui-text--h3 { color: #000000; font-size: 22px; -unity-font-style: bold; }
+.a2ui-skin--figma-figmaexport .a2ui-text--caption { color: #040415; font-size: 12px; }
+
+.a2ui-skin--figma-figmaexport .a2ui-btn--secondary .a2ui-text { color: #FF5C00; }
+
+.a2ui-skin--figma-figmaexport .a2ui-divider { background-color: #F8FAFB; }
+.a2ui-skin--figma-figmaexport .a2ui-divider--horizontal { height: 1px; width: 100%; margin: 10px 0; flex-shrink: 0; }
+
+.a2ui-skin--figma-figmaexport .a2ui-card {
+  background-color: #F9FAFB; border-radius: 10px;
+  border-width: 1px; border-color: #F8FAFB; border-style: solid;
+}
+
+/* 已删除的坏规则：曾把所有 .a2ui-card.a2ui-type--card 强制成
+ * width/height 76px 圆形 + padding:0 + 橙色，导致卡片内容全部溢出。 */
+
+.a2ui-skin--figma-figmaexport .a2ui-icon { width: 36px; height: 36px; color: #4C4C4C; -unity-text-align: middle-center; font-size: 28px; }
+
+.a2ui-skin--figma-figmaexport .a2ui-image { width: 100%; height: 180px; border-radius: 10px; background-color: #FAFBFC; }
+
+.a2ui-skin--figma-figmaexport .a2ui-slider { height: 40px; }
+.a2ui-skin--figma-figmaexport .a2ui-slider .unity-base-slider__tracker { background-color: #F8FAFB; border-radius: 10px; }
+.a2ui-skin--figma-figmaexport .a2ui-slider .unity-base-slider__dragger { background-color: #FF5C00; border-radius: 10px; }
+.a2ui-skin--figma-figmaexport .a2ui-tabs__header { flex-direction: row; border-bottom-width: 1px; border-bottom-color: #F8FAFB; padding-bottom: 8px; }
+.a2ui-skin--figma-figmaexport .a2ui-tabs__tab { padding: 10px 24px; border-radius: 10px; background-color: #FAFBFC; color: #4C4C4C; font-size: 12px; -unity-text-align: middle-center; border-width: 0; }
+.a2ui-skin--figma-figmaexport .a2ui-tabs__tab.a2ui-tabs__tab--active { background-color: #FF5C00; color: #FFFFFF; }
+.a2ui-skin--figma-figmaexport .a2ui-list__item { background-color: #FAFBFC; border-radius: 2px; padding: 16px; margin-bottom: 8px; border-left-width: 4px; border-left-color: #FF5C00; border-left-style: solid; }
+.a2ui-skin--figma-figmaexport .a2ui-chip { background-color: #FAFBFC; color: #000000; border-radius: 10px; font-size: 12px; border-width: 0; }
+.a2ui-skin--figma-figmaexport .a2ui-chip:checked { background-color: #FF5C00; color: #FFFFFF; }
+.a2ui-skin--figma-figmaexport .a2ui-cabin { background-color: #FAFBFC; border-radius: 10px; padding: 24px; }
+.a2ui-skin--figma-figmaexport .a2ui-cabin__tag { background-color: #FF5C00; color: #FFFFFF; border-radius: 10px; }

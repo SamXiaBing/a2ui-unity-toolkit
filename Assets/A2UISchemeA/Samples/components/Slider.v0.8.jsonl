@@ -1,0 +1,3 @@
+# prompt: unit Slider
+{"surfaceUpdate":{"surfaceId":"u-sl","components":[{"id":"root","component":{"Slider":{"label":{"literalString":"音量"},"value":{"literalNumber":0.4},"minValue":0,"maxValue":1}}}]}}
+{"beginRendering":{"surfaceId":"u-sl","root":"root","catalogId":"https://a2ui.org/specification/v0_8/json/standard_catalog_definition.json"}}

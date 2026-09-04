@@ -1,0 +1,175 @@
+/* =============================================================================
+ * Tokens.uss — Material 3 语义变量层（A2UI 设计系统底座）
+ * -----------------------------------------------------------------------------
+ * 设计原则：颜色随主题走（每个 token 变体一份），字号/间距/圆角/阴影/动效是
+ * 「全主题通用」的量，只定义一次。组件样式（Crafted.uss）一律用 var() 取这里
+ * 的变量，不再散点写 rgb。
+ *
+ * 这是「数据底本」：数值直接来自 Google Material 3 公开 baseline，与对方
+ * Compose + Material3 同源。
+ *
+ * 变量命名：--a2ui-color-*（颜色角色）/ --a2ui-type-*（字号梯度）/
+ *           --a2ui-space-*（8 倍数间距）/ --a2ui-radius-*（圆角档位）/
+ *           --a2ui-elev-*（elevation 阴影）/ --a2ui-motion-*（动效时长与曲线）
+ * ========================================================================== */
+
+/* ---- 全主题通用：字号 / 间距 / 圆角 / 阴影 / 动效（与主题无关，定义一次） -- */
+.a2ui-skin--crafted {
+  /* 字号梯度：车机远距离可读性，等比于 M3 比例但整体放大 */
+  --a2ui-type-display: 46px;
+  --a2ui-type-h1: 44px;
+  --a2ui-type-h2: 36px;
+  --a2ui-type-h3: 30px;
+  --a2ui-type-h4: 24px;
+  --a2ui-type-h5: 19px;
+  --a2ui-type-body: 20px;
+  --a2ui-type-caption: 15px;
+
+  /* 间距：8dp 网格节奏 */
+  --a2ui-space-1: 8px;
+  --a2ui-space-2: 16px;
+  --a2ui-space-3: 24px;
+  --a2ui-space-4: 32px;
+  --a2ui-space-5: 48px;
+
+  /* 圆角档位 */
+  --a2ui-radius-sm: 8px;
+  --a2ui-radius-md: 12px;
+  --a2ui-radius-lg: 16px;
+  --a2ui-radius-xl: 28px;
+  --a2ui-radius-pill: 999px;
+
+  /* elevation 阴影：本引擎 UITK 不支持 box-shadow，当前未使用；
+   * 曾用逗号分隔的多阴影值导致 USS 解析器异常，已移除。
+   * 升级到支持 box-shadow 的引擎后可重新定义。 */
+
+  /* 动效：M3 Motion 时长与缓动曲线 */
+  --a2ui-motion-duration-fast: 150ms;
+  --a2ui-motion-duration-std: 250ms;
+  --a2ui-motion-duration-slow: 400ms;
+  --a2ui-motion-ease-standard: cubic-bezier(0.2, 0, 0, 1);   /* M3 standard easing */
+  --a2ui-motion-ease-emphasized: cubic-bezier(0.3, 0, 0, 1); /* M3 emphasized easing */
+
+  /* ---- 默认配色 = M3 Light baseline（也即 token A） ---- */
+  --a2ui-color-primary: #6750A4;
+  --a2ui-color-onPrimary: #FFFFFF;
+  --a2ui-color-primaryContainer: #EADDFF;
+  --a2ui-color-onPrimaryContainer: #21005D;
+  --a2ui-color-secondary: #625B71;
+  --a2ui-color-onSecondary: #FFFFFF;
+  --a2ui-color-secondaryContainer: #E8DEF8;
+  --a2ui-color-onSecondaryContainer: #1D192B;
+  --a2ui-color-tertiary: #7D5260;
+  --a2ui-color-onTertiary: #FFFFFF;
+  --a2ui-color-error: #B3261E;
+  --a2ui-color-onError: #FFFFFF;
+  --a2ui-color-errorContainer: #F9DEDC;
+  --a2ui-color-onErrorContainer: #410E0B;
+  --a2ui-color-background: #FFFBFE;
+  --a2ui-color-onBackground: #1C1B1F;
+  --a2ui-color-surface: #FFFBFE;
+  --a2ui-color-onSurface: #1C1B1F;
+  --a2ui-color-surfaceVariant: #E7E0EC;
+  --a2ui-color-onSurfaceVariant: #49454F;
+  --a2ui-color-surfaceContainer: #F3EDF7;
+  --a2ui-color-onSurfaceContainer: #1C1B1F;
+  --a2ui-color-outline: #79747E;
+  --a2ui-color-outlineVariant: #CAC4D0;
+  --a2ui-color-inverseSurface: #322F35;
+  --a2ui-color-inverseOnSurface: #E6E1E5;
+  --a2ui-color-inversePrimary: #D0BCFF;
+  --a2ui-color-scrim: #000000;
+  --a2ui-color-shadow: #000000;
+}
+
+/* ---- token A：M3 浅色（与默认同，显式保留以便下拉直接选择） ---- */
+.a2ui-skin--crafted.a2ui-token--a {
+  --a2ui-color-primary: #6750A4;
+  --a2ui-color-onPrimary: #FFFFFF;
+  --a2ui-color-primaryContainer: #EADDFF;
+  --a2ui-color-onPrimaryContainer: #21005D;
+  --a2ui-color-secondary: #625B71;
+  --a2ui-color-onSecondary: #FFFFFF;
+  --a2ui-color-secondaryContainer: #E8DEF8;
+  --a2ui-color-onSecondaryContainer: #1D192B;
+  --a2ui-color-tertiary: #7D5260;
+  --a2ui-color-onTertiary: #FFFFFF;
+  --a2ui-color-error: #B3261E;
+  --a2ui-color-onError: #FFFFFF;
+  --a2ui-color-errorContainer: #F9DEDC;
+  --a2ui-color-onErrorContainer: #410E0B;
+  --a2ui-color-background: #FFFBFE;
+  --a2ui-color-onBackground: #1C1B1F;
+  --a2ui-color-surface: #FFFBFE;
+  --a2ui-color-onSurface: #1C1B1F;
+  --a2ui-color-surfaceVariant: #E7E0EC;
+  --a2ui-color-onSurfaceVariant: #49454F;
+  --a2ui-color-surfaceContainer: #F3EDF7;
+  --a2ui-color-onSurfaceContainer: #1C1B1F;
+  --a2ui-color-outline: #79747E;
+  --a2ui-color-outlineVariant: #CAC4D0;
+  --a2ui-color-inverseSurface: #322F35;
+  --a2ui-color-inverseOnSurface: #E6E1E5;
+  --a2ui-color-inversePrimary: #D0BCFF;
+}
+
+/* ---- token dark：M3 暗色 baseline（新增） ---- */
+.a2ui-skin--crafted.a2ui-token--dark {
+  --a2ui-color-primary: #D0BCFF;
+  --a2ui-color-onPrimary: #381E72;
+  --a2ui-color-primaryContainer: #4F378B;
+  --a2ui-color-onPrimaryContainer: #EADDFF;
+  --a2ui-color-secondary: #CCC2DC;
+  --a2ui-color-onSecondary: #332D41;
+  --a2ui-color-secondaryContainer: #4A4458;
+  --a2ui-color-onSecondaryContainer: #E8DEF8;
+  --a2ui-color-tertiary: #EFB8C8;
+  --a2ui-color-onTertiary: #492532;
+  --a2ui-color-error: #F2B8B5;
+  --a2ui-color-onError: #601410;
+  --a2ui-color-errorContainer: #8C1D18;
+  --a2ui-color-onErrorContainer: #F9DEDC;
+  --a2ui-color-background: #1C1B1F;
+  --a2ui-color-onBackground: #E6E1E5;
+  --a2ui-color-surface: #1C1B1F;
+  --a2ui-color-onSurface: #E6E1E5;
+  --a2ui-color-surfaceVariant: #49454F;
+  --a2ui-color-onSurfaceVariant: #CAC4D0;
+  --a2ui-color-surfaceContainer: #211F26;
+  --a2ui-color-onSurfaceContainer: #E6E1E5;
+  --a2ui-color-outline: #938F99;
+  --a2ui-color-outlineVariant: #49454F;
+  --a2ui-color-inverseSurface: #E6E1E5;
+  --a2ui-color-inverseOnSurface: #322F35;
+  --a2ui-color-inversePrimary: #6750A4;
+}
+
+/* ---- token B：冷青品牌（保留原有冷色观感的变量版） ---- */
+.a2ui-skin--crafted.a2ui-token--b {
+  --a2ui-color-primary: #287BE0;
+  --a2ui-color-onPrimary: #FFFFFF;
+  --a2ui-color-primaryContainer: #D5E3FB;
+  --a2ui-color-onPrimaryContainer: #061E3F;
+  --a2ui-color-secondary: #19A7CE;
+  --a2ui-color-onSecondary: #FFFFFF;
+  --a2ui-color-secondaryContainer: #C2EBF6;
+  --a2ui-color-onSecondaryContainer: #003743;
+  --a2ui-color-tertiary: #3FA08B;
+  --a2ui-color-error: #B3261E;
+  --a2ui-color-onError: #FFFFFF;
+  --a2ui-color-errorContainer: #F9DEDC;
+  --a2ui-color-onErrorContainer: #410E0B;
+  --a2ui-color-background: #F6FBFF;
+  --a2ui-color-onBackground: #0B2A33;
+  --a2ui-color-surface: #F6FBFF;
+  --a2ui-color-onSurface: #0B2A33;
+  --a2ui-color-surfaceVariant: #D6EAF1;
+  --a2ui-color-onSurfaceVariant: #3F5560;
+  --a2ui-color-surfaceContainer: #E7F3F8;
+  --a2ui-color-onSurfaceContainer: #0B2A33;
+  --a2ui-color-outline: #6FA8BD;
+  --a2ui-color-outlineVariant: #BFDCE6;
+  --a2ui-color-inverseSurface: #0B2A33;
+  --a2ui-color-inverseOnSurface: #E7F3F8;
+  --a2ui-color-inversePrimary: #C6DCFF;
+}

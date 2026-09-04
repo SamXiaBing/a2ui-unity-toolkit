@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:yousandi.cn,2023:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - ParkingSlotAPA
+  - ApaParkOutButton
+  - PADirButton
+  - ParkingSlotHPA
+  - CarPaintComponent
+  - CarShellComponent
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Map_Mode
+  - Water
+  - UI
+  - Map_Line
+  - PhotoPicture
+  - NoPost3DUI
+  - ReDepth
+  - Launcher
+  - Seat
+  - Inside
+  - Multimedia
+  - Avatar
+  - Map_Default
+  - LineTextTexture
+  - Map_Building
+  - ManualLayer
+  - LaunchrCluster
+  - Map_Reflection
+  - SR_Default_Basic
+  - SR_Default_Ex
+  - SR_Camera
+  - IC_Camera
+  - VPA_Camera
+  - MediaPlayer
+  - SR_Static
+  - ThirdPlace
+  - Wheel
+  - 3DUIOverlay
+  - NonMapLight
+  m_SortingLayers:
+  - name: Before
+    uniqueID: 3528879053
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0

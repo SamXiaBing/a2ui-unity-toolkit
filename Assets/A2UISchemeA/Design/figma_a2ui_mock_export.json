@@ -1,0 +1,217 @@
+{
+  "nodes": {
+    "0:1": {
+      "document": {
+        "id": "0:1",
+        "name": "A2UI Components",
+        "type": "CANVAS",
+        "children": [
+          {
+            "id": "1:1",
+            "name": "a2ui-card",
+            "type": "FRAME",
+            "layoutMode": "VERTICAL",
+            "itemSpacing": 16,
+            "paddingTop": 24,
+            "paddingBottom": 24,
+            "paddingLeft": 24,
+            "paddingRight": 24,
+            "cornerRadius": 16,
+            "absoluteBoundingBox": { "width": 360, "height": 280 },
+            "fills": [{ "type": "SOLID", "color": { "r": 1.0, "g": 0.984, "b": 0.996 } }],
+            "strokes": [{ "type": "SOLID", "color": { "r": 0.792, "g": 0.769, "b": 0.816 } }],
+            "strokeWeight": 1,
+            "children": [
+              {
+                "id": "1:2",
+                "name": "a2ui-text-h2",
+                "type": "TEXT",
+                "characters": "夜航星图",
+                "style": { "fontSize": 36, "fontWeight": 700, "textAlignHorizontal": "LEFT" },
+                "fills": [{ "type": "SOLID", "color": { "r": 0.110, "g": 0.106, "b": 0.122 } }],
+                "absoluteBoundingBox": { "width": 144, "height": 44 }
+              },
+              {
+                "id": "1:3",
+                "name": "a2ui-divider",
+                "type": "RECTANGLE",
+                "cornerRadius": 0,
+                "absoluteBoundingBox": { "width": 312, "height": 1 },
+                "fills": [{ "type": "SOLID", "color": { "r": 0.792, "g": 0.769, "b": 0.816 } }]
+              },
+              {
+                "id": "1:4",
+                "name": "a2ui-text-body",
+                "type": "TEXT",
+                "characters": "Hi-Fi · 车载空间音",
+                "style": { "fontSize": 20, "fontWeight": 400, "textAlignHorizontal": "LEFT" },
+                "fills": [{ "type": "SOLID", "color": { "r": 0.110, "g": 0.106, "b": 0.122 } }],
+                "absoluteBoundingBox": { "width": 200, "height": 24 }
+              }
+            ]
+          },
+          {
+            "id": "2:1",
+            "name": "a2ui-btn-primary",
+            "type": "FRAME",
+            "layoutMode": "HORIZONTAL",
+            "primaryAxisAlignItems": "CENTER",
+            "counterAxisAlignItems": "CENTER",
+            "paddingTop": 12,
+            "paddingBottom": 12,
+            "paddingLeft": 24,
+            "paddingRight": 24,
+            "cornerRadius": 999,
+            "absoluteBoundingBox": { "width": 120, "height": 48 },
+            "fills": [{ "type": "SOLID", "color": { "r": 0.404, "g": 0.314, "b": 0.643 } }],
+            "children": [
+              {
+                "id": "2:2",
+                "name": "btnLabel",
+                "type": "TEXT",
+                "characters": "去这里",
+                "style": { "fontSize": 20, "fontWeight": 400 },
+                "fills": [{ "type": "SOLID", "color": { "r": 1.0, "g": 1.0, "b": 1.0 } }],
+                "absoluteBoundingBox": { "width": 60, "height": 24 }
+              }
+            ]
+          },
+          {
+            "id": "3:1",
+            "name": "a2ui-btn-secondary",
+            "type": "FRAME",
+            "layoutMode": "HORIZONTAL",
+            "primaryAxisAlignItems": "CENTER",
+            "counterAxisAlignItems": "CENTER",
+            "paddingTop": 12,
+            "paddingBottom": 12,
+            "paddingLeft": 24,
+            "paddingRight": 24,
+            "cornerRadius": 999,
+            "absoluteBoundingBox": { "width": 100, "height": 48 },
+            "fills": [{ "type": "SOLID", "color": { "r": 0.910, "g": 0.871, "b": 0.973 } }],
+            "children": [
+              {
+                "id": "3:2",
+                "name": "cancelLabel",
+                "type": "TEXT",
+                "characters": "取消",
+                "style": { "fontSize": 20, "fontWeight": 400 },
+                "fills": [{ "type": "SOLID", "color": { "r": 0.114, "g": 0.098, "b": 0.169 } }],
+                "absoluteBoundingBox": { "width": 40, "height": 24 }
+              }
+            ]
+          },
+          {
+            "id": "4:1",
+            "name": "a2ui-text-h1",
+            "type": "TEXT",
+            "characters": "大标题 H1 · 44px",
+            "style": { "fontSize": 44, "fontWeight": 700 },
+            "fills": [{ "type": "SOLID", "color": { "r": 0.110, "g": 0.106, "b": 0.122 } }],
+            "absoluteBoundingBox": { "width": 300, "height": 52 }
+          },
+          {
+            "id": "4:2",
+            "name": "a2ui-text-caption",
+            "type": "TEXT",
+            "characters": "辅助 Caption · 15px",
+            "style": { "fontSize": 15, "fontWeight": 400 },
+            "fills": [{ "type": "SOLID", "color": { "r": 0.286, "g": 0.271, "b": 0.310 } }],
+            "absoluteBoundingBox": { "width": 200, "height": 18 }
+          },
+          {
+            "id": "5:1",
+            "name": "a2ui-chip",
+            "type": "FRAME",
+            "layoutMode": "HORIZONTAL",
+            "primaryAxisAlignItems": "CENTER",
+            "counterAxisAlignItems": "CENTER",
+            "paddingTop": 8,
+            "paddingBottom": 8,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "cornerRadius": 999,
+            "absoluteBoundingBox": { "width": 80, "height": 32 },
+            "fills": [{ "type": "SOLID", "color": { "r": 0.906, "g": 0.875, "b": 0.925 } }],
+            "children": [
+              {
+                "id": "5:2",
+                "name": "chipLabel",
+                "type": "TEXT",
+                "characters": "未选中",
+                "style": { "fontSize": 15, "fontWeight": 400 },
+                "fills": [{ "type": "SOLID", "color": { "r": 0.110, "g": 0.106, "b": 0.122 } }],
+                "absoluteBoundingBox": { "width": 48, "height": 18 }
+              }
+            ]
+          },
+          {
+            "id": "6:1",
+            "name": "a2ui-textfield",
+            "type": "FRAME",
+            "layoutMode": "HORIZONTAL",
+            "counterAxisAlignItems": "CENTER",
+            "paddingTop": 12,
+            "paddingBottom": 12,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "cornerRadius": 8,
+            "absoluteBoundingBox": { "width": 280, "height": 52 },
+            "fills": [{ "type": "SOLID", "color": { "r": 1.0, "g": 0.984, "b": 0.996 } }],
+            "strokes": [{ "type": "SOLID", "color": { "r": 0.792, "g": 0.769, "b": 0.816 } }],
+            "strokeWeight": 1,
+            "children": [
+              {
+                "id": "6:2",
+                "name": "placeholder",
+                "type": "TEXT",
+                "characters": "输入文本...",
+                "style": { "fontSize": 20, "fontWeight": 400 },
+                "fills": [{ "type": "SOLID", "color": { "r": 0.475, "g": 0.455, "b": 0.494 } }],
+                "absoluteBoundingBox": { "width": 120, "height": 24 }
+              }
+            ]
+          },
+          {
+            "id": "7:1",
+            "name": "a2ui-checkbox",
+            "type": "RECTANGLE",
+            "cornerRadius": 8,
+            "absoluteBoundingBox": { "width": 24, "height": 24 },
+            "fills": [{ "type": "SOLID", "color": { "r": 0.906, "g": 0.875, "b": 0.925 } }],
+            "strokes": [{ "type": "SOLID", "color": { "r": 0.475, "g": 0.455, "b": 0.494 } }],
+            "strokeWeight": 2
+          },
+          {
+            "id": "8:1",
+            "name": "a2ui-slider",
+            "type": "FRAME",
+            "layoutMode": "HORIZONTAL",
+            "counterAxisAlignItems": "CENTER",
+            "absoluteBoundingBox": { "width": 280, "height": 20 },
+            "fills": [],
+            "children": [
+              {
+                "id": "8:2",
+                "name": "sliderTrack",
+                "type": "RECTANGLE",
+                "cornerRadius": 999,
+                "absoluteBoundingBox": { "width": 260, "height": 6 },
+                "fills": [{ "type": "SOLID", "color": { "r": 0.906, "g": 0.875, "b": 0.925 } }]
+              }
+            ]
+          },
+          {
+            "id": "9:1",
+            "name": "a2ui-icon",
+            "type": "RECTANGLE",
+            "cornerRadius": 12,
+            "absoluteBoundingBox": { "width": 72, "height": 72 },
+            "fills": [{ "type": "SOLID", "color": { "r": 0.953, "g": 0.929, "b": 0.969 } }]
+          }
+        ]
+      }
+    }
+  }
+}

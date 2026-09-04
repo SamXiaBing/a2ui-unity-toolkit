@@ -1,0 +1,3 @@
+# prompt: unit Column
+{"surfaceUpdate":{"surfaceId":"u-col","components":[{"id":"root","component":{"Column":{"children":{"explicitList":["a","b"]},"distribution":"start","alignment":"stretch"}}},{"id":"a","component":{"Text":{"text":{"literalString":"上"},"usageHint":"h3"}}},{"id":"b","component":{"Text":{"text":{"literalString":"下"},"usageHint":"body"}}}]}}
+{"beginRendering":{"surfaceId":"u-col","root":"root","catalogId":"https://a2ui.org/specification/v0_8/json/standard_catalog_definition.json"}}

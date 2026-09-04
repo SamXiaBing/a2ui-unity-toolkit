@@ -1,0 +1,3 @@
+# prompt: unit Image
+{"surfaceUpdate":{"surfaceId":"u-image","components":[{"id":"root","component":{"Column":{"children":{"explicitList":["img"]},"alignment":"stretch"}}},{"id":"img","component":{"Image":{"url":{"literalString":"https://picsum.photos/seed/a2ui-unit/640/360"},"altText":{"literalString":"单元测封面"},"fit":"cover","usageHint":"mediumFeature"}}}]}}
+{"beginRendering":{"surfaceId":"u-image","root":"root","catalogId":"https://a2ui.org/specification/v0_8/json/standard_catalog_definition.json"}}
