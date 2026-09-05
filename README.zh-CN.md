@@ -1,3 +1,5 @@
+[English](README.md) | 简体中文
+
 # A2UI Unity Toolkit
 
 **让 Agent（LLM）用一份 JSONL 描述界面，Unity / Tuanjie 运行时直接渲染成原生 UI Toolkit 组件。不经 HTML、不经 WebView、不做像素流。**

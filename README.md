@@ -1,3 +1,5 @@
+English | [简体中文](README.zh-CN.md)
+
 # A2UI Unity Toolkit
 
 **Render Agent-generated UI natively in Unity / Tuanjie. No HTML, no WebView, no pixel streaming.**
