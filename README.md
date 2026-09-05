@@ -11,11 +11,11 @@ English | [简体中文](README.zh-CN.md)
 
 A2UI is an open protocol by Google (Apache 2.0, [a2ui.org](https://a2ui.org)). Official renderers cover Angular, Flutter/GenUI and Lit; a community Compose renderer lives at `lmee/A2UI-Android`. This toolkit is the Unity UI Toolkit runtime for that protocol. Point an Agent (cloud or local Ollama) at your app and its output becomes native, themeable UI Toolkit components. Built for in-vehicle cockpits, games, and any Unity front-end driven by AI.
 
-![demo](screenshots/demo_v09_full_control_scroll.mp4)
-
 | M3 Light | M3 Dark |
 |---|---|
 | ![M3 Light](screenshots/theme_m3light.png) | ![M3 Dark](screenshots/theme_m3dark.png) |
+
+▶ [Watch the scrolling demo](screenshots/demo_v09_full_control_scroll.mp4)
 
 ```
 Agent (JSONL) ──HTTP/TCP──▶ Host hot-push ──▶ G0 validation ──▶ Processor FSM ──▶ CatalogMapper ──▶ UI Toolkit

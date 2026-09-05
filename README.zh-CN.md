@@ -11,11 +11,11 @@
 
 A2UI 是 Google 开源的开放协议（Apache 2.0，官网 [a2ui.org](https://a2ui.org)。官方渲染器覆盖 Angular、Flutter/GenUI、Lit，社区还有 Compose 渲染器 `lmee/A2UI-Android`）。Agent 逐行输出 JSONL 消息描述界面，本工程是这个协议的 Unity UI Toolkit 运行时。把 Agent（云端或本地 Ollama）接到你的应用上，它输出的就是原生、可换肤的 UI Toolkit 组件。面向车机座舱、游戏，以及一切由 AI 驱动的 Unity 前端。英文版见 [README.md](README.md)。
 
-![demo](screenshots/demo_v09_full_control_scroll.mp4)
-
 | M3 Light | M3 Dark |
 |---|---|
 | ![M3 Light](screenshots/theme_m3light.png) | ![M3 Dark](screenshots/theme_m3dark.png) |
+
+▶ [观看滚动演示](screenshots/demo_v09_full_control_scroll.mp4)
 
 ```
 Agent 输出 JSONL ──HTTP/TCP──▶ Host 热推 ──▶ 校验 G0 ──▶ Processor 状态机 ──▶ CatalogMapper ──▶ UI Toolkit 渲染
