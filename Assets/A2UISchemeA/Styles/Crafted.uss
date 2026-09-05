@@ -12,7 +12,7 @@
 /* 根节点：原 bug 是 color:rgb(255,0,0)+font-size:36px，会让未单独设色的元素继承
    红字大字号。改为 sane 的继承默认值（深浅主题都覆盖，不会出问题）。 */
 .a2ui-skin--crafted {
-  color: var(--a2ui-color-onSurface, #1C1B1F);
+  color: var(--a2ui-color-onSurface);
   font-size: 20px;
   -unity-font-style: normal;
   /* 中文字体 MiSans 由 PanelSettings.fontAsset 统一提供（见 PanelSettings.asset），
@@ -29,71 +29,71 @@
   flex-direction: row;
   align-items: center;
 }
-.a2ui-row > * { margin-right: var(--a2ui-space-2, 16px); min-width: 0; flex-shrink: 1; }
+.a2ui-row > * { margin-right: var(--a2ui-space-2); min-width: 0; flex-shrink: 1; }
 .a2ui-row > .a2ui-last-child { margin-right: 0; }
 
 .a2ui-col, .a2ui-column {
   flex-direction: column;
 }
-.a2ui-col > *, .a2ui-column > * { margin-bottom: var(--a2ui-space-2, 16px); min-width: 0; flex-shrink: 1; }
+.a2ui-col > *, .a2ui-column > * { margin-bottom: var(--a2ui-space-2); min-width: 0; flex-shrink: 1; }
 .a2ui-col > .a2ui-last-child, .a2ui-column > .a2ui-last-child { margin-bottom: 0; }
 
 /* List 是 ScrollView，子项在 contentContainer（后代）里，用后代选择器加间距 */
-.a2ui-list .a2ui-node { margin-bottom: var(--a2ui-space-1, 8px); }
+.a2ui-list .a2ui-node { margin-bottom: var(--a2ui-space-1); }
 .a2ui-list__item {
-  background-color: var(--a2ui-color-surface, #FFFBFE);
-  border-radius: var(--a2ui-radius-sm, 8px);
-  padding: var(--a2ui-space-2, 16px);
-  margin-bottom: var(--a2ui-space-1, 8px);
+  background-color: var(--a2ui-color-surface);
+  border-radius: var(--a2ui-radius-sm);
+  padding: var(--a2ui-space-2);
+  margin-bottom: var(--a2ui-space-1);
   border-left-width: 4px;
-  border-left-color: var(--a2ui-color-primary, #6750A4);
+  border-left-color: var(--a2ui-color-primary);
   border-left-style: solid;
 }
 .a2ui-list__item.a2ui-last-child { margin-bottom: 0; }
 
 /* ---- 卡片 ---- */
 .a2ui-card {
-  background-color: var(--a2ui-color-surface, #FFFBFE);
-  border-radius: var(--a2ui-radius-lg, 16px);
-  padding: var(--a2ui-space-3, 24px);
+  background-color: var(--a2ui-color-surface);
+  border-radius: var(--a2ui-radius-lg);
+  padding: var(--a2ui-space-3);
   /* 引擎不支持 box-shadow，用 2px 描边 + 底部偏移模拟卡片阴影层次 */
   border-width: 1px;
-  border-color: var(--a2ui-color-outlineVariant, #CAC4D0);
+  border-color: var(--a2ui-color-outlineVariant);
   border-style: solid;
   border-bottom-width: 3px;
-  border-bottom-color: var(--a2ui-color-outline, #79747E);
+  border-bottom-color: var(--a2ui-color-outline);
   /* 卡片内放不下的内容裁剪，不许流到卡片外 */
   overflow: hidden;
   min-width: 0;
 }
 .a2ui-card__title {
-  color: var(--a2ui-color-onSurface, #1C1B1F);
+  color: var(--a2ui-color-onSurface);
   font-size: 30px;
-  margin-bottom: var(--a2ui-space-1, 8px);
+  margin-bottom: var(--a2ui-space-1);
   -unity-font-style: bold;
 }
 .a2ui-card__subtitle {
-  color: var(--a2ui-color-onSurfaceVariant, #49454F);
+  color: var(--a2ui-color-onSurfaceVariant);
   font-size: 20px;
-  margin-bottom: var(--a2ui-space-2, 16px);
+  margin-bottom: var(--a2ui-space-2);
 }
-.a2ui-card__body { color: var(--a2ui-color-onSurface, #1C1B1F); font-size: 20px; }
+.a2ui-card__body { color: var(--a2ui-color-onSurface); font-size: 20px; }
 
 /* ---- 文本 ---- */
 .a2ui-text {
-  color: var(--a2ui-color-onSurface, #1C1B1F);
+  color: var(--a2ui-color-onSurface);
   font-size: 20px;
   white-space: normal;
   word-wrap: break-word;
   min-width: 0;
   flex-shrink: 1;
 }
-.a2ui-text--h1 { color: var(--a2ui-color-onSurface, #1C1B1F); font-size: 44px; -unity-font-style: bold; }
-.a2ui-text--h2 { color: var(--a2ui-color-onSurface, #1C1B1F); font-size: 36px; -unity-font-style: bold; }
-.a2ui-text--h3 { color: var(--a2ui-color-onSurface, #1C1B1F); font-size: 30px; -unity-font-style: bold; }
-.a2ui-text--h4 { color: var(--a2ui-color-onSurface, #1C1B1F); font-size: 24px; -unity-font-style: bold; }
-.a2ui-text--h5 { color: var(--a2ui-color-onSurface, #1C1B1F); font-size: 19px; -unity-font-style: bold; }
-.a2ui-text--caption { color: var(--a2ui-color-onSurfaceVariant, #49454F); font-size: 15px; }
+.a2ui-text--h1 { color: var(--a2ui-color-onSurface); font-size: 44px; -unity-font-style: bold; }
+.a2ui-text--h2 { color: var(--a2ui-color-onSurface); font-size: 36px; -unity-font-style: bold; }
+.a2ui-text--h3 { color: var(--a2ui-color-onSurface); font-size: 30px; -unity-font-style: bold; }
+.a2ui-text--h4 { color: var(--a2ui-color-onSurface); font-size: 24px; -unity-font-style: bold; }
+.a2ui-text--h5 { color: var(--a2ui-color-onSurface); font-size: 19px; -unity-font-style: bold; }
+.a2ui-text--caption { color: var(--a2ui-color-onSurfaceVariant); font-size: 15px; }
 
 /* ---- 中文字重层次（暂挂起） ----
  * 标题要更重字重（M3 风格）本应由 MiSans-Demibold / Medium 承担，但 -unity-font-definition
@@ -104,31 +104,31 @@
 .a2ui-icon {
   width: 40px;
   height: 40px;
-  color: var(--a2ui-color-onSurfaceVariant, #49454F);
+  color: var(--a2ui-color-onSurfaceVariant);
   -unity-text-align: middle-center;
   font-size: 30px;
 }
 .a2ui-icon--lg { width: 64px; height: 64px; font-size: 48px; }
-.a2ui-icon__fallback { color: var(--a2ui-color-onSurfaceVariant, #49454F); font-size: 30px; -unity-text-align: middle-center; }
+.a2ui-icon__fallback { color: var(--a2ui-color-onSurfaceVariant); font-size: 30px; -unity-text-align: middle-center; }
 
 /* ---- 图片 ---- */
 .a2ui-image {
   width: 100%;
   height: auto;
-  border-radius: var(--a2ui-radius-md, 12px);
-  background-color: var(--a2ui-color-surfaceVariant, #E7E0EC);
+  border-radius: var(--a2ui-radius-md);
+  background-color: var(--a2ui-color-surfaceVariant);
 }
 .a2ui-image__caption {
-  color: var(--a2ui-color-onSurfaceVariant, #49454F);
+  color: var(--a2ui-color-onSurfaceVariant);
   font-size: 15px;
-  margin-top: var(--a2ui-space-1, 8px);
+  margin-top: var(--a2ui-space-1);
   -unity-text-align: middle-center;
 }
 
 /* ---- 按钮 ---- */
 .a2ui-btn {
-  padding: var(--a2ui-space-2, 16px) var(--a2ui-space-3, 24px);
-  border-radius: var(--a2ui-radius-pill, 999px);
+  padding: var(--a2ui-space-2) var(--a2ui-space-3);
+  border-radius: var(--a2ui-radius-pill);
   font-size: 20px;
   -unity-text-align: middle-center;
   border-top-width: 0; border-bottom-width: 0; border-left-width: 0; border-right-width: 0;
@@ -136,67 +136,67 @@
 .a2ui-btn:hover { }
 .a2ui-btn:active { }
 .a2ui-btn--primary {
-  background-color: var(--a2ui-color-primary, #6750A4);
-  color: var(--a2ui-color-onPrimary, #FFFFFF);
+  background-color: var(--a2ui-color-primary);
+  color: var(--a2ui-color-onPrimary);
 }
 .a2ui-btn--secondary {
-  background-color: var(--a2ui-color-secondaryContainer, #E8DEF8);
-  color: var(--a2ui-color-onSecondaryContainer, #1D192B);
+  background-color: var(--a2ui-color-secondaryContainer);
+  color: var(--a2ui-color-onSecondaryContainer);
 }
 
 /* ---- 分隔线 ---- */
-.a2ui-divider { background-color: var(--a2ui-color-outlineVariant, #CAC4D0); }
-.a2ui-divider--horizontal { height: 1px; width: 100%; margin: var(--a2ui-space-2, 16px) 0; }
-.a2ui-divider--vertical { width: 1px; height: 24px; margin: 0 var(--a2ui-space-2, 16px); }
+.a2ui-divider { background-color: var(--a2ui-color-outlineVariant); }
+.a2ui-divider--horizontal { height: 1px; width: 100%; margin: var(--a2ui-space-2) 0; }
+.a2ui-divider--vertical { width: 1px; height: 24px; margin: 0 var(--a2ui-space-2); }
 
 /* ---- Chips ---- */
 .a2ui-chips { flex-direction: row; flex-wrap: wrap; }
 .a2ui-chip {
-  margin: 0 var(--a2ui-space-1, 8px) var(--a2ui-space-1, 8px) 0;
-  padding: var(--a2ui-space-1, 8px) var(--a2ui-space-2, 16px);
-  background-color: var(--a2ui-color-surfaceVariant, #E7E0EC);
-  color: var(--a2ui-color-onSurface, #1C1B1F);
-  border-radius: var(--a2ui-radius-pill, 999px);
+  margin: 0 var(--a2ui-space-1) var(--a2ui-space-1) 0;
+  padding: var(--a2ui-space-1) var(--a2ui-space-2);
+  background-color: var(--a2ui-color-surfaceVariant);
+  color: var(--a2ui-color-onSurface);
+  border-radius: var(--a2ui-radius-pill);
   font-size: 15px;
   -unity-text-align: middle-center;
   border-top-width: 0; border-bottom-width: 0; border-left-width: 0; border-right-width: 0;
 }
 .a2ui-chip:checked,
 .a2ui-chip:focus {
-  background-color: var(--a2ui-color-primary, #6750A4);
-  color: var(--a2ui-color-onPrimary, #FFFFFF);
+  background-color: var(--a2ui-color-primary);
+  color: var(--a2ui-color-onPrimary);
 }
 
 /* ---- Checkbox（卡片式，带大点击区） ---- */
 .a2ui-checkbox-wrap {
   flex-direction: row;
   align-items: center;
-  padding: var(--a2ui-space-2, 16px);
-  border-radius: var(--a2ui-radius-md, 12px);
-  background-color: var(--a2ui-color-surface, #FFFBFE);
+  padding: var(--a2ui-space-2);
+  border-radius: var(--a2ui-radius-md);
+  background-color: var(--a2ui-color-surface);
 }
-.a2ui-checkbox-wrap > * { margin-right: var(--a2ui-space-2, 16px); }
+.a2ui-checkbox-wrap > * { margin-right: var(--a2ui-space-2); }
 .a2ui-checkbox-wrap > .a2ui-last-child { margin-right: 0; }
 .a2ui-checkbox {
   width: 36px;
   height: 36px;
-  border-radius: var(--a2ui-radius-sm, 8px);
-  background-color: var(--a2ui-color-surfaceVariant, #E7E0EC);
+  border-radius: var(--a2ui-radius-sm);
+  background-color: var(--a2ui-color-surfaceVariant);
   border-top-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-right-width: 2px;
-  border-top-color: var(--a2ui-color-outline, #79747E);
-  border-bottom-color: var(--a2ui-color-outline, #79747E);
-  border-left-color: var(--a2ui-color-outline, #79747E);
-  border-right-color: var(--a2ui-color-outline, #79747E);
+  border-top-color: var(--a2ui-color-outline);
+  border-bottom-color: var(--a2ui-color-outline);
+  border-left-color: var(--a2ui-color-outline);
+  border-right-color: var(--a2ui-color-outline);
 }
 .a2ui-checkbox:checked {
-  background-color: var(--a2ui-color-primary, #6750A4);
-  border-top-color: var(--a2ui-color-primary, #6750A4);
-  border-bottom-color: var(--a2ui-color-primary, #6750A4);
-  border-left-color: var(--a2ui-color-primary, #6750A4);
-  border-right-color: var(--a2ui-color-primary, #6750A4);
+  background-color: var(--a2ui-color-primary);
+  border-top-color: var(--a2ui-color-primary);
+  border-bottom-color: var(--a2ui-color-primary);
+  border-left-color: var(--a2ui-color-primary);
+  border-right-color: var(--a2ui-color-primary);
 }
-.a2ui-checkbox__heading { color: var(--a2ui-color-onSurface, #1C1B1F); font-size: 20px; -unity-font-style: bold; }
-.a2ui-checkbox__state { color: var(--a2ui-color-onSurfaceVariant, #49454F); font-size: 15px; }
+.a2ui-checkbox__heading { color: var(--a2ui-color-onSurface); font-size: 20px; -unity-font-style: bold; }
+.a2ui-checkbox__state { color: var(--a2ui-color-onSurfaceVariant); font-size: 15px; }
 
 /* 勾选盒旁的独立文字标签（结构化拆分后不再塞进 Toggle 内部 label） */
 .a2ui-checkbox__label {
@@ -216,87 +216,87 @@
 /* ---- Slider ---- */
 .a2ui-slider { height: 40px; }
 .a2ui-slider .unity-base-slider__tracker {
-  background-color: var(--a2ui-color-primary, #6750A4);
-  border-radius: var(--a2ui-radius-pill, 999px);
+  background-color: var(--a2ui-color-primary);
+  border-radius: var(--a2ui-radius-pill);
 }
 .a2ui-slider .unity-base-slider__dragger {
-  background-color: var(--a2ui-color-primary, #6750A4);
-  border-radius: var(--a2ui-radius-pill, 999px);
+  background-color: var(--a2ui-color-primary);
+  border-radius: var(--a2ui-radius-pill);
 }
 
 /* ---- Tabs ---- */
-.a2ui-tabs > * { margin-bottom: var(--a2ui-space-1, 8px); }
+.a2ui-tabs > * { margin-bottom: var(--a2ui-space-1); }
 .a2ui-tabs > .a2ui-last-child { margin-bottom: 0; }
 .a2ui-tabs__header {
   flex-direction: row;
   border-bottom-width: 1px;
-  border-bottom-color: var(--a2ui-color-outlineVariant, #CAC4D0);
+  border-bottom-color: var(--a2ui-color-outlineVariant);
   border-bottom-style: solid;
-  padding-bottom: var(--a2ui-space-1, 8px);
+  padding-bottom: var(--a2ui-space-1);
 }
-.a2ui-tabs__header > * { margin-right: var(--a2ui-space-1, 8px); min-width: 0; flex-shrink: 1; }
+.a2ui-tabs__header > * { margin-right: var(--a2ui-space-1); min-width: 0; flex-shrink: 1; }
 .a2ui-tabs__header > .a2ui-last-child { margin-right: 0; }
 .a2ui-tabs__tab {
-  padding: var(--a2ui-space-1, 8px) var(--a2ui-space-2, 16px);
-  border-radius: var(--a2ui-radius-sm, 8px);
-  background-color: var(--a2ui-color-surfaceVariant, #E7E0EC);
-  color: var(--a2ui-color-onSurface, #1C1B1F);
+  padding: var(--a2ui-space-1) var(--a2ui-space-2);
+  border-radius: var(--a2ui-radius-sm);
+  background-color: var(--a2ui-color-surfaceVariant);
+  color: var(--a2ui-color-onSurface);
   font-size: 15px;
   -unity-text-align: middle-center;
 }
 .a2ui-tabs__tab.a2ui-tabs__tab--active {
-  background-color: var(--a2ui-color-primary, #6750A4);
-  color: var(--a2ui-color-onPrimary, #FFFFFF);
+  background-color: var(--a2ui-color-primary);
+  color: var(--a2ui-color-onPrimary);
 }
 
 /* ---- Choice（多选筛选） ---- */
-.a2ui-choice > * { margin-bottom: var(--a2ui-space-1, 8px); }
+.a2ui-choice > * { margin-bottom: var(--a2ui-space-1); }
 .a2ui-choice > .a2ui-last-child { margin-bottom: 0; }
 /* 选项挂载点（chips=横排环绕 / checkbox=竖排）内部也加间距 */
-.a2ui-choice__options > * { margin: 0 var(--a2ui-space-1, 8px) var(--a2ui-space-1, 8px) 0; }
+.a2ui-choice__options > * { margin: 0 var(--a2ui-space-1) var(--a2ui-space-1) 0; }
 .a2ui-choice__chip {
-  padding: var(--a2ui-space-1, 8px) var(--a2ui-space-2, 16px);
-  border-radius: var(--a2ui-radius-pill, 999px);
-  background-color: var(--a2ui-color-surfaceVariant, #E7E0EC);
-  color: var(--a2ui-color-onSurface, #1C1B1F);
+  padding: var(--a2ui-space-1) var(--a2ui-space-2);
+  border-radius: var(--a2ui-radius-pill);
+  background-color: var(--a2ui-color-surfaceVariant);
+  color: var(--a2ui-color-onSurface);
   font-size: 15px;
   -unity-text-align: middle-center;
 }
 .a2ui-choice__chip:checked {
-  background-color: var(--a2ui-color-primary, #6750A4);
-  color: var(--a2ui-color-onPrimary, #FFFFFF);
+  background-color: var(--a2ui-color-primary);
+  color: var(--a2ui-color-onPrimary);
 }
-.a2ui-choice__filter { color: var(--a2ui-color-onSurfaceVariant, #49454F); font-size: 15px; }
-.a2ui-choice__limit { color: var(--a2ui-color-error, #B3261E); font-size: 15px; -unity-font-style: bold; }
+.a2ui-choice__filter { color: var(--a2ui-color-onSurfaceVariant); font-size: 15px; }
+.a2ui-choice__limit { color: var(--a2ui-color-error); font-size: 15px; -unity-font-style: bold; }
 
 /* ---- Video / Audio ---- */
 .a2ui-video {
-  background-color: var(--a2ui-color-inverseSurface, #322F35);
-  border-radius: var(--a2ui-radius-md, 12px);
-  padding: var(--a2ui-space-2, 16px);
+  background-color: var(--a2ui-color-inverseSurface);
+  border-radius: var(--a2ui-radius-md);
+  padding: var(--a2ui-space-2);
 }
-.a2ui-video__title { color: var(--a2ui-color-inverseOnSurface, #E6E1E5); font-size: 20px; -unity-font-style: bold; }
-.a2ui-video__url { color: var(--a2ui-color-onSurfaceVariant, #49454F); font-size: 15px; }
+.a2ui-video__title { color: var(--a2ui-color-inverseOnSurface); font-size: 20px; -unity-font-style: bold; }
+.a2ui-video__url { color: var(--a2ui-color-onSurfaceVariant); font-size: 15px; }
 .a2ui-audio {
-  background-color: var(--a2ui-color-surfaceVariant, #E7E0EC);
-  border-radius: var(--a2ui-radius-md, 12px);
-  padding: var(--a2ui-space-2, 16px);
+  background-color: var(--a2ui-color-surfaceVariant);
+  border-radius: var(--a2ui-radius-md);
+  padding: var(--a2ui-space-2);
 }
-.a2ui-audio__title { color: var(--a2ui-color-onSurface, #1C1B1F); font-size: 20px; -unity-font-style: bold; }
-.a2ui-audio__url { color: var(--a2ui-color-onSurfaceVariant, #49454F); font-size: 15px; }
+.a2ui-audio__title { color: var(--a2ui-color-onSurface); font-size: 20px; -unity-font-style: bold; }
+.a2ui-audio__url { color: var(--a2ui-color-onSurfaceVariant); font-size: 15px; }
 
 /* ---- Textfield ---- */
 .a2ui-textfield {
-  background-color: var(--a2ui-color-surface, #FFFBFE);
-  border-radius: var(--a2ui-radius-sm, 8px);
+  background-color: var(--a2ui-color-surface);
+  border-radius: var(--a2ui-radius-sm);
   border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px;
-  border-top-color: var(--a2ui-color-outlineVariant, #CAC4D0);
-  border-bottom-color: var(--a2ui-color-outlineVariant, #CAC4D0);
-  border-left-color: var(--a2ui-color-outlineVariant, #CAC4D0);
-  border-right-color: var(--a2ui-color-outlineVariant, #CAC4D0);
-  padding: var(--a2ui-space-2, 16px);
+  border-top-color: var(--a2ui-color-outlineVariant);
+  border-bottom-color: var(--a2ui-color-outlineVariant);
+  border-left-color: var(--a2ui-color-outlineVariant);
+  border-right-color: var(--a2ui-color-outlineVariant);
+  padding: var(--a2ui-space-2);
   font-size: 20px;
-  color: var(--a2ui-color-onSurface, #1C1B1F);
+  color: var(--a2ui-color-onSurface);
   /* 输入框可收缩 + 裁剪超长值，不许把卡片撑破 */
   min-width: 0;
   flex-shrink: 1;
@@ -315,19 +315,19 @@
   overflow: hidden;
 }
 .a2ui-textfield--invalid {
-  border-top-color: var(--a2ui-color-error, #B3261E);
-  border-bottom-color: var(--a2ui-color-error, #B3261E);
-  border-left-color: var(--a2ui-color-error, #B3261E);
-  border-right-color: var(--a2ui-color-error, #B3261E);
+  border-top-color: var(--a2ui-color-error);
+  border-bottom-color: var(--a2ui-color-error);
+  border-left-color: var(--a2ui-color-error);
+  border-right-color: var(--a2ui-color-error);
 }
-.a2ui-textfield__validation { color: var(--a2ui-color-error, #B3261E); font-size: 15px; margin-top: 4px; }
+.a2ui-textfield__validation { color: var(--a2ui-color-error); font-size: 15px; margin-top: 4px; }
 
 /* ---- DateTime ---- */
 .a2ui-datetime {
-  background-color: var(--a2ui-color-surfaceContainer, #F3EDF7);
-  border-radius: var(--a2ui-radius-md, 12px);
-  padding: var(--a2ui-space-2, 16px);
-  color: var(--a2ui-color-onSurface, #1C1B1F);
+  background-color: var(--a2ui-color-surfaceContainer);
+  border-radius: var(--a2ui-radius-md);
+  padding: var(--a2ui-space-2);
+  color: var(--a2ui-color-onSurface);
   font-size: 20px;
   -unity-text-align: middle-center;
   min-width: 0;
@@ -337,117 +337,117 @@
 
 /* ---- Cabin（休息舱媒体卡） ---- */
 .a2ui-cabin {
-  background-color: var(--a2ui-color-surfaceVariant, #E7E0EC);
-  border-radius: var(--a2ui-radius-lg, 16px);
-  padding: var(--a2ui-space-3, 24px);
+  background-color: var(--a2ui-color-surfaceVariant);
+  border-radius: var(--a2ui-radius-lg);
+  padding: var(--a2ui-space-3);
 }
 .a2ui-cabin--media { flex-direction: row; align-items: center; }
-.a2ui-cabin--media > * { margin-right: var(--a2ui-space-2, 16px); }
+.a2ui-cabin--media > * { margin-right: var(--a2ui-space-2); }
 .a2ui-cabin--media > .a2ui-last-child { margin-right: 0; }
 .a2ui-cabin--rest { flex-direction: column; }
-.a2ui-cabin--rest > * { margin-bottom: var(--a2ui-space-1, 8px); }
+.a2ui-cabin--rest > * { margin-bottom: var(--a2ui-space-1); }
 .a2ui-cabin--rest > .a2ui-last-child { margin-bottom: 0; }
 /* Mapper 给 ClimateStep 挂的是 .a2ui-cabin--climate（之前漏了样式），在此补齐 */
 .a2ui-cabin--climate {
   flex-direction: column;
-  background-color: var(--a2ui-color-surface, #FFFBFE);
-  border-radius: var(--a2ui-radius-lg, 16px);
-  padding: var(--a2ui-space-2, 16px);
+  background-color: var(--a2ui-color-surface);
+  border-radius: var(--a2ui-radius-lg);
+  padding: var(--a2ui-space-2);
   border-width: 1px;
-  border-color: var(--a2ui-color-outlineVariant, #CAC4D0);
+  border-color: var(--a2ui-color-outlineVariant);
   border-style: solid;
 }
-.a2ui-cabin--climate > * { margin-bottom: var(--a2ui-space-2, 16px); }
+.a2ui-cabin--climate > * { margin-bottom: var(--a2ui-space-2); }
 .a2ui-cabin--climate > .a2ui-last-child { margin-bottom: 0; }
 .a2ui-cabin__tag {
   align-self: flex-start;
-  background-color: var(--a2ui-color-primary, #6750A4);
-  color: var(--a2ui-color-onPrimary, #FFFFFF);
-  border-radius: var(--a2ui-radius-pill, 999px);
-  padding: 4px var(--a2ui-space-2, 16px);
+  background-color: var(--a2ui-color-primary);
+  color: var(--a2ui-color-onPrimary);
+  border-radius: var(--a2ui-radius-pill);
+  padding: 4px var(--a2ui-space-2);
   font-size: 15px;
   -unity-text-align: middle-center;
 }
-.a2ui-cabin__title { color: var(--a2ui-color-onSurface, #1C1B1F); font-size: 24px; -unity-font-style: bold; }
-.a2ui-cabin__body { color: var(--a2ui-color-onSurfaceVariant, #49454F); font-size: 20px; }
-.a2ui-cabin__status { color: var(--a2ui-color-onSurfaceVariant, #49454F); font-size: 15px; }
+.a2ui-cabin__title { color: var(--a2ui-color-onSurface); font-size: 24px; -unity-font-style: bold; }
+.a2ui-cabin__body { color: var(--a2ui-color-onSurfaceVariant); font-size: 20px; }
+.a2ui-cabin__status { color: var(--a2ui-color-onSurfaceVariant); font-size: 15px; }
 .a2ui-cabin__play {
-  background-color: var(--a2ui-color-primary, #6750A4);
-  color: var(--a2ui-color-onPrimary, #FFFFFF);
-  border-radius: var(--a2ui-radius-pill, 999px);
-  padding: var(--a2ui-space-2, 16px) var(--a2ui-space-3, 24px);
+  background-color: var(--a2ui-color-primary);
+  color: var(--a2ui-color-onPrimary);
+  border-radius: var(--a2ui-radius-pill);
+  padding: var(--a2ui-space-2) var(--a2ui-space-3);
   font-size: 20px;
   -unity-text-align: middle-center;
   align-self: flex-end;
 }
-.a2ui-cabin__cover { width: 120px; height: 120px; border-radius: var(--a2ui-radius-md, 12px); background-color: var(--a2ui-color-surfaceContainer, #F3EDF7); }
+.a2ui-cabin__cover { width: 120px; height: 120px; border-radius: var(--a2ui-radius-md); background-color: var(--a2ui-color-surfaceContainer); }
 
 /* ---- Placeholder / Skeleton / Degrade ---- */
 .a2ui-placeholder {
-  border-radius: var(--a2ui-radius-md, 12px);
+  border-radius: var(--a2ui-radius-md);
   border-top-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-right-width: 2px;
-  border-top-color: var(--a2ui-color-outlineVariant, #CAC4D0);
-  border-bottom-color: var(--a2ui-color-outlineVariant, #CAC4D0);
-  border-left-color: var(--a2ui-color-outlineVariant, #CAC4D0);
-  border-right-color: var(--a2ui-color-outlineVariant, #CAC4D0);
+  border-top-color: var(--a2ui-color-outlineVariant);
+  border-bottom-color: var(--a2ui-color-outlineVariant);
+  border-left-color: var(--a2ui-color-outlineVariant);
+  border-right-color: var(--a2ui-color-outlineVariant);
   border-top-style: dashed; border-bottom-style: dashed; border-left-style: dashed; border-right-style: dashed;
-  padding: var(--a2ui-space-3, 24px);
-  color: var(--a2ui-color-onSurfaceVariant, #49454F);
+  padding: var(--a2ui-space-3);
+  color: var(--a2ui-color-onSurfaceVariant);
   -unity-text-align: middle-center;
 }
 .a2ui-skeleton {
-  background-color: var(--a2ui-color-outlineVariant, #CAC4D0);
-  border-radius: var(--a2ui-radius-sm, 8px);
+  background-color: var(--a2ui-color-outlineVariant);
+  border-radius: var(--a2ui-radius-sm);
 }
 .a2ui-degrade {
-  background-color: var(--a2ui-color-surfaceVariant, #E7E0EC);
-  border-radius: var(--a2ui-radius-md, 12px);
-  padding: var(--a2ui-space-2, 16px);
-  color: var(--a2ui-color-onSurfaceVariant, #49454F);
+  background-color: var(--a2ui-color-surfaceVariant);
+  border-radius: var(--a2ui-radius-md);
+  padding: var(--a2ui-space-2);
+  color: var(--a2ui-color-onSurfaceVariant);
   -unity-text-align: middle-center;
 }
 
 /* ---- Modal ---- */
 .a2ui-modal__backdrop { background-color: rgba(0,0,0,0.45); }
 .a2ui-modal__content {
-  background-color: var(--a2ui-color-surface, #FFFBFE);
-  border-radius: var(--a2ui-radius-lg, 16px);
-  padding: var(--a2ui-space-3, 24px);
+  background-color: var(--a2ui-color-surface);
+  border-radius: var(--a2ui-radius-lg);
+  padding: var(--a2ui-space-3);
   border-width: 1px;
-  border-color: var(--a2ui-color-outlineVariant, #CAC4D0);
+  border-color: var(--a2ui-color-outlineVariant);
   border-style: solid;
-  color: var(--a2ui-color-onSurface, #1C1B1F);
+  color: var(--a2ui-color-onSurface);
 }
 
 /* ---- 通用 token 徽标 ---- */
 .a2ui-token-badge {
-  background-color: var(--a2ui-color-secondaryContainer, #E8DEF8);
-  color: var(--a2ui-color-onSecondaryContainer, #1D192B);
-  border-radius: var(--a2ui-radius-pill, 999px);
-  padding: 4px var(--a2ui-space-2, 16px);
+  background-color: var(--a2ui-color-secondaryContainer);
+  color: var(--a2ui-color-onSecondaryContainer);
+  border-radius: var(--a2ui-radius-pill);
+  padding: 4px var(--a2ui-space-2);
   font-size: 15px;
   -unity-text-align: middle-center;
 }
 
 /* ---- 媒体迷你条 ---- */
 .a2ui-media {
-  background-color: var(--a2ui-color-surfaceVariant, #E7E0EC);
-  border-radius: var(--a2ui-radius-md, 12px);
-  padding: var(--a2ui-space-1, 8px) var(--a2ui-space-2, 16px);
+  background-color: var(--a2ui-color-surfaceVariant);
+  border-radius: var(--a2ui-radius-md);
+  padding: var(--a2ui-space-1) var(--a2ui-space-2);
   flex-direction: row;
   align-items: center;
 }
-.a2ui-media > * { margin-right: var(--a2ui-space-2, 16px); }
+.a2ui-media > * { margin-right: var(--a2ui-space-2); }
 .a2ui-media > .a2ui-last-child { margin-right: 0; }
-.a2ui-media__title { color: var(--a2ui-color-onSurface, #1C1B1F); font-size: 20px; }
+.a2ui-media__title { color: var(--a2ui-color-onSurface); font-size: 20px; }
 
 /* ---- 气候 / 休息控件外壳 ---- */
 .a2ui-climate, .a2ui-rest {
-  background-color: var(--a2ui-color-surface, #FFFBFE);
-  border-radius: var(--a2ui-radius-lg, 16px);
-  padding: var(--a2ui-space-2, 16px);
+  background-color: var(--a2ui-color-surface);
+  border-radius: var(--a2ui-radius-lg);
+  padding: var(--a2ui-space-2);
   border-width: 1px;
-  border-color: var(--a2ui-color-outlineVariant, #CAC4D0);
+  border-color: var(--a2ui-color-outlineVariant);
   border-style: solid;
 }
 
@@ -455,27 +455,27 @@
 .a2ui-choice__option .unity-toggle__input {
   width: 24px;
   height: 24px;
-  border-radius: var(--a2ui-radius-sm, 8px);
-  background-color: var(--a2ui-color-surfaceVariant, #E7E0EC);
+  border-radius: var(--a2ui-radius-sm);
+  background-color: var(--a2ui-color-surfaceVariant);
   border-top-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-right-width: 2px;
-  border-top-color: var(--a2ui-color-outline, #79747E);
-  border-bottom-color: var(--a2ui-color-outline, #79747E);
-  border-left-color: var(--a2ui-color-outline, #79747E);
-  border-right-color: var(--a2ui-color-outline, #79747E);
-  margin-right: var(--a2ui-space-1, 8px);
+  border-top-color: var(--a2ui-color-outline);
+  border-bottom-color: var(--a2ui-color-outline);
+  border-left-color: var(--a2ui-color-outline);
+  border-right-color: var(--a2ui-color-outline);
+  margin-right: var(--a2ui-space-1);
 }
 .a2ui-choice__option .unity-toggle__input:checked {
-  background-color: var(--a2ui-color-primary, #6750A4);
-  border-top-color: var(--a2ui-color-primary, #6750A4);
-  border-bottom-color: var(--a2ui-color-primary, #6750A4);
-  border-left-color: var(--a2ui-color-primary, #6750A4);
-  border-right-color: var(--a2ui-color-primary, #6750A4);
+  background-color: var(--a2ui-color-primary);
+  border-top-color: var(--a2ui-color-primary);
+  border-bottom-color: var(--a2ui-color-primary);
+  border-left-color: var(--a2ui-color-primary);
+  border-right-color: var(--a2ui-color-primary);
 }
 .a2ui-choice__option .unity-toggle__label,
 .a2ui-choice__option .unity-label {
-  color: var(--a2ui-color-onSurface, #1C1B1F);
+  color: var(--a2ui-color-onSurface);
   font-size: 20px;
 }
 .a2ui-choice__option {
-  padding: var(--a2ui-space-1, 8px) 0;
+  padding: var(--a2ui-space-1) 0;
 }
