@@ -1,3 +1,5 @@
+using System;
+using System.Text;
 using NUnit.Framework;
 
 namespace A2UISchemeA.Tests
@@ -230,5 +232,99 @@ namespace A2UISchemeA.Tests
                 "{\"createSurface\":{\"surfaceId\":\"s\"}}", out _);
             Assert.IsFalse(v.Ok, "缺 catalogId 必须拒收");
         }
+    }
+
+    /// <summary>
+    /// 规模上限防线（对齐 Compose 参考渲染器 1MB/1000/50，属加固项而非协议要求）：
+    /// 超大载荷、超量组件必须整体拒收保留上一帧；surface 名额超限抛错由宿主按保留上一帧处理。
+    /// </summary>
+    [TestFixture]
+    public class A2uiSafetyCapTests
+    {
+        [Test]
+        public void PayloadOver1MB_Rejected()
+        {
+            // 'a' 在 UTF-8 下 1 字节/字符：1_100_000 字符即 1.1MB，超上限
+            var big = new string('a', 1_100_000);
+            var jsonl = "{\"dataModelUpdate\":{\"surfaceId\":\"s\",\"contents\":[" +
+                        "{\"key\":\"blob\",\"valueString\":\"" + big + "\"}]}}";
+            var v = A2uiV08Validator.ValidateJsonl(jsonl, out _);
+            Assert.IsFalse(v.Ok, "超过 1MB 的载荷必须拒收");
+            StringAssert.Contains("max message size", v.Error);
+        }
+
+        [Test]
+        public void PayloadUnder1MB_Passes()
+        {
+            var big = new string('a', 900_000);
+            var jsonl = "{\"dataModelUpdate\":{\"surfaceId\":\"s\",\"contents\":[" +
+                        "{\"key\":\"blob\",\"valueString\":\"" + big + "\"}]}}";
+            var v = A2uiV08Validator.ValidateJsonl(jsonl, out _);
+            Assert.IsTrue(v.Ok, "1MB 以内的合法载荷应放行: " + v.Error);
+        }
+
+        [Test]
+        public void V08_ComponentsOver1000_Rejected()
+        {
+            var jsonl = "{\"surfaceUpdate\":{\"surfaceId\":\"s\",\"components\":[" +
+                        BuildV08Components(1001) + "]}}";
+            var v = A2uiV08Validator.ValidateJsonl(jsonl, out _);
+            Assert.IsFalse(v.Ok, "单条 surfaceUpdate 超 1000 组件必须拒收");
+            StringAssert.Contains("max component count", v.Error);
+        }
+
+        [Test]
+        public void V08_ComponentsExactly1000_Passes()
+        {
+            var jsonl = "{\"surfaceUpdate\":{\"surfaceId\":\"s\",\"components\":[" +
+                        BuildV08Components(1000) + "]}}";
+            var v = A2uiV08Validator.ValidateJsonl(jsonl, out _);
+            Assert.IsTrue(v.Ok, "边界值 1000 组件应放行: " + v.Error);
+        }
+
+        [Test]
+        public void V09_UpdateComponentsOver1000_Rejected()
+        {
+            var jsonl = "{\"updateComponents\":{\"surfaceId\":\"s\",\"components\":[" +
+                        BuildV09Components(1001) + "]}}";
+            var v = A2uiV08Validator.ValidateJsonl(jsonl, out _);
+            Assert.IsFalse(v.Ok, "单条 updateComponents 超 1000 组件必须拒收");
+            StringAssert.Contains("max component count", v.Error);
+        }
+
+        [Test]
+        public void Processor_SurfaceCountOver50_ThrowsAndDeleteFreesSlot()
+        {
+            var p = new A2uiV08Processor();
+            for (var i = 0; i < A2uiV08Processor.MaxSurfaces; i++)
+                p.IngestMessage(Parse("{\"surfaceUpdate\":{\"surfaceId\":\"s" + i + "\",\"components\":[]}}"));
+            Assert.Throws<InvalidOperationException>(() =>
+                p.IngestMessage(Parse("{\"surfaceUpdate\":{\"surfaceId\":\"overflow\",\"components\":[]}}")),
+                "第 51 个 surface 必须被拒绝");
+            Assert.AreEqual(A2uiV08Processor.MaxSurfaces, p.Surfaces.Count);
+
+            // 删一个释放名额后，可再建
+            p.IngestMessage(Parse("{\"deleteSurface\":{\"surfaceId\":\"s0\"}}"));
+            p.IngestMessage(Parse("{\"surfaceUpdate\":{\"surfaceId\":\"overflow\",\"components\":[]}}"));
+            Assert.IsTrue(p.Surfaces.ContainsKey("overflow"), "释放名额后应可再建 surface");
+        }
+
+        static string BuildV08Components(int n)
+        {
+            var items = new string[n];
+            for (var i = 0; i < n; i++)
+                items[i] = "{\"id\":\"c" + i + "\",\"component\":{\"Text\":{\"text\":{\"literalString\":\"x\"}}}}";
+            return string.Join(",", items);
+        }
+
+        static string BuildV09Components(int n)
+        {
+            var items = new string[n];
+            for (var i = 0; i < n; i++)
+                items[i] = "{\"id\":\"c" + i + "\",\"component\":\"Text\",\"text\":\"x\"}";
+            return string.Join(",", items);
+        }
+
+        static Newtonsoft.Json.Linq.JObject Parse(string s) => Newtonsoft.Json.Linq.JObject.Parse(s);
     }
 }

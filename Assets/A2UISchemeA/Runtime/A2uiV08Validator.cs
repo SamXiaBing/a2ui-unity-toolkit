@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using Newtonsoft.Json.Linq;
 
 namespace A2UISchemeA
@@ -38,6 +39,16 @@ namespace A2UISchemeA
         {
             "MediaMiniBar", "ClimateStep", "RestBanner"
         };
+
+        // ---------- 防御性规模上限 ----------
+        // 对齐 Compose 参考渲染器的同类防护（1MB / 1000 / 50），属加固项而非协议规范要求。
+        // 拒收路径与 G0 一致：整体拒收、保留上一帧，宿主日志携带越界原因。
+
+        /// <summary>单条 JSONL 载荷最大字节数（UTF-8）。</summary>
+        public const int MaxMessageBytes = 1_048_576;
+
+        /// <summary>单条 surfaceUpdate / updateComponents 消息最大组件数。</summary>
+        public const int MaxComponentsPerUpdate = 1000;
 
         public static bool IsKnownType(string type) =>
             StandardTypes.Contains(type) || CabinTypes.Contains(type);
@@ -78,6 +89,11 @@ namespace A2UISchemeA
             messages = new List<JObject>();
             if (string.IsNullOrWhiteSpace(text))
                 return A2uiValidationResult.Fail("empty payload");
+
+            var byteCount = Encoding.UTF8.GetByteCount(text);
+            if (byteCount > MaxMessageBytes)
+                return A2uiValidationResult.Fail(
+                    $"payload exceeds max message size {MaxMessageBytes} bytes (got {byteCount})");
 
             var n = 0;
             using var reader = new System.IO.StringReader(text);
@@ -158,6 +174,9 @@ namespace A2UISchemeA
                 return A2uiValidationResult.Fail("surfaceUpdate.surfaceId required");
             if (body["components"] is not JArray comps)
                 return A2uiValidationResult.Fail("surfaceUpdate.components required array");
+            if (comps.Count > MaxComponentsPerUpdate)
+                return A2uiValidationResult.Fail(
+                    $"surfaceUpdate.components exceeds max component count {MaxComponentsPerUpdate} (got {comps.Count})");
 
             foreach (var token in comps)
             {
@@ -231,6 +250,9 @@ namespace A2UISchemeA
                 return A2uiValidationResult.Fail("updateComponents.surfaceId required");
             if (body["components"] is not JArray comps)
                 return A2uiValidationResult.Fail("updateComponents.components required array");
+            if (comps.Count > MaxComponentsPerUpdate)
+                return A2uiValidationResult.Fail(
+                    $"updateComponents.components exceeds max component count {MaxComponentsPerUpdate} (got {comps.Count})");
 
             foreach (var token in comps)
             {

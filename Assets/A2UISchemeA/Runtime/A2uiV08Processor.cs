@@ -23,6 +23,9 @@ namespace A2UISchemeA
 
     public class A2uiV08Processor
     {
+        /// <summary>防御性上限：同时在册 surface 数（对齐 Compose 参考渲染器；deleteSurface 释放名额）。超限抛错由宿主按"保留上一帧"处理。</summary>
+        public const int MaxSurfaces = 50;
+
         readonly Dictionary<string, A2uiV08SurfaceState> _surfaces = new Dictionary<string, A2uiV08SurfaceState>();
 
         public IReadOnlyDictionary<string, A2uiV08SurfaceState> Surfaces => _surfaces;
@@ -174,6 +177,9 @@ namespace A2UISchemeA
         {
             if (!_surfaces.TryGetValue(surfaceId, out var state))
             {
+                if (_surfaces.Count >= MaxSurfaces)
+                    throw new InvalidOperationException(
+                        $"surface count exceeds max {MaxSurfaces}: refusing to create '{surfaceId}'");
                 state = new A2uiV08SurfaceState { SurfaceId = surfaceId };
                 _surfaces[surfaceId] = state;
             }

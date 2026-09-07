@@ -115,6 +115,7 @@ Agent-generated JSONL is **untrusted input**. The renderer defends like a browse
 | Defense | Limit / policy | Behavior |
 |---------|----------------|----------|
 | Render depth | `MAX_RENDER_DEPTH = 50` | deeper nesting renders placeholder, no stack overflow |
+| Payload / component / surface caps | 1MB / 1000 components / 50 surfaces (aligned with the Compose reference renderer) | rejected, **previous frame kept**, logs the reason |
 | Component ID validation | protocol ID rules | invalid ID skips that component only |
 | Bad packet G0 rejection | structural validation | rejected, **previous frame kept** (no white screen) |
 | Unknown component | `A2uiDegrade.UnknownTypeFallback` | placeholder card, no crash |
@@ -141,7 +142,6 @@ Remaining enhancements, tracked against the A2UI Compose reference renderer.
 
 - [ ] Long-list virtualization (LazyColumn/LazyRow; the current ScrollView renders fully, fine for cockpit card scale)
 - [ ] TextField two-way DataModel binding (currently via action write-back)
-- [ ] Message size cap (the reference implementation caps at 1MB) and per-surface component cap (reference 1000)
 - [ ] Automated dp-consistency tests for standard component sizes vs the reference renderer
 - [ ] Full baseline screenshot capture (GUI editor required, `A2UI_CAPTURE=1`)
 
