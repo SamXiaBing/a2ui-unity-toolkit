@@ -31,7 +31,7 @@ GenUI (Agent-generated interfaces) hits three hard problems in cockpit and game 
 
 1. **Protocol boundary.** The Agent only produces A2UI JSONL (one message per line, whitelisted component types). No arbitrary code, no raw styling. Structure is constrained by the protocol, and injection is rejected by G0 validation.
 2. **Rendering normalization.** The same JSONL renders under any theme via hot-switching (DS design system, M3 Light and Dark, Figma-exported skins). Structure and skin stay orthogonal.
-3. **Regression safety.** A full matrix (every theme against every sample, 500+ combos) with layout assertions and screenshot diff verifies nothing broke anywhere, with one command.
+3. **Regression safety.** A full matrix (every theme against every sample, ≈280 combos) with layout assertions and screenshot diff verifies nothing broke anywhere, with one command.
 
 **Protocol support is a dual stack.** The engine auto-detects the message format per line. Legacy v0.8 (`surfaceUpdate`/`beginRendering`, nested components) and current v0.9 (`createSurface`/`updateComponents`, flat components, direct text values) both render. `A2uiV09Normalizer` folds v0.9 into the internal model, so the mapper is version-agnostic.
 
@@ -83,7 +83,7 @@ screenshots/    demo captures
 - Built-in themes are **DS** (design system, default), **M3 Light**, **M3 Dark**, plus auto-discovered **Figma Export**
 - **Zero-code extension.** Drop a `FigmaTokens.uss` (plus optional `FigmaComponents.uss`) into any subfolder of `Styles/` and the registry discovers it as a new theme; the panel and dropdowns grow a matching entry automatically
 - Themes are a USS scope class plus C# inline fallback colors (engine descendant-selector quirks; see the compat matrix)
-- The DS theme and the 120-icon set derive from [sinanata/unity-ui-toolkit-design-system](https://github.com/sinanata/unity-ui-toolkit-design-system) (MIT, see [THIRD-PARTY-NOTICES.md])(THIRD-PARTY-NOTICES.md)
+- The DS theme and the 120-icon set derive from [sinanata/unity-ui-toolkit-design-system](https://github.com/sinanata/unity-ui-toolkit-design-system) (MIT, see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md))
 - Legacy decorative skins (ice/beach/pink/green/aaos/cloud) were trimmed; `/theme` requests for them fall back to DS
 
 ## Figma → USS pipeline
@@ -123,7 +123,17 @@ Agent-generated JSONL is **untrusted input**. The renderer defends like a browse
 | JSON parse tolerance | per-line failure reports line number | no silent swallowing |
 | Style parse isolation | malformed USS entries never reach runtime | engine style traversal never crashes |
 
+> Cockpit context gate (optional). `A2uiPolicyGate` derives driving state from gear and speed; while driving, strongly interactive components (Tabs, Modal, List, MultipleChoice, Video, DateTimeInput) are intercepted and rewritten into a simplified single-screen notice. Disable it for non-vehicle projects.
+
 > Layout contract. The **host fixes the width (640px standard card, max-width 96%)** and components fill with `flex-shrink:1`, matching the Compose reference renderer's `fillMaxWidth()` convention. Taller-than-viewport content scrolls inside the card (ScrollView). Fixed component sizes (image heights etc.) match the reference dp values.
+
+## Known limitations
+
+- Video / AudioPlayer are informational placeholders, no real playback
+- DateTimeInput is an ISO-string input field
+- Modal lacks a scrim and focus trapping
+- Long lists render fully (no virtualization yet)
+- Slider thumb is not themed yet (known engine-selector gap)
 
 ## Roadmap
 
@@ -137,6 +147,7 @@ Remaining enhancements, tracked against the A2UI Compose reference renderer.
 
 ## Key documents
 
+- **[Design write-up (English)](docs/article.en.md)**: *GenUI for in-vehicle cockpits — rendering the A2UI protocol with native Unity UI Toolkit* ([中文版](docs/article.zh-CN.md)). Full narrative of the route trade-offs, rendering pipeline, theming and regression system. Originally published on [WeChat](https://mp.weixin.qq.com/s/UFqDQDhYucKRuFd-JyHMOg) / [Zhihu](https://zhuanlan.zhihu.com/p/2079675042464523426) (Chinese)
 - **[Tuanjie UITK compatibility matrix](docs/engine-compat-tuanjie.md)**. 30+ measured engine pitfalls (transform crash, flex-shrink default 0, var() fallback dropped, Column wrap traps). Read before changing USS or the Mapper.
 - [Figma pipeline status](docs/figma_pipeline_status.md). What works, what doesn't, and why
 - [Protocol v0.8 → v0.9 upgrade notes](docs/protocol_upgrade_v0_9.md)

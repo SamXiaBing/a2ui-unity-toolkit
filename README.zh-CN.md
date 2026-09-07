@@ -31,7 +31,7 @@ GenUI（Agent 生成界面）在座舱场景有三个痛点，这个运行时逐
 
 1. **协议边界。** Agent 只产出 A2UI JSONL（每行一个消息、组件白名单），不产出样式不产出代码。结构由协议约束，注入被 G0 拒收。
 2. **渲染归一。** 同一份 JSONL 在多套 USS 主题（DS 设计系统、M3 Light 与 Dark、Figma 导出皮肤）下热切换，结构与皮肤正交。
-3. **可回归。** 全部主题 × 全部样例（500+ 组合）的布局断言加截图像素 diff，一条命令验证没有改坏任何角落。
+3. **可回归。** 全部主题 × 全部样例（约 280 组合，5 主题 × 56 样例）的布局断言加截图像素 diff，一条命令验证没有改坏任何角落。
 
 **协议支持 v0.8 与 v0.9 双栈。** 引擎按行自动识别格式。旧 v0.8（`surfaceUpdate`/`beginRendering`、组件嵌套）与现行 v0.9（`createSurface`/`updateComponents`、组件平铺、text 直接值）都能渲染；`A2uiV09Normalizer` 把 v0.9 归一化进内部模型，Mapper 无版本感知。样例库双格式并存（`*.v0.8.jsonl` / `*.v0.9.jsonl`），转换脚本在 `Tools/v08_to_v09.py`。
 
@@ -61,7 +61,7 @@ python Tools/run_regression.py --editor "C:/Program Files/Tuanjie/Hub/Editor/202
 # 无独显环境用 --only-geometry 跳过截图；--update-baselines 刷新基准
 ```
 
-回归覆盖全部主题 × 全部样例（v0.8/v0.9 全进矩阵）约 500+ 组合，逐组合做 worldBound 几何断言（文字不越出卡片），可选输出截图与 baselines 像素 diff（报告在 `TestResults/report.md`；baselines 需 GUI 编辑器跑 `A2UI_CAPTURE=1` 采集）。
+回归覆盖全部主题 × 全部样例（v0.8/v0.9 全进矩阵）约 280 组合，逐组合做 worldBound 几何断言（文字不越出卡片），可选输出截图与 baselines 像素 diff（报告在 `TestResults/report.md`；baselines 需 GUI 编辑器跑 `A2UI_CAPTURE=1` 采集）。
 
 ## 仓库结构
 
@@ -123,7 +123,17 @@ Agent 生成的 JSONL 是不可信输入。渲染器按浏览器处理网页的�
 | JSON 解析容错 | 单行解析失败定位到行号 | 报错行号，不静默吞 |
 | 样式解析隔离 | 残缺 USS 条目不进运行时 | 引擎样式遍历永不越界 |
 
+> 座舱情境门禁（可选）。`A2uiPolicyGate` 按挡位与车速判定行驶状态，行驶中 Tabs、Modal、List、MultipleChoice、Video、DateTimeInput 等强交互组件会被拦截并改写为单屏简化提示模板；非车机场景可关闭。
+
 > 布局合同。宿主定宽（640px 标准卡，max-width 96%），组件用 `flex-shrink:1` 填满，与 Compose 参考渲染器的 `fillMaxWidth()` 约定一致。超出视口的内容在卡内 ScrollView 滚动。固定组件尺寸（图片高度等）与参考 dp 值逐项对齐。
+
+## 已知局限
+
+- Video / AudioPlayer 为信息占位，未接真实播放
+- DateTimeInput 为 ISO 字符串输入框
+- Modal 缺少遮罩与焦点锁定
+- 长列表未虚拟化，全量渲染，数据量大时性能下降
+- Slider 拖柄尚未接入主题（引擎选择器未命中的已知问题）
 
 ## Roadmap
 
@@ -137,6 +147,7 @@ Agent 生成的 JSONL 是不可信输入。渲染器按浏览器处理网页的�
 
 ## 重要文档
 
+- **[设计与实现长文](docs/article.zh-CN.md)**：《车机端生成式 UI 实践：A2UI 协议的 Unity UI Toolkit 原生渲染方案》（[English](docs/article.en.md)）。技术路线对比、渲染流水线、主题管线与回归体系的完整叙述。原载[公众号](https://mp.weixin.qq.com/s/UFqDQDhYucKRuFd-JyHMOg)/[知乎](https://zhuanlan.zhihu.com/p/2079675042464523426)
 - **[Tuanjie UITK 兼容矩阵](docs/engine-compat-tuanjie.md)**。transform 崩溃、flex-shrink 默认 0、var() fallback 被丢弃、Column wrap 陷阱等 30+ 实测坑位。改 USS/Mapper 前必读
 - [Figma 管线状态](docs/figma_pipeline_status.md) · [协议 v0.8→v0.9 升级评估](docs/protocol_upgrade_v0_9.md) · [MiSans 字体许可](docs/FONT-LICENSE-MiSans.md)
 - 英文版 [README.md](README.md)，子目录说明见 [Assets/A2UISchemeA/README.md](Assets/A2UISchemeA/README.md)
