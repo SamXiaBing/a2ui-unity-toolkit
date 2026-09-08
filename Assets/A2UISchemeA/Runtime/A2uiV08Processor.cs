@@ -75,6 +75,16 @@ namespace A2UISchemeA
             // 先归一化为 v0.8 内部格式，再走同一条处理管线
             if (A2uiV09Normalizer.IsV09(msg))
             {
+                // 官方 Processing rules：surfaceId 会话内全局唯一——
+                // 未 deleteSurface 先重复 createSurface 属协议错误，整体拒绝（D2 防御性收口）。
+                // v0.8 无 createSurface 概念（surface 隐式、surfaceUpdate 可重复），不受影响。
+                // 校验器只看得到单帧，跨载荷的重复在这里靠持久状态兜底。
+                var createBody = msg["createSurface"] as JObject;
+                var createId = createBody?["surfaceId"]?.Value<string>();
+                if (!string.IsNullOrEmpty(createId) && _surfaces.ContainsKey(createId))
+                    throw new InvalidOperationException(
+                        $"createSurface rejected: surfaceId '{createId}' already exists (delete it before recreating)");
+
                 var normalized = A2uiV09Normalizer.Normalize(msg);
                 foreach (var m in normalized)
                     IngestV08Message(m);

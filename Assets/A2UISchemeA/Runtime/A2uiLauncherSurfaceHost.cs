@@ -332,6 +332,8 @@ namespace A2UISchemeA
             if (!v.Ok)
             {
                 Debug.LogWarning("[A2uiLauncherHost] validation fail: " + v.Error);
+                SendError(A2uiErrorEnvelope.CodeValidationFailed,
+                    A2uiErrorEnvelope.TryExtractSurfaceId(jsonl), v.Error, v.Path);
                 return;
             }
 
@@ -594,6 +596,19 @@ namespace A2UISchemeA
             var childDepth = ve.ClassListContains("a2ui-card") ? cardDepth + 1 : cardDepth;
             for (var i = 0; i < ve.childCount; i++)
                 ApplyInlineWalk(ve[i], ink, childDepth);
+        }
+
+        /// <summary>D3：官方 error 封套上报通道（独立于 action 通道）。宿主已落 JSONL；订阅方可接真实传输。</summary>
+        public event System.Action<Newtonsoft.Json.Linq.JObject> ErrorReported;
+
+        /// <summary>D3：构建官方形态 error 消息 → session 事件 + errors JSONL 落盘 + 通道回调。</summary>
+        public void SendError(string code, string surfaceId, string message, string path)
+        {
+            var envelope = A2uiErrorEnvelope.Build(code, surfaceId, message, path);
+            _recorder.RecordError(envelope);
+            try { ErrorReported?.Invoke(envelope); }
+            catch (System.Exception e) { Debug.LogError("[A2uiLauncherHost] ErrorReported subscriber threw: " + e.Message); }
+            Debug.Log("[A2uiLauncherHost] error → agent: " + envelope.ToString(Newtonsoft.Json.Formatting.None));
         }
 
         void OnAction(string name, Newtonsoft.Json.Linq.JObject ctx)

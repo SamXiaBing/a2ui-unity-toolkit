@@ -25,17 +25,20 @@ namespace A2UISchemeA
             Degrade
         }
 
-        public const string SampleMediaCard = "Assets/A2UISchemeA/Samples/media_card.v0.8.jsonl";
-        public const string SampleCatalogAll = "Assets/A2UISchemeA/Samples/catalog_all.v0.8.jsonl";
-        public const string SampleCoverageTour = "Assets/A2UISchemeA/Samples/coverage_tour.v0.8.jsonl";
-        public const string SamplePromptMedia = "Assets/A2UISchemeA/Samples/prompt_media.v0.8.jsonl";
-        public const string SamplePromptClimate = "Assets/A2UISchemeA/Samples/prompt_climate.v0.8.jsonl";
-        public const string SamplePromptRest = "Assets/A2UISchemeA/Samples/prompt_rest.v0.8.jsonl";
-        public const string SampleInvalid = "Assets/A2UISchemeA/Samples/invalid_bad_packet.v0.8.jsonl";
-        public const string SampleUnknown = "Assets/A2UISchemeA/Samples/degrade_unknown.v0.8.jsonl";
-        public const string SamplePoiComplex = "Assets/A2UISchemeA/Samples/poi_complex.v0.8.jsonl";
-        public const string SampleCabinMedia = "Assets/A2UISchemeA/Samples/cabin_media.v0.8.jsonl";
-        public const string SampleListTemplate = "Assets/A2UISchemeA/Samples/list_template.v0.8.jsonl";
+        // 样例路径随 951893a 目录重组更新（Samples/ → demos|features|scenarios|edge/），
+        // 映射经 surfaceId 核对：media_player=media · climate_control=climate · rest_banner=rest ·
+        // app_03_poi_nearby=poi · unknown_type=degrade · media_minibar=cabin · bad_packet=broken
+        public const string SampleMediaCard = "Assets/A2UISchemeA/Samples/features/media_player.v0.8.jsonl";
+        public const string SampleCatalogAll = "Assets/A2UISchemeA/Samples/demos/catalog_all.v0.8.jsonl";
+        public const string SampleCoverageTour = "Assets/A2UISchemeA/Samples/demos/coverage_tour.v0.8.jsonl";
+        public const string SamplePromptMedia = "Assets/A2UISchemeA/Samples/features/media_player.v0.8.jsonl";
+        public const string SamplePromptClimate = "Assets/A2UISchemeA/Samples/features/climate_control.v0.8.jsonl";
+        public const string SamplePromptRest = "Assets/A2UISchemeA/Samples/features/rest_banner.v0.8.jsonl";
+        public const string SampleInvalid = "Assets/A2UISchemeA/Samples/edge/bad_packet.v0.8.jsonl";
+        public const string SampleUnknown = "Assets/A2UISchemeA/Samples/edge/unknown_type.v0.8.jsonl";
+        public const string SamplePoiComplex = "Assets/A2UISchemeA/Samples/scenarios/app_03_poi_nearby.v0.8.jsonl";
+        public const string SampleCabinMedia = "Assets/A2UISchemeA/Samples/features/media_minibar.v0.8.jsonl";
+        public const string SampleListTemplate = "Assets/A2UISchemeA/Samples/features/list_template.v0.8.jsonl";
 
         static readonly Dictionary<string, string> NarrationBySurface = new Dictionary<string, string>
         {
@@ -643,6 +646,9 @@ namespace A2UISchemeA
                 _narration = "G0 校验拒绝（保留上一帧）: " + validation.Error;
                 _actionLog = "validation FAIL";
                 Debug.LogError($"[A2UISchemeA] ApplyJsonl validation FAIL: {validation.Error}");
+                SendError(A2uiErrorEnvelope.CodeValidationFailed,
+                    A2uiErrorEnvelope.TryExtractSurfaceId(jsonl),
+                    validation.Error, validation.Path);
                 UpdateMetaLabels();
                 Rerender();
                 return;
@@ -679,6 +685,9 @@ namespace A2UISchemeA
             {
                 _suppressRender = false;
                 _narration = "解析失败（保留上一帧）: " + e.Message;
+                SendError(A2uiErrorEnvelope.CodeValidationFailed,
+                    A2uiErrorEnvelope.TryExtractSurfaceId(jsonl) ?? FirstSurfaceId(),
+                    e.Message, "/");
                 Debug.LogException(e);
             }
 
@@ -807,10 +816,12 @@ namespace A2UISchemeA
                 return;
             }
 
-            // 只在实时推送模式下显示覆盖层
-            if (_act != Act.Live || string.IsNullOrEmpty(_overlayPrompt))
+            // 只在实时推送模式下显示覆盖层。prompt 是可选元数据（官方协议无必填要求；
+            // 样例 54/56 带注释行、agent 直推也可能不带），空 prompt 不作为隐藏门槛——
+            // 曾致 catalog_all 双版本校验通过却整卡不可见。无就绪 surface 时由下方分支兜底。
+            if (_act != Act.Live)
             {
-                Debug.Log($"[A2UISchemeA] RenderOverlay: hiding · _act={_act} · _overlayPrompt='{_overlayPrompt ?? "(null)"}'");
+                Debug.Log($"[A2UISchemeA] RenderOverlay: hiding · _act={_act}");
                 _cardOverlay.style.display = DisplayStyle.None;
                 return;
             }
@@ -1155,6 +1166,19 @@ namespace A2UISchemeA
             }
 
             if (_actionLabel != null) _actionLabel.text = _actionLog ?? "";
+        }
+
+        /// <summary>D3：官方 error 封套上报通道（独立于 action 通道）。宿主已落 JSONL；订阅方可接真实传输。</summary>
+        public event Action<JObject> ErrorReported;
+
+        /// <summary>D3：构建官方形态 error 消息 → session 事件 + errors JSONL 落盘 + 通道回调。</summary>
+        public void SendError(string code, string surfaceId, string message, string path)
+        {
+            var envelope = A2uiErrorEnvelope.Build(code, surfaceId, message, path);
+            _recorder.RecordError(envelope);
+            try { ErrorReported?.Invoke(envelope); }
+            catch (Exception e) { Debug.LogError("[A2UISchemeA] ErrorReported subscriber threw: " + e.Message); }
+            Debug.Log("[A2UISchemeA] error → agent: " + envelope.ToString(Newtonsoft.Json.Formatting.None));
         }
 
         void OnUserAction(string name, JObject context)

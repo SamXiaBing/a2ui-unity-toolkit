@@ -327,4 +327,253 @@ namespace A2UISchemeA.Tests
 
         static Newtonsoft.Json.Linq.JObject Parse(string s) => Newtonsoft.Json.Linq.JObject.Parse(s);
     }
+
+    /// <summary>D2：数据模型防护上限（Path 深度 10 / 键长 50 / 错误条数 100）。</summary>
+    [TestFixture]
+    public class A2uiDataModelCapTests
+    {
+        [Test]
+        public void V08_PathDepth10_Passes_11_Rejected()
+        {
+            var p10 = "/" + string.Join("/", new[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" });
+            var ok = A2uiV08Validator.ValidateJsonl(
+                "{\"dataModelUpdate\":{\"surfaceId\":\"s\",\"path\":\"" + p10 +
+                "\",\"contents\":[{\"key\":\"k\",\"valueString\":\"v\"}]}}", out _);
+            Assert.IsTrue(ok.Ok, "path 恰好 10 段应放行: " + ok.Error);
+
+            var p11 = p10 + "/k";
+            var bad = A2uiV08Validator.ValidateJsonl(
+                "{\"dataModelUpdate\":{\"surfaceId\":\"s\",\"path\":\"" + p11 +
+                "\",\"contents\":[{\"key\":\"k\",\"valueString\":\"v\"}]}}", out _);
+            Assert.IsFalse(bad.Ok, "path 11 段必须拒收");
+            StringAssert.Contains("max path depth", bad.Error);
+            Assert.AreEqual("/dataModelUpdate/path", bad.Path, "错误 Path 必须是 JSON Pointer");
+        }
+
+        [Test]
+        public void V09_PathOverDepth_Rejected()
+        {
+            var p11 = "/" + string.Join("/", new[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" });
+            var bad = A2uiV08Validator.ValidateJsonl(
+                "{\"updateDataModel\":{\"surfaceId\":\"s\",\"path\":\"" + p11 + "\",\"value\":1}}", out _);
+            Assert.IsFalse(bad.Ok);
+            StringAssert.Contains("max path depth", bad.Error);
+            Assert.AreEqual("/updateDataModel/path", bad.Path);
+        }
+
+        [Test]
+        public void V08_KeyLength50_Passes_51_Rejected()
+        {
+            var k50 = new string('k', 50);
+            var ok = A2uiV08Validator.ValidateJsonl(
+                "{\"dataModelUpdate\":{\"surfaceId\":\"s\",\"contents\":[" +
+                "{\"key\":\"" + k50 + "\",\"valueString\":\"v\"}]}}", out _);
+            Assert.IsTrue(ok.Ok, "键长恰好 50 应放行: " + ok.Error);
+
+            var k51 = new string('k', 51);
+            var bad = A2uiV08Validator.ValidateJsonl(
+                "{\"dataModelUpdate\":{\"surfaceId\":\"s\",\"contents\":[" +
+                "{\"key\":\"" + k51 + "\",\"valueString\":\"v\"}]}}", out _);
+            Assert.IsFalse(bad.Ok, "键长 51 必须拒收");
+            StringAssert.Contains("max key length", bad.Error);
+            Assert.AreEqual("/dataModelUpdate/contents/0/key", bad.Path);
+        }
+
+        [Test]
+        public void V09_ValueKeyLength51_Rejected()
+        {
+            var k51 = new string('k', 51);
+            var bad = A2uiV08Validator.ValidateJsonl(
+                "{\"updateDataModel\":{\"surfaceId\":\"s\",\"value\":{\"" + k51 + "\":1}}}", out _);
+            Assert.IsFalse(bad.Ok);
+            StringAssert.Contains("max key length", bad.Error);
+        }
+
+        [Test]
+        public void V08_ValueNestingBoundary()
+        {
+            // contents 数据键包在 key/valueMap 壳里：嵌套 k 层 valueMap = 数据键在第 k+1 层，
+            // 故 9 层 valueMap（最深键第 10 层）放行，10 层（第 11 层）拒收。
+            var ok = A2uiV08Validator.ValidateJsonl(
+                "{\"dataModelUpdate\":{\"surfaceId\":\"s\",\"contents\":[" + NestedValueMap(9) + "]}}", out _);
+            Assert.IsTrue(ok.Ok, "嵌套 9 层 valueMap（键最深第 10 层）应放行: " + ok.Error);
+
+            var bad = A2uiV08Validator.ValidateJsonl(
+                "{\"dataModelUpdate\":{\"surfaceId\":\"s\",\"contents\":[" + NestedValueMap(10) + "]}}", out _);
+            Assert.IsFalse(bad.Ok, "嵌套 10 层 valueMap（键最深第 11 层）必须拒收");
+            StringAssert.Contains("max path depth", bad.Error);
+        }
+
+        [Test]
+        public void V09_ValueNestingBoundary()
+        {
+            var ok = A2uiV08Validator.ValidateJsonl(
+                "{\"updateDataModel\":{\"surfaceId\":\"s\",\"value\":" + NestedObject(10) + "}}", out _);
+            Assert.IsTrue(ok.Ok, "值嵌套恰好 10 层应放行: " + ok.Error);
+
+            var bad = A2uiV08Validator.ValidateJsonl(
+                "{\"updateDataModel\":{\"surfaceId\":\"s\",\"value\":" + NestedObject(11) + "}}", out _);
+            Assert.IsFalse(bad.Ok, "值嵌套 11 层必须拒收");
+            StringAssert.Contains("max path depth", bad.Error);
+        }
+
+        [Test]
+        public void Errors_CappedAt100()
+        {
+            var sb = new System.Text.StringBuilder();
+            for (var i = 0; i < 120; i++)
+                sb.Append("{\"nope\":{}}\n");
+            var v = A2uiV08Validator.ValidateJsonl(sb.ToString(), out _);
+            Assert.IsFalse(v.Ok);
+            StringAssert.Contains("truncated at 100", v.Error, "错误条数应在 100 处截断");
+        }
+
+        /// <summary>构造嵌套 k 层 valueMap 的 contents entry（每层 {"key":"a","valueMap":[…]}）。</summary>
+        static string NestedValueMap(int depth)
+        {
+            var inner = "{\"key\":\"leaf\",\"valueString\":\"x\"}";
+            for (var i = 0; i < depth; i++)
+                inner = "{\"key\":\"a\",\"valueMap\":[" + inner + "]}";
+            return inner;
+        }
+
+        /// <summary>构造嵌套 depth 层的裸对象 {"a":{"a":…}}。</summary>
+        static string NestedObject(int depth)
+        {
+            var inner = "1";
+            for (var i = 0; i < depth; i++)
+                inner = "{\"a\":" + inner + "}";
+            return inner;
+        }
+    }
+
+    /// <summary>D2：surfaceId 会话内唯一——重复 createSurface 未删先建拒绝。</summary>
+    [TestFixture]
+    public class A2uiSurfaceIdUniquenessTests
+    {
+        [Test]
+        public void DuplicateCreate_InSamePayload_Rejected()
+        {
+            var jsonl = "{\"createSurface\":{\"surfaceId\":\"s\",\"catalogId\":\"c\"}}\n" +
+                        "{\"createSurface\":{\"surfaceId\":\"s\",\"catalogId\":\"c\"}}";
+            var v = A2uiV08Validator.ValidateJsonl(jsonl, out _);
+            Assert.IsFalse(v.Ok, "同载荷内重复 createSurface 必须拒收");
+            StringAssert.Contains("duplicate createSurface", v.Error);
+            Assert.AreEqual("/createSurface/surfaceId", v.Path);
+        }
+
+        [Test]
+        public void CreateDeleteCreate_SamePayload_Passes()
+        {
+            var jsonl = "{\"createSurface\":{\"surfaceId\":\"s\",\"catalogId\":\"c\"}}\n" +
+                        "{\"deleteSurface\":{\"surfaceId\":\"s\"}}\n" +
+                        "{\"createSurface\":{\"surfaceId\":\"s\",\"catalogId\":\"c\"}}";
+            var v = A2uiV08Validator.ValidateJsonl(jsonl, out _);
+            Assert.IsTrue(v.Ok, "删除后重建应放行: " + v.Error);
+        }
+
+        [Test]
+        public void Processor_DuplicateCreate_Throws_DeleteFreesId()
+        {
+            var p = new A2uiV08Processor();
+            p.IngestMessage(Parse("{\"createSurface\":{\"surfaceId\":\"s\",\"catalogId\":\"c\"}}"));
+            Assert.Throws<InvalidOperationException>(() =>
+                p.IngestMessage(Parse("{\"createSurface\":{\"surfaceId\":\"s\",\"catalogId\":\"c\"}}")),
+                "跨载荷重复 createSurface（未删先建）必须拒绝");
+            Assert.IsTrue(p.Surfaces.ContainsKey("s"), "拒收时保留既有 surface（不回滚）");
+
+            p.IngestMessage(Parse("{\"deleteSurface\":{\"surfaceId\":\"s\"}}"));
+            Assert.DoesNotThrow(() =>
+                p.IngestMessage(Parse("{\"createSurface\":{\"surfaceId\":\"s\",\"catalogId\":\"c\"}}")),
+                "删除后重建应放行");
+        }
+
+        [Test]
+        public void Processor_V08_SurfaceUpdate_RemainsIdempotent()
+        {
+            // v0.8 无 createSurface 概念（surface 隐式），重复 surfaceUpdate 是合法增量，不受唯一性判定影响
+            var p = new A2uiV08Processor();
+            Assert.DoesNotThrow(() =>
+            {
+                p.IngestMessage(Parse("{\"surfaceUpdate\":{\"surfaceId\":\"s\",\"components\":[]}}"));
+                p.IngestMessage(Parse("{\"surfaceUpdate\":{\"surfaceId\":\"s\",\"components\":[]}}"));
+            });
+        }
+
+        static Newtonsoft.Json.Linq.JObject Parse(string s) => Newtonsoft.Json.Linq.JObject.Parse(s);
+    }
+
+    /// <summary>D3：官方形态 error 封套（顶层 {version, error:{code,surfaceId,message,path}}，path 用 JSON Pointer）。</summary>
+    [TestFixture]
+    public class A2uiErrorEnvelopeTests
+    {
+        [Test]
+        public void Build_HasOfficialShape()
+        {
+            var env = A2uiErrorEnvelope.Build("VALIDATION_FAILED", "user_profile_card",
+                "Expected stringOrPath, got integer", "/components/0/text");
+            Assert.AreEqual("v0.9", (string)env["version"]);
+            var e = env["error"];
+            Assert.AreEqual("VALIDATION_FAILED", (string)e["code"]);
+            Assert.AreEqual("user_profile_card", (string)e["surfaceId"]);
+            Assert.AreEqual("/components/0/text", (string)e["path"]);
+            Assert.AreEqual("Expected stringOrPath, got integer", (string)e["message"]);
+        }
+
+        [Test]
+        public void Build_FillsRequiredDefaults()
+        {
+            var env = A2uiErrorEnvelope.Build(null, null, null, null);
+            var e = env["error"];
+            Assert.AreEqual("VALIDATION_FAILED", (string)e["code"], "空 code 回落官方校验错误码");
+            Assert.AreEqual("", (string)e["surfaceId"], "未知 surfaceId 落空串（字段必填）");
+            Assert.AreEqual("/", (string)e["path"], "未知 path 落根指针（字段必填）");
+        }
+
+        [Test]
+        public void TryExtractSurfaceId_V09AndV08()
+        {
+            Assert.AreEqual("s9", A2uiErrorEnvelope.TryExtractSurfaceId(
+                "{\"version\":\"v0.9\",\"createSurface\":{\"surfaceId\":\"s9\",\"catalogId\":\"c\"}}"));
+            Assert.AreEqual("s8", A2uiErrorEnvelope.TryExtractSurfaceId(
+                "{\"surfaceUpdate\":{\"surfaceId\":\"s8\",\"components\":[]}}"));
+            Assert.IsNull(A2uiErrorEnvelope.TryExtractSurfaceId("not json at all"));
+            Assert.IsNull(A2uiErrorEnvelope.TryExtractSurfaceId(null));
+        }
+
+        [Test]
+        public void ValidationFailure_PathIsJsonPointer()
+        {
+            var v = A2uiV08Validator.ValidateJsonl(
+                "{\"surfaceUpdate\":{\"surfaceId\":\"s\",\"components\":[" +
+                "{\"id\":\"r\",\"component\":{\"Text\":{},\"Row\":{}}}]}}", out _);
+            Assert.IsFalse(v.Ok);
+            Assert.AreEqual("/surfaceUpdate/components/0/component", v.Path,
+                "校验失败必须带指向字段位置的 JSON Pointer");
+        }
+
+        [Test]
+        public void Recorder_RecordError_WritesJsonl()
+        {
+            var rec = new A2uiSessionRecorder();
+            rec.Begin("err_env_test");
+            rec.RecordError(A2uiErrorEnvelope.Build("VALIDATION_FAILED", "s", "m", "/x"));
+
+            var sessionPath = rec.ExportPath();
+            var session = System.IO.File.ReadAllText(sessionPath);
+            StringAssert.Contains("\"error\"", session, "session 事件流应含 error 事件");
+
+            var errorsPath = System.IO.Path.Combine(
+                System.IO.Path.GetDirectoryName(sessionPath),
+                "errors_err_env_test.jsonl");
+            // append 语义：先清掉上次运行的残留，保证本断言只看本次写入
+            if (System.IO.File.Exists(errorsPath)) System.IO.File.Delete(errorsPath);
+            rec.RecordError(A2uiErrorEnvelope.Build("VALIDATION_FAILED", "s", "m", "/x"));
+            Assert.IsTrue(System.IO.File.Exists(errorsPath), "errors JSONL 应落盘");
+            var line = System.IO.File.ReadAllText(errorsPath).Trim();
+            var parsed = Newtonsoft.Json.Linq.JObject.Parse(line);
+            Assert.AreEqual("VALIDATION_FAILED", (string)parsed["error"]["code"],
+                "每行一个官方封套，agent 侧可直接解析");
+        }
+    }
 }

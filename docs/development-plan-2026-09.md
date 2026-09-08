@@ -35,8 +35,8 @@
 | Day | 日期 | 目标 | 改动点 | 验证 | 依赖 |
 |---|---|---|---|---|---|
 | D1 | 9/7 一 | ✅ 消息 1MB / 单 surface 组件 1000 / surface 50 三上限（2026-09-07 完成：6 例单测 + 全矩阵回归 47/47 绿；手工 HTTP 冒烟并入下次 GUI 会话） | 上限**收进 `A2uiV08Validator.cs` 单点内部**（自动覆盖双入口：`A2uiSchemeAHost.cs` L639 与 `A2uiLauncherSurfaceHost.cs` L331） | 超限拒收单测×双入口 + HTTP 主通道手工推超限包 + TCP/inbox 冒烟 | 无 |
-| D2 | 9/8 二 | Path 深度 10 / 键长 50 / 错误条数 100；surfaceId 唯一性；theme.primaryColor 解析 | Validator 加限制；**重复 createSurface 未删先建拒绝**（官方 Processing rules 明确 surfaceId 会话内全局唯一，Runtime 现无重复判定，防御性收口）；`A2uiV09Normalizer.cs` 通用解析 primaryColor→USS 变量覆盖（**仅 v0.9 栈，timebox 半日**；v1.0 已删该字段，不做深度主题映射） | 单测（含重复建面拒绝）+ 5 主题回归 | D1 |
-| D3 | 9/9 三 | **官方形态** error 消息上报 | 顶层封套 `{version, error:{code,surfaceId,message,path}}`（path 用 JSON Pointer），独立 SendError 通道，**不混用 action 通道**；宿主落 JSONL | 单测 + 坏包样例→agent 侧可解析 | D1 |
+| D2 | 9/8 二 | ✅ Path 深度 10 / 键长 50 / 错误条数 100 + surfaceId 唯一性（2026-09-08 完成：16 例新单测 + 全矩阵 63/63 绿、275 组合 0 失败；theme.primaryColor 解析按用户决策砍除——v1.0 已删该字段，做了对未来无价值） | Validator 加限制；**重复 createSurface 未删先建拒绝**（官方 Processing rules 明确 surfaceId 会话内全局唯一，Runtime 现无重复判定，防御性收口）；`A2uiV09Normalizer.cs` 通用解析 primaryColor→USS 变量覆盖（**仅 v0.9 栈，timebox 半日**；v1.0 已删该字段，不做深度主题映射） | 单测（含重复建面拒绝）+ 5 主题回归 | D1 |
+| D3 | 9/9 三 | ✅ **官方形态** error 消息上报（2026-09-08 提前完成：`A2uiErrorEnvelope` 封套四字段全必填 + 校验失败逐字段 JSON Pointer + 双宿主 SendError 独立通道 + RecordError 落 errors_*.jsonl；5 例单测含落盘可解析） | 顶层封套 `{version, error:{code,surfaceId,message,path}}`（path 用 JSON Pointer），独立 SendError 通道，**不混用 action 通道**；宿主落 JSONL | 单测 + 坏包样例→agent 侧可解析 | D1 |
 | D4 | 9/10 四 | 真 v0.9.1 字段补齐 | ChoicePicker.chips 完善（`A2uiV08CatalogMapper.cs` L792 已半实现）、DateTimeInput.min/max 校验、TextField.obscured（**@index/null删键/steps/placeholder 是 v1.0 项，移出**） | 单测 + 样例截图 | D1 |
 | D5 | 9/11 五 | Slider 拖柄主题化 + W1 收口 | tracker/dragger USS 选择器修复（显性视觉 bug 提前）；**若后代选择器仍未命中（矩阵已知偶发失效），改 C# 内联 dragger 样式兜底**；W1 新场景样例入库；**M1 基线冻结（GPU 全量）**，当天打预发布 tag `v0.1.1` | `run_regression.py` 全绿 | W1 |
 

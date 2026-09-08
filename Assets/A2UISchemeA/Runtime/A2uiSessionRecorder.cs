@@ -36,6 +36,28 @@ namespace A2UISchemeA
         public void RecordValidation(bool ok, string error) =>
             Record("validation", new JObject { ["ok"] = ok, ["error"] = error ?? "" });
 
+        /// <summary>
+        /// D3：官方 error 封套落盘——session 事件流记一条，并按 JSONL 追加到
+        /// Temp/A2UISchemeA/sessions/errors_&lt;session&gt;.jsonl（每行一个封套，agent 侧可直接解析）。
+        /// </summary>
+        public void RecordError(JObject envelope)
+        {
+            var env = envelope ?? new JObject();
+            Record("error", env);
+            try
+            {
+                if (string.IsNullOrEmpty(_sessionId)) Begin();
+                var dir = Path.GetFullPath(Path.Combine(Application.dataPath, "..", "Temp", "A2UISchemeA", "sessions"));
+                Directory.CreateDirectory(dir);
+                var path = Path.Combine(dir, $"errors_{_sessionId}.jsonl");
+                File.AppendAllText(path, env.ToString(Newtonsoft.Json.Formatting.None) + Environment.NewLine, Encoding.UTF8);
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning("[A2uiRecorder] error JSONL append failed: " + e.Message);
+            }
+        }
+
         public void RecordAction(string name, JObject context, string result) =>
             Record("action", new JObject
             {
